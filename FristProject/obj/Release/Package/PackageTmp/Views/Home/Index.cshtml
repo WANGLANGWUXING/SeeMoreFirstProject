@@ -1,12 +1,508 @@
-﻿@{
-    ViewBag.Title = "西墨";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西墨传媒H5项目集</title>
+    <link href="~/Content/project/css/panna_com.css" rel="stylesheet" />
+    <link href="~/Content/project/css/animate.css" rel="stylesheet" />
+    <link href="~/Content/project/css/index2.css" rel="stylesheet" />
+    <script src="~/Content/project/js/jquery-2.1.4.min.js"></script>
+    <script src="~/Content/project/js/panna_com.js"></script>
+    <script src="~/Content/project/js/vue.min.js"></script>
+    <script src="~/Content/project/js/jquery.imgLoder.js"></script>
+</head>
+<body>
+    <div class="loading loading-panna" id="loading">
+        <div class="loadingArea">
+            <img src="../Content/project/img/logo-loading.png" style="position: absolute;top: .3rem;left: 50%;transform: translateX(-50%);width: 4rem;">
+            <p class="loading-percent">0%</p>
+        </div>
+    </div>
 
-<div>
-    <a href="/2019/1102">知语城</a>
+    <div class="page">
+        <img data-src="../Content/project/img/logo.png" alt="" class="logo preload">
 
-</div>    
-<div>
-    <a href="/2019/test">红包测试</a>
+        <!-- 搜索 -->
+        <div class="search">
+            <input type="text" class="keyWords" placeholder="搜索项目名">
+            <img data-src="../Content/project/img/btn-search.png" alt="" class="btn-search preload">
+        </div>
 
-</div>
+        <!-- 筛选 -->
+        <div class="tab">
+            <div class="btn-project">项目筛选<img src="~/Content/project/img/select1.png" class="tiao tiao1 hidden"></div>
+            <div class="btn-filter">筛选条件<img src="~/Content/project/img/select1.png" class="tiao tiao2 hidden"></div>
+        </div>
+
+        <!-- 作品列表 -->
+        <div class="works" id="listScroll">
+            <div>
+                <ul class="list">
+
+
+                    <li v-for="lis in worksList" data-id="{{ lis.Id }}">
+                        <a href="{{ lis.ProLink }}"><img src="~/Content/project/img/project/{{ lis.ScreenShot }}" alt="" class="pic"></a>
+                        <span class="title">{{ lis.ProTitle }}</span>
+                    </li>
+                </ul>
+                <div id="pullUp">
+                    <span>上滑加载</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 筛选条件 -->
+    <div class="filter hidden animated3 zoomIn1">
+        <div class="filter-box">
+            <ul class="filterList">
+                <li v-for="filter in filterList">{{ filter.LabelName }}</li>
+            </ul>
+            <span class="reset">清空</span>
+            <span class="ok">确认</span>
+            <!--           <div class="empty"></div> -->
+        </div>
+    </div>
+
+    <!-- 项目导航 -->
+    <div class="m-nav hidden animated3 zoomIn1">
+        <!--         <p class="title-nav">项目分类</p> -->
+        <div class="nav" id="navScroll">
+            <div>
+                <ul class="navList">
+                    <li>所有项目</li>
+                    <li v-for="item in navList">{{ item.OwnerName }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="//cdn.pannacloud.com/js/iscroll-probe.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+
+    <script src="~/Content/project/js/share.js"></script>
+    <script type="text/javascript">
+        //数据绑定
+        var vm = new Vue({
+            el: 'body',
+            data: {
+                navList: [],
+                worksList: [],
+                filterList: []
+            },
+        });
+
+
+        //导航条滚动
+        var navScroll;
+        function navScrollLoaded() {
+            navScroll = new IScroll('#navScroll', { bounce: true, scrollY: true, click: true, probeType: 3,
+                disablePointer: true,
+                disableTouch: false,
+                disableMouse: false});
+        }
+
+        //作品列表滚动及上拉加载
+        var myScroll;
+        var pullUpFlag;
+        var pullUp;
+        var loading = true;
+        var canclick = true;
+        var openid = "";
+        var pageNum = 1;  //当前页面
+        var owner = "";    //选择的项目
+        var filter = "";  //筛选条件
+        var keyWord = ""  //搜索框关键字
+        var orderTime = "desc" //时间排序，当值为asc时点击后变为desc，当值为desc时，点击后变为asc
+        var orderTicket = "" //得票排序,当值为asc时点击后变为desc，当值为desc时，点击后变为asc
+        function positionJudge() {
+            // myScroll.maxScrollY == myScroll.y
+            if (this.y >= this.maxScrollY  && loading) {   //判断上拉
+                pullUp.innerHTML = "释放加载";
+                pullUpFlag = 1;
+            }
+        }
+        function action() {
+            if (pullUpFlag == 1 && loading) {
+                pullUpAction();
+            }
+        }
+        function loaded() {
+            pullUpFlag = 0;
+            pullUp = document.getElementById("pullUp");
+            pullUp.innerHTML = "上拉加载";
+            myScroll = new IScroll("#listScroll", {
+                click: true,
+                probeType: 2,
+                //        momentum: false,//关闭惯性滑动
+                mouseWheel: true,//鼠标滑轮开启
+                // scrollbars: true,//滚动条可见
+                //fadeScrollbars: true,//滚动条渐隐
+                //interactiveScrollbars: true,//滚动条可拖动
+                //shrinkScrollbars: 'scale', // 当滚动边界之外的滚动条是由少量的收缩
+                //useTransform: true,//CSS转化
+                //useTransition: true,//CSS过渡
+                bounce: false,//反弹
+                bounceEasing: 'back',
+                bounceTime: 300,
+                freeScroll: false,//只能在一个方向上滑动
+                startX: 0,
+                startY: 0,
+                disablePointer: true,
+                disableTouch: false,
+                disableMouse: false
+            });
+            myScroll.on('scroll', positionJudge);
+            myScroll.on("scrollEnd", action);
+        }
+        function pullUpAction() {
+            if(!canclick){
+                return
+            }
+            canclick = false
+
+            pullUp.innerHTML = "加载中";
+            pullUpFlag = 0;
+            loading = false;
+            setTimeout(function () {
+                pageNum++;
+                $.post('/Home/GetData',
+                    {
+                        action: 'GetDataByWhereAndOrder',
+                        pageIndex: pageNum,
+                        owner: owner,
+                        filter: filter,
+                        keyWord: keyWord,
+                        orderTime: orderTime,
+                        orderTicket: orderTicket,
+                    },
+                    function (data) {
+                        if (data.IsSuccess) {
+                            if(data.Data.length == 0){
+                                pullUp.innerHTML = "没有了";
+                                loading = true;
+                            }else{
+                                vm.worksList = vm.worksList.concat(data.Data);
+
+                                pullUp.innerHTML = "上滑加载";
+
+                                   setTimeout(function() {
+                                       myScroll.refresh();
+                                   },300);
+
+                                loading = true;
+                            }
+
+
+                        }
+                        else {
+                            pWidget.alert(data.Msg);
+                        }
+                        canclick = true
+                    },
+                    'json'
+            	);
+            }, 1000);
+        }
+
+
+        completeFunc = function () {
+            // 淡出加载界面
+            $("#loading").animate({ 'opacity': 0 }, 500, '', function () { $("#loading").remove(); $(".page").show(); });
+            GetWorksList(pageNum, owner, filter, keyWord, orderTime, orderTicket);
+        };
+
+
+        //获取项目类型列表
+        function getNavList() {
+            $.post('/Home/GetData',
+                {
+                    action: 'GetOwnerType'
+                },
+                function (data) {
+                    if (data.IsSuccess) {
+                        vm.navList = data.Data;
+                        setTimeout(function() {
+                            navScrollLoaded();
+                        },100)
+                    }
+                    else {
+                        pWidget.alert(data.Msg);
+                    }
+                },
+                'json'
+            )
+        }
+        //获取项目标签列表
+        function getFilterList() {
+            $.post('/Home/GetData',
+                {
+                    action: 'GetProLabel'
+                },
+                function (data) {
+                    if (data.IsSuccess) {
+                        vm.filterList = data.Data;
+                    }
+                    else {
+                        pWidget.alert(data.Msg);
+                    }
+                },
+                'json'
+            )
+        }
+
+
+        //获取作品列表
+        function GetWorksList(pageIndex, owner, filter, keyWord, orderTime, orderTicket) {
+            // $('ul.list .myappend').remove()
+            pWidget.showLoading(); //显示loading
+            $.post('/Home/GetData',
+                    {
+                        action: 'GetDataByWhereAndOrder',
+                        pageIndex: pageIndex,
+                        owner: owner,
+                        filter: filter,
+                        keyWord: keyWord,
+                        orderTime: orderTime,
+                        orderTicket: orderTicket,
+                    },
+                    function (data) {
+                        pWidget.hideLoading(); //隐藏loading
+                        if (data.IsSuccess) {
+                            vm.worksList = data.Data;
+                            setTimeout(function() {
+                            	loaded();
+                            },0);
+                            $('.filter').hide();
+                        }
+                        else {
+                            pWidget.alert(data.Msg);
+                        }
+                    },
+                    'json'
+            );
+        }
+
+
+        ////动态页面需要去掉
+        //window.onload = function () {
+        //    navScrollLoaded();
+        //    loaded();
+        //}
+
+
+        $(function () {
+            var loadingP = $(".loading-percent");
+            var loadingDiv = $("#loading");
+            $('body').lazyloder(function (percent) {
+                // 加载进度
+                console.log(percent)
+                loadingP.text(parseInt(percent * 100) + '%');
+                loadingP.animate({ 'opacity': 1 }, 100, '');
+                if (percent == 1) {
+                    completeFunc();
+                }
+            });
+
+
+            getNavList();
+            getFilterList();
+
+
+
+            //搜索
+            $('.btn-search').click(function () {
+                keyWord = $('.keyWords').val();
+                pageNum = 1;
+                GetWorksList(pageNum, owner, filter, keyWord, orderTime, orderTicket);
+            });
+
+
+            //按时间排序
+            $('.btn-time').click(function () {
+                if (orderTime == 'asc') {
+                    orderTime = 'desc';
+                }else {
+                    orderTime = 'asc';
+                }
+                orderTicket = "";
+                pageNum = 1;
+                GetWorksList(pageNum, owner, filter, keyWord, orderTime, orderTicket);
+            });
+
+            //按点赞数排序
+            $('.btn-hot').click(function () {
+                if (orderTicket == 'asc') {
+                    orderTicket = 'desc';
+                } else {
+                    orderTicket = 'asc';
+                }
+                orderTime = "";
+                pageNum = 1;
+                GetWorksList(pageNum, owner, filter, keyWord, orderTime, orderTicket);
+            });
+
+            //选择项目
+            $('.navList').on('click', 'li', function () {
+                $('.m-nav').hide();
+                $(this).addClass('active').siblings().removeClass('active');
+                $('.btn-project').css('background-image', 'url(../Content/project/img/xiala.png)');
+                $('.btn-project').find('.tiao').hide();
+                $('.btn-project').css('color','#bbbbbb');
+                owner = $(this).html();
+                if (owner == '所有项目') owner = '';
+                pageNum = 1;
+                GetWorksList(pageNum, owner, filter, keyWord, orderTime, orderTicket);
+            });
+
+
+            //弹出标签栏
+            $('.btn-filter').click(function () {
+                if ($('.filter').is(':visible')) {
+                    $('.filter').hide();
+                    $(this).css('background-image', 'url(../Content/project/img/xiala.png)');
+                    $(this).find('.tiao').hide();
+                    $(this).css('color','#bbbbbb')
+                } else {
+                    $('.filter').show();
+                    $(this).css('background-image', 'url(../Content/project/img/shou.png)');
+                    $(this).find('.tiao').show();
+                    $(this).css('color','#333333');
+                }
+                if ($('.m-nav').is(':visible')) {
+                    $('.m-nav').hide();
+                    $('.btn-project').css('background-image', 'url(../Content/project/img/xiala.png)');
+                    $('.btn-project').find('.tiao').hide();
+                    $('.btn-project').css('color','#bbbbbb');
+                }
+
+            });
+            $('.btn-project').click(function () {
+                if ($('.m-nav').is(':visible')) {
+                    $('.m-nav').hide();
+                    $(this).css('background-image', 'url(../Content/project/img/xiala.png)');
+                    $(this).find('.tiao').hide();
+                    $(this).css('color','#bbbbbb');
+                } else {
+                    $('.m-nav').show();
+                    navScroll.refresh();
+                    $(this).css('background-image', 'url(../Content/project/img/shou.png)');
+                    $(this).find('.tiao').show();
+                    $(this).css('color','#333333');
+                }
+                if ($('.filter').is(':visible')) {
+                    $('.filter').hide();
+                    $('.btn-filter').css('background-image', 'url(../Content/project/img/xiala.png)');
+                    $('.btn-filter').find('.tiao').hide();
+                    $('.btn-filter').css('color','#bbbbbb')
+                }
+            });
+            var arr=[];
+            //选择标签
+            $('.filterList').on('click', 'li', function () {
+                if ($(this).hasClass('active1')) {
+                    $(this).removeClass('active1');
+                    var thisStr = $(this).html();
+                    // if (filter.indexOf(thisStr) < 0) {
+                    //     filter =- thisStr - ',';
+                    // }
+                    console.log(thisStr)
+                    for (var i = 0; i<=arr.length; i++) {
+                        if (arr[i] === thisStr) {
+                            console.log(i)
+                            arr.splice(i,1)
+                        }
+                    }
+                }else{
+                    $(this).addClass('active1');
+                    var thisStr = $(this).html();
+                    // if (filter.indexOf(thisStr) < 0) {
+                    //     filter += thisStr + ',';
+                    // }
+                    arr.push(thisStr)
+                }
+                filter=arr.join(",")+",";
+                console.log(filter);
+
+            });
+            //确认
+            $('.ok').click(function () {
+                if (filter==",") {
+                    arr=[];
+                    $('.filterList li').removeClass('active1');
+                    $('.btn-filter').css('background-image', 'url(../Content/project/img/xiala.png)');
+                    $('.btn-filter').find('.tiao').hide();
+                    $('.btn-filter').css('color','#bbbbbb')
+                    filter = '';
+                    pageNum = 1;
+                    GetWorksList(pageNum, owner, filter, keyWord, orderTime, orderTicket);
+                }
+                pageNum = 1;
+                GetWorksList(pageNum, owner, filter, keyWord, orderTime, orderTicket);
+                $('.btn-filter').css('background-image', 'url(../Content/project/img/xiala.png)');
+                $('.btn-filter').find('.tiao').hide();
+                $('.btn-filter').css('color','#bbbbbb')
+            });
+            //重置
+            $('.reset').click(function () {
+                arr=[];
+                $('.filterList li').removeClass('active1');
+                $('.btn-filter').css('background-image', 'url(../Content/project/img/xiala.png)');
+                $('.btn-filter').find('.tiao').hide();
+                $('.btn-filter').css('color','#bbbbbb')
+                filter = '';
+                pageNum = 1;
+                GetWorksList(pageNum, owner, filter, keyWord, orderTime, orderTicket);
+            });
+
+
+
+            //点赞
+            $('.list').on('click', '.xin', function () {
+                var This = $(this);
+                var num = parseInt(This.next().html());
+                var id = This.parent().attr('data-id');
+                $.post('dal/dal.aspx',
+                        {
+                            action: 'GiveALike',
+                            id: id
+                        },
+                        function (data) {
+                            if (data.IsSuccess)
+                            {
+                                This.next().html(num + 1);
+                            }
+                            pWidget.alert(data.Msg);
+                        },
+                        'json'
+                ).error(function () {
+                    pWidget.alert('需要微信登录才能点赞！5秒后跳转到微信授权。');
+                        setTimeout(function () {
+                            location.href = 'Index.aspx?needlogin=true'
+                        }, 5000);
+                });
+            });
+
+
+
+
+            //自定义分享配置项
+            SHARE.shareOption({
+                link: 'http://weixin.seemoread.com/Home/Index',
+                pic: "http://weixin.seemoread.com/Content/project/project/img/share.png",
+                title: "西墨案例欣赏",
+                desc: "西墨互动H5作品集",
+                success: function () {
+
+                }
+            });
+        })
+    </script>
+
+    <script src="~/Content/project/js/analytic.js"></script>
+
+
+</body>
+</html>

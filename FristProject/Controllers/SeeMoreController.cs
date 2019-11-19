@@ -420,7 +420,7 @@ namespace FristProject.Controllers
 
         JYCPriceTimeDAL jYCPriceTime = new JYCPriceTimeDAL();
 
-        public string JYCGetPrice(string openId, string nickName, bool last)
+        public string JYCGetPrice(string openId, int last)
         {
             string activityName = "中铁建江语城H51118";
             string customCode = "";
@@ -432,7 +432,7 @@ namespace FristProject.Controllers
             if (giftLog == null)
             {
                 int count = jYCPriceTime.SelJYCPriceTime(openId);
-                if (last || count == 2)
+                if (last == 0 || count == 2)
                 {
                     Gift gift = JYCCJ1118();
                     if (gift != null)
@@ -453,7 +453,7 @@ namespace FristProject.Controllers
                             giftLogDAL.AddGiftLog(new GiftLog
                             {
                                 OpenId = openId,
-                                NickName = nickName,
+                                NickName = "",
                                 ActivityName = activityName,
                                 GiftId = gift.GiftId,
                                 GiftName = gift.GiftName,
@@ -491,7 +491,7 @@ namespace FristProject.Controllers
                                 giftLogDAL.AddGiftLog(new GiftLog
                                 {
                                     OpenId = openId,
-                                    NickName = nickName,
+                                    NickName = "",
                                     ActivityName = activityName,
                                     GiftId = gift.GiftId,
                                     GiftName = gift.GiftName,
@@ -513,7 +513,6 @@ namespace FristProject.Controllers
                         msg = "奖品不在这里";
                     }
                 }
-
 
             }
             else

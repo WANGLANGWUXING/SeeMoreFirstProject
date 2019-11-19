@@ -288,6 +288,83 @@
     <Content Include="Content\2019\test\script\swiper.animate.min.js" />
     <Content Include="Content\2019\test\script\swiper.min.js" />
     <Content Include="Content\2019\test\script\tween.js" />
+    <Content Include="Content\project\css\animate.css" />
+    <Content Include="Content\project\css\index2.css" />
+    <Content Include="Content\project\css\panna_com.css" />
+    <Content Include="Content\project\img\bg-search.png" />
+    <Content Include="Content\project\img\btn-search.png" />
+    <Content Include="Content\project\img\logo-loading.png" />
+    <Content Include="Content\project\img\logo.png" />
+    <Content Include="Content\project\img\project\20180612.png" />
+    <Content Include="Content\project\img\project\20180614.png" />
+    <Content Include="Content\project\img\project\20180615-2.png" />
+    <Content Include="Content\project\img\project\20180615.png" />
+    <Content Include="Content\project\img\project\20180621.png" />
+    <Content Include="Content\project\img\project\20180622.png" />
+    <Content Include="Content\project\img\project\20180625.png" />
+    <Content Include="Content\project\img\project\20180627.png" />
+    <Content Include="Content\project\img\project\20180716.png" />
+    <Content Include="Content\project\img\project\20180720.png" />
+    <Content Include="Content\project\img\project\20180801.png" />
+    <Content Include="Content\project\img\project\20180808.png" />
+    <Content Include="Content\project\img\project\20180813.png" />
+    <Content Include="Content\project\img\project\20180814.png" />
+    <Content Include="Content\project\img\project\20180819.png" />
+    <Content Include="Content\project\img\project\20181015.png" />
+    <Content Include="Content\project\img\project\20181023-2.png" />
+    <Content Include="Content\project\img\project\20181023-3.png" />
+    <Content Include="Content\project\img\project\20181023-4.png" />
+    <Content Include="Content\project\img\project\20181023-5.png" />
+    <Content Include="Content\project\img\project\20181023.png" />
+    <Content Include="Content\project\img\project\20181031.png" />
+    <Content Include="Content\project\img\project\20181119.png" />
+    <Content Include="Content\project\img\project\20181217.png" />
+    <Content Include="Content\project\img\project\20190220-2.png" />
+    <Content Include="Content\project\img\project\20190220.png" />
+    <Content Include="Content\project\img\project\20190306.png" />
+    <Content Include="Content\project\img\project\20190320.png" />
+    <Content Include="Content\project\img\project\20190415.png" />
+    <Content Include="Content\project\img\project\20190424.png" />
+    <Content Include="Content\project\img\project\20190429.png" />
+    <Content Include="Content\project\img\project\20190517.png" />
+    <Content Include="Content\project\img\project\20190617.png" />
+    <Content Include="Content\project\img\project\20190624.png" />
+    <Content Include="Content\project\img\project\20190702.png" />
+    <Content Include="Content\project\img\project\20190703.png" />
+    <Content Include="Content\project\img\project\20190717.png" />
+    <Content Include="Content\project\img\project\20190725-2.png" />
+    <Content Include="Content\project\img\project\20190725.png" />
+    <Content Include="Content\project\img\project\20190726.png" />
+    <Content Include="Content\project\img\project\20190728.png" />
+    <Content Include="Content\project\img\project\20190730.png" />
+    <Content Include="Content\project\img\project\20190806.png" />
+    <Content Include="Content\project\img\project\20190813.png" />
+    <Content Include="Content\project\img\project\20190815.png" />
+    <Content Include="Content\project\img\project\20190818.png" />
+    <Content Include="Content\project\img\project\20190823.png" />
+    <Content Include="Content\project\img\project\20190828.png" />
+    <Content Include="Content\project\img\project\20190830.png" />
+    <Content Include="Content\project\img\project\20190901.png" />
+    <Content Include="Content\project\img\project\20190906.png" />
+    <Content Include="Content\project\img\project\20190910.png" />
+    <Content Include="Content\project\img\project\20190912.png" />
+    <Content Include="Content\project\img\project\20190922.png" />
+    <Content Include="Content\project\img\project\20190925.png" />
+    <Content Include="Content\project\img\project\20190926.png" />
+    <Content Include="Content\project\img\project\20191008.png" />
+    <Content Include="Content\project\img\project\20191025.png" />
+    <Content Include="Content\project\img\project\20191031.png" />
+    <Content Include="Content\project\img\project\20191105.png" />
+    <Content Include="Content\project\img\select.png" />
+    <Content Include="Content\project\img\share.png" />
+    <Content Include="Content\project\img\shou.png" />
+    <Content Include="Content\project\img\xiala.png" />
+    <Content Include="Content\project\js\analytic.js" />
+    <Content Include="Content\project\js\jquery-2.1.4.min.js" />
+    <Content Include="Content\project\js\jquery.imgLoder.js" />
+    <Content Include="Content\project\js\panna_com.js" />
+    <Content Include="Content\project\js\share.js" />
+    <Content Include="Content\project\js\vue.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
@@ -305,8 +382,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\SeeMore\Index.cshtml" />
     <Content Include="Views\SeeMore\Login.cshtml" />
@@ -317,6 +392,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DAL\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
@@ -326,6 +402,10 @@
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{a38f180c-8e04-42f0-bf84-4a6092861ab3}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectDAL\ProjectDAL.csproj">
+      <Project>{b5d05f52-9cbc-4222-bd6c-9b812ec8a7d5}</Project>
+      <Name>ProjectDAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\WeiKeDAL\WeiKeDAL.csproj">
       <Project>{3c53c2db-1124-40c5-8b19-e44f120c9f1a}</Project>

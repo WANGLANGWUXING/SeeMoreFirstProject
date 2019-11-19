@@ -6,7 +6,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\mayn\Desktop\公司资料\Work\FristProject\FristProject\bin\Release\Publish</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\FristProject\bin\Release\Publish</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -28,10 +28,10 @@
       <publishTime>05/06/2015 13:05:20</publishTime>
     </File>
     <File Include="bin/FristProject.dll">
-      <publishTime>11/19/2019 10:19:21</publishTime>
+      <publishTime>11/19/2019 18:34:08</publishTime>
     </File>
     <File Include="bin/FristProject.pdb">
-      <publishTime>11/19/2019 10:19:21</publishTime>
+      <publishTime>11/19/2019 18:34:08</publishTime>
     </File>
     <File Include="bin/LitJSON.dll">
       <publishTime>10/21/2019 15:16:02</publishTime>
@@ -50,6 +50,12 @@
     </File>
     <File Include="bin/Pinyin4net.dll">
       <publishTime>01/21/2012 19:45:34</publishTime>
+    </File>
+    <File Include="bin/ProjectDAL.dll">
+      <publishTime>11/19/2019 18:29:35</publishTime>
+    </File>
+    <File Include="bin/ProjectDAL.pdb">
+      <publishTime>11/19/2019 18:29:35</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>05/24/2018 13:38:22</publishTime>
@@ -804,6 +810,237 @@
     <File Include="Content/images/share.jpg">
       <publishTime>10/30/2019 15:25:32</publishTime>
     </File>
+    <File Include="Content/project/css/animate.css">
+      <publishTime>11/12/2019 15:13:29</publishTime>
+    </File>
+    <File Include="Content/project/css/index2.css">
+      <publishTime>11/19/2019 16:08:50</publishTime>
+    </File>
+    <File Include="Content/project/css/panna_com.css">
+      <publishTime>11/12/2019 15:13:22</publishTime>
+    </File>
+    <File Include="Content/project/img/bg-search.png">
+      <publishTime>11/12/2019 15:34:19</publishTime>
+    </File>
+    <File Include="Content/project/img/btn-search.png">
+      <publishTime>11/12/2019 15:34:35</publishTime>
+    </File>
+    <File Include="Content/project/img/logo-loading.png">
+      <publishTime>11/14/2019 14:29:14</publishTime>
+    </File>
+    <File Include="Content/project/img/logo.png">
+      <publishTime>11/14/2019 14:41:12</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180612.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180614.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180615-2.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180615.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180621.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180622.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180625.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180627.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180716.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180720.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180801.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180808.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180813.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180814.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20180819.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20181015.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20181023-2.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20181023-3.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20181023-4.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20181023-5.png">
+      <publishTime>11/12/2019 17:19:13</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20181023.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20181031.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20181119.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20181217.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190220-2.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190220.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190306.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190320.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190415.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190424.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190429.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190517.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190617.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190624.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190702.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190703.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190717.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190725-2.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190725.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190726.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190728.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190730.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190806.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190813.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190815.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190818.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190823.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190828.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190830.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190901.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190906.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190910.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190912.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190922.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190925.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20190926.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20191008.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20191025.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20191031.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/project/20191105.png">
+      <publishTime>11/12/2019 16:49:02</publishTime>
+    </File>
+    <File Include="Content/project/img/select1.png">
+      <publishTime>11/12/2019 15:26:39</publishTime>
+    </File>
+    <File Include="Content/project/img/share.png">
+      <publishTime>11/19/2019 17:16:11</publishTime>
+    </File>
+    <File Include="Content/project/img/shou.png">
+      <publishTime>11/19/2019 16:15:35</publishTime>
+    </File>
+    <File Include="Content/project/img/xiala.png">
+      <publishTime>11/12/2019 15:34:43</publishTime>
+    </File>
+    <File Include="Content/project/js/analytic.js">
+      <publishTime>11/12/2019 15:41:51</publishTime>
+    </File>
+    <File Include="Content/project/js/jquery-2.1.4.min.js">
+      <publishTime>11/12/2019 15:14:34</publishTime>
+    </File>
+    <File Include="Content/project/js/jquery.imgLoder.js">
+      <publishTime>11/12/2019 15:16:12</publishTime>
+    </File>
+    <File Include="Content/project/js/panna_com.js">
+      <publishTime>11/12/2019 15:15:58</publishTime>
+    </File>
+    <File Include="Content/project/js/share.js">
+      <publishTime>11/12/2019 16:25:55</publishTime>
+    </File>
+    <File Include="Content/project/js/vue.min.js">
+      <publishTime>11/12/2019 15:15:53</publishTime>
+    </File>
     <File Include="Content/script/eraser.js">
       <publishTime>10/29/2019 16:27:36</publishTime>
     </File>
@@ -922,7 +1159,7 @@
       <publishTime>10/21/2019 10:25:46</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/31/2019 15:58:39</publishTime>
+      <publishTime>11/19/2019 18:33:37</publishTime>
     </File>
     <File Include="Views/SeeMore/css/common.css">
       <publishTime>10/29/2019 16:11:50</publishTime>
@@ -1054,7 +1291,7 @@
       <publishTime>10/24/2019 10:30:16</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/18/2019 10:39:21</publishTime>
+      <publishTime>11/19/2019 18:29:36</publishTime>
     </File>
   </ItemGroup>
 </Project>

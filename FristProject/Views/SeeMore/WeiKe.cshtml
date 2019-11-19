@@ -1,0 +1,110 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>微课平台</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+</head>
+<body>
+    <div>
+        <h1>微课平台欢迎您</h1>
+    </div>
+    <div>
+        <img id="UserImg" />
+        <label id="UserName">
+
+        </label>
+    </div>
+    <div>
+        <table id="tb"></table>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9+4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.15.3/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script>
+        $(function () {
+            authorize();
+            $('#tb').bootstrapTable({
+                url: '/SeeMore/KList',
+                pagination: true,
+                search: true,
+                columns: [{
+                    field: 'RowIndex',
+                    title: '序号'
+                }, {
+                    field: 'KName',
+                    title: '课程名'
+                }, {
+                    field: 'KType',
+                    title: '课程类型'
+                }, {
+                    field: 'Id',
+                    title: '操作',
+                    formatter: function (value, row, index) {
+                        var id = value;
+                        return " <a href='/SeeMore/WeiKeInfo?Kid=" + id + "' class=\"btn btn-primary btn-xs\">查看</a>"
+                    }
+                }]
+            })
+        })
+
+
+        function authorize() {
+            $.ajax({
+                type: "post",
+                url: "/SeeMore/GetUserInfo",
+                dataType: "json",
+                async: true,
+                success: function (data) {
+                    console.log(data);
+
+                    if (data.id === "1") {
+                        addUser(data.user.Openid, data.user.Nickname);
+                        $("#UserImg").attr("src", data.user.Headimgurl)
+                        $("#UserImg").attr("width", 100)
+                        $("#UserName").html(data.user.Nickname)
+                    }
+
+                }
+            });
+        }
+
+        function addUser(openid, nickname) {
+            $.ajax({
+                //以post方式发送代码
+                type: "post",
+                //目标路径
+                url: "/SeeMore/WeiKeAddUser",
+                //表名数据格式是json
+                dataType: "json",
+                data: {
+                    //已经申明了数据格式，就用那种数据格式
+                    openid: openid,
+                    nickname: nickname
+                },
+                //是否异步
+                async: true,
+                //数据成功返回后的操作，就是局部改变动态页面
+                success: function (data) {
+                    console.log(data);
+                    //alert(data);
+
+
+                }
+            });
+        }
+    </script>
+</body>
+</html>

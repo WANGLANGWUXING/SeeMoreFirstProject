@@ -1,0 +1,140 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>微课平台课程详情</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h3 id="kName" style="text-align:center"></h3>
+        </div>
+        <div>
+            <p id="KType"></p>
+            <hr />
+        </div>
+        <div>
+            <p id="KDesc" style="text-indent:2em"></p>
+        </div>
+        <h5>评论区：</h5>
+        <div id="Comment"></div>
+        <div id="CommentSubmit">
+            <textarea id="CommentDesc" class="form-control" placeholder="请在此输入评论"></textarea>
+            <br>
+
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="addComment()">提交</button>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9+4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.15.3/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script>
+
+
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) { return pair[1]; }
+            }
+            return (false);
+        }
+        var kid;
+        $(function () {
+            kid = getQueryVariable("Kid");
+            if (kid) {
+                $.ajax({
+                    type: "post",
+                    url: "/SeeMore/GetWeike",
+                    data: { id: kid },
+                    dataType: "json",
+                    async: true,
+                    //数据成功返回后的操作，就是局部改变动态页面
+                    success: function (data) {
+                        console.log(data);
+                        $("#kName").html(data.KName);
+                       
+                        $("#KType").html("类型：" + data.KType + "；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;创建时间：" + data.CreateTime.substring(0, 9))
+                        $("#KDesc").html(data.KDesc)
+                        getComments(kid);
+                    }
+                })
+            }
+        })
+
+
+        function getComments(kid) {
+            $.ajax({
+                type: "post",
+                url: "/SeeMore/CommentShow",
+                dataType: "json",
+                data: { kid: kid },
+                async: true,
+                //数据成功返回后的操作，就是局部改变动态页面
+                success: function (data) {
+                    console.log(data);
+                    
+                    if (data.length > 0) {
+                        var commentHtml = "";
+                        for (var i = 0; i < data.length; i++) {
+                            commentHtml += "<div>"
+                            commentHtml += "<span>" + data[i].UserName + "</span>"
+                            console.log(typeof data[i].CreateTime);
+                            commentHtml += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>" + data[i].CreateTime.substring(0, 9) + "</span>"
+                            commentHtml += "<div>" + data[i].Comment + "</div>"
+                            commentHtml += "</div>"
+                        }
+                        $("#Comment").append(commentHtml);
+                    }
+
+                }
+            })
+        }
+        function addComment() {
+            if (kid) {
+                var num = parseInt(kid);
+                var CommentDesc = $("#CommentDesc").val();
+                if (CommentDesc) {
+                    $.ajax({
+                        type: "post",
+                        url: "/SeeMore/AddComment",
+                        dataType: "json",
+                        data: {
+                            KId: num,
+                            Comment: CommentDesc
+                        },
+                        async: true,
+                        //数据成功返回后的操作，就是局部改变动态页面
+                        success: function (data) {
+                            console.log(data);
+                            if (data.id) {
+                                $("#Comment").html("");
+                                getComments(kid);
+                                $("#CommentDesc").val("")
+                            }
+                        }
+                    })
+                }
+
+
+
+            }
+        }
+
+
+    </script>
+</body>
+</html>

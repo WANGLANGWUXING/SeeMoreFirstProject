@@ -1,0 +1,18 @@
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\WeiKeDAL\bin\Debug\WeiKeDAL.dll
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\WeiKeDAL\bin\Debug\WeiKeDAL.pdb
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\WeiKeDAL\bin\Debug\Dapper.dll
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\WeiKeDAL\bin\Debug\Dapper.pdb
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\WeiKeDAL\bin\Debug\Dapper.xml
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\WeiKeDAL\obj\Debug\WeiKeDAL.csproj.CoreCompileInputs.cache
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\WeiKeDAL\obj\Debug\WeiKeDAL.csproj.CopyComplete
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\WeiKeDAL\obj\Debug\WeiKeDAL.dll
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\WeiKeDAL\obj\Debug\WeiKeDAL.pdb
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\WeiKeDAL\bin\Debug\WeiKeDAL.dll
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\WeiKeDAL\bin\Debug\WeiKeDAL.pdb
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\WeiKeDAL\bin\Debug\Dapper.dll
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\WeiKeDAL\bin\Debug\Dapper.pdb
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\WeiKeDAL\bin\Debug\Dapper.xml
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\WeiKeDAL\obj\Debug\WeiKeDAL.csproj.CoreCompileInputs.cache
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\WeiKeDAL\obj\Debug\WeiKeDAL.csproj.CopyComplete
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\WeiKeDAL\obj\Debug\WeiKeDAL.dll
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\WeiKeDAL\obj\Debug\WeiKeDAL.pdb

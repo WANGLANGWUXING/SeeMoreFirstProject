@@ -1,0 +1,96 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="robots" content="index,follow">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webk`it">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="pragram" content="no-cache" />
+    <meta content="email=no" name="format-detection" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <script>!function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("将根据已有的meta标签来设置缩放比例");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=(a.navigator.appVersion.match(/android/gi),a.navigator.appVersion.match(/iphone/gi)),q=a.devicePixelRatio;i=p?q>=3&&(!i||i>=3)?3:q>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var r=e.createElement("div");r.appendChild(g),e.write(r.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));</script>
+    <link rel="stylesheet" href="~/Content/2019/1105/css/common.css" />
+    <script type="text/javascript" src="~/Content/2019/1105/script/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/2019/1105/script/fastclick.js"></script>
+    <script type="text/javascript" src="~/Content/2019/1105/script/preloadImg.js"></script>
+    <script type="text/javascript" src="~/Content/2019/1105/script/srcImg.js"></script>
+    <script type="text/javascript" src="~/Content/2019/1105/script/scroll.js"></script>
+    <!-- <script type="text/javascript" src="~/Content/2019/1105/script/tween.js"></script> -->
+    <!-- <script type="text/javascript" src="~/Content/2019/1105/script/pixi.js"></script> -->
+    <script type="text/javascript" src="~/Content/2019/1105/script/swiper.min.js"></script>
+    <script type="text/javascript" src="~/Content/2019/1105/script/swiper.animate.min.js"></script>
+    <script type="text/javascript" src="~/Content/2019/1105/script/main.js"></script>
+    <!-- <script type="text/javascript" src="~/Content/2019/1105/script/sulando.js"></script> -->
+</head>
+
+<body id="index">
+
+    <!-- loading -->
+    <aside id="loading" class="wrap">
+        <div class="process-bg"></div>
+        <div class="process"><span></span></div>
+    </aside>
+
+    <!-- swiper -->
+    <div id="mySwiper" class="swiper-container">
+        <div class="swiper-wrapper">
+            <!-- IndexPage -->
+            <aside class="swiper-slide swiper-no-swiping">
+                <img class="img ani" src="~/Content/2019/1105/images/bg.png" swiper-animate-duration="0.5s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                <div class="middle-wrap">
+                    <img class="img ani" swiper-animate-duration="1.0s" swiper-animate-delay="0.5s" src="~/Content/2019/1105/images/page/1-1.png" swiper-animate-effect="fadeInDown" />
+                    <img class="img ani" swiper-animate-duration="1.0s" swiper-animate-delay="1.0s" src="~/Content/2019/1105/images/page/1-2.png" swiper-animate-effect="fadeInLeft" />
+                    <img class="img ani" swiper-animate-duration="1.0s" swiper-animate-delay="1.5s" src="~/Content/2019/1105/images/page/1-3.png" swiper-animate-effect="fadeInRight" />
+                    <img class="img ani" swiper-animate-duration="1.0s" swiper-animate-delay="2.0s" src="~/Content/2019/1105/images/page/1-4.png" swiper-animate-effect="fadeInLeft" />
+                    <form class="ani" swiper-animate-duration="1.0s" swiper-animate-delay="2.5s" swiper-animate-effect="fadeIn">
+                        <ul>
+                            <li class="user"><span></span><input type="text" maxlength="8" /></li>
+                            <li class="phone"><span></span><input type="tel" maxlength="11" /></li>
+                        </ul>
+                        <div class="btns-flex">
+                            <input type="button" class="btn-submit" />
+                        </div>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+    <!-- 固定的 -->
+    <div class="logo"></div>
+    <!-- <div class="music music-ani"></div> -->
+    <div class="flip-over flip-over-ani"></div>
+    <!-- Alert -->
+    <div id="alerts" class="alerts"></div>
+    <div id="alertConfirm" class="alert-confirm"></div>
+    <!-- Music -->
+    <!-- <audio id="music" src="./bg.mp3" autoplay="autoplay" preload="auto" loop="loop" style="visibility: hidden;"></audio> -->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <script src="~/Content/2019/1105/script/share.js"></script>
+    <script>
+			SHARE.shareOption({
+				link: "http://weixin.seemoread.com/2019/1105",
+				pic:  "http://weixin.seemoread.com/Content/2019/1105/share.jpg",
+				title: "万元红包雨   疯狂抢不停",
+				desc: "万元红包，狂欢盛宴。限时开抢，速领速得。",
+				success: function () {}
+			});
+    </script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="robots" content="index,follow">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webk`it">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="pragram" content="no-cache" />
+    <meta content="email=no" name="format-detection" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <script>!function (a, b) { function c() { var b = f.getBoundingClientRect().width; b / i > 540 && (b = 540 * i); var c = b / 10; f.style.fontSize = c + "px", k.rem = a.rem = c } var d, e = a.document, f = e.documentElement, g = e.querySelector('meta[name="viewport"]'), h = e.querySelector('meta[name="flexible"]'), i = 0, j = 0, k = b.flexible || (b.flexible = {}); if (g) { console.warn("将根据已有的meta标签来设置缩放比例"); var l = g.getAttribute("content").match(/initial\-scale=([\d\.]+)/); l && (j = parseFloat(l[1]), i = parseInt(1 / j)) } else if (h) { var m = h.getAttribute("content"); if (m) { var n = m.match(/initial\-dpr=([\d\.]+)/), o = m.match(/maximum\-dpr=([\d\.]+)/); n && (i = parseFloat(n[1]), j = parseFloat((1 / i).toFixed(2))), o && (i = parseFloat(o[1]), j = parseFloat((1 / i).toFixed(2))) } } if (!i && !j) { var p = (a.navigator.appVersion.match(/android/gi), a.navigator.appVersion.match(/iphone/gi)), q = a.devicePixelRatio; i = p ? q >= 3 && (!i || i >= 3) ? 3 : q >= 2 && (!i || i >= 2) ? 2 : 1 : 1, j = 1 / i } if (f.setAttribute("data-dpr", i), !g) if (g = e.createElement("meta"), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" + j + ", maximum-scale=" + j + ", minimum-scale=" + j + ", user-scalable=no"), f.firstElementChild) f.firstElementChild.appendChild(g); else { var r = e.createElement("div"); r.appendChild(g), e.write(r.innerHTML) } a.addEventListener("resize", function () { clearTimeout(d), d = setTimeout(c, 300) }, !1), a.addEventListener("pageshow", function (a) { a.persisted && (clearTimeout(d), d = setTimeout(c, 300)) }, !1), "complete" === e.readyState ? e.body.style.fontSize = 12 * i + "px" : e.addEventListener("DOMContentLoaded", function () { e.body.style.fontSize = 12 * i + "px" }, !1), c(), k.dpr = a.dpr = i, k.refreshRem = c, k.rem2px = function (a) { var b = parseFloat(a) * this.rem; return "string" == typeof a && a.match(/rem$/) && (b += "px"), b }, k.px2rem = function (a) { var b = parseFloat(a) / this.rem; return "string" == typeof a && a.match(/px$/) && (b += "rem"), b } }(window, window.lib || (window.lib = {}));</script>
+
+    <link rel="stylesheet" href="~/Content/2019/1031/css/common.css" />
+    <script type="text/javascript" src="~/Content/2019/1031/script/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/2019/1031/script/fastclick.js"></script>
+    <script type="text/javascript" src="~/Content/2019/1031/script/preloadImg.js"></script>
+    <script type="text/javascript" src="~/Content/2019/1031/script/srcImg.js"></script>
+    <script type="text/javascript" src="~/Content/2019/1031/script/scroll.js"></script>
+    <!-- <script type="text/javascript" src="script/tween.js"></script> -->
+    <!-- <script type="text/javascript" src="script/pixi.js"></script> -->
+    <script type="text/javascript" src="~/Content/2019/1031/script/swiper.min.js"></script>
+    <script type="text/javascript" src="~/Content/2019/1031/script/swiper.animate.min.js"></script>
+    <script type="text/javascript" src="~/Content/2019/1031/script/main.js"></script>
+    <!-- <script type="text/javascript" src="script/sulando.js"></script> -->
+</head>
+
+<body id="index">
+
+    <!-- loading -->
+    <aside id="loading" class="wrap">
+        <div class="process-bg"></div>
+        <div class="process"><span></span></div>
+    </aside>
+
+    <!-- swiper -->
+    <div id="mySwiper" class="swiper-container">
+        <div class="swiper-wrapper">
+            <!-- IndexPage -->
+            <aside class="swiper-slide swiper-no-swiping">
+                <img class="img ani" src="~/Content/2019/1031/images/bg-index-1.png" swiper-animate-duration="1.0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                <img id="indexBg" class="ani" src="~/Content/2019/1031/images/bg-index-3.png" swiper-animate-duration="1.0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                <div class="moon moon-ani"></div>
+                <img class="img bottom ani" src="~/Content/2019/1031/images/bg-index-2.png" swiper-animate-duration="1.0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                <div class="middle-wrap">
+                    <div class="index-signboard star-ani"></div>
+                    <div class="btns-wrap">
+                        <div class="ani btn-to-1" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn">
+                            <div class="btn-img ball-ani"></div>
+                            <div class="btn-txt"></div>
+                        </div>
+                        <div class="ani btn-to-2" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn">
+                            <div class="btn-img ball-ani"></div>
+                            <div class="btn-txt"></div>
+                        </div>
+                        <div class="ani btn-to-3" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn">
+                            <div class="btn-img ball-ani"></div>
+                            <div class="btn-txt"></div>
+                        </div>
+                        <div class="ani btn-to-4" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn">
+                            <div class="btn-img ball-ani"></div>
+                            <div class="btn-txt"></div>
+                        </div>
+                    </div>
+                    <div class="ani btn-rule" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn"></div>
+                </div>
+                <div class="logo"></div>
+            </aside>
+            <!-- ContentPage：食用油 -->
+            <aside class="swiper-slide swiper-no-swiping">
+                <img class="img bottom ani" src="~/Content/2019/1031/images/page1/bg.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeInUp" />
+                <div class="flex-3">
+                    <img class="img1-1 top ani" src="~/Content/2019/1031/images/page1/1.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                    <img class="img1-2 top ani" src="~/Content/2019/1031/images/page1/2.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                    <img class="img1-3 top ani" src="~/Content/2019/1031/images/page1/3.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                </div>
+                <div class="page-signboard star-ani"></div>
+                <div class="middle-wrap-input ani" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn">
+                    <div class="input-txt"></div>
+                    <div class="input">
+                        <input type="tel" maxlength="11" placeholder="请输入手机号" />
+                    </div>
+                    <div class="input-submit" num='1'></div>
+                    <div class="input-back-index"></div>
+                </div>
+            </aside>
+            <!-- ContentPage：有机蔬果 -->
+            <aside class="swiper-slide swiper-no-swiping">
+                <img class="img bottom ani" src="~/Content/2019/1031/images/page2/bg.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeInUp" />
+                <div class="flex-3">
+                    <img class="img2-1 top ani" src="~/Content/2019/1031/images/page2/1.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                    <img class="img2-2 top ani" src="~/Content/2019/1031/images/page2/2.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                    <img class="img2-3 top ani" src="~/Content/2019/1031/images/page2/3.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                </div>
+                <div class="page-signboard star-ani"></div>
+                <div class="middle-wrap-input ani" swiper-animate-duration="1.0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn">
+                    <div class="input-txt"></div>
+                    <div class="input">
+                        <input type="tel" maxlength="11" placeholder="请输入手机号" />
+                    </div>
+                    <div class="input-submit" num='2'></div>
+                    <div class="input-back-index"></div>
+                </div>
+            </aside>
+            <!-- ContentPage：星巴克 -->
+            <aside class="swiper-slide swiper-no-swiping">
+                <img class="img bottom ani" src="~/Content/2019/1031/images/page3/bg.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeInUp" />
+                <div class="flex-3">
+                    <img class="img3-1 top ani" src="~/Content/2019/1031/images/page3/1.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                    <img class="img3-2 top ani" src="~/Content/2019/1031/images/page3/2.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                    <img class="img3-3 top ani" src="~/Content/2019/1031/images/page3/3.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                </div>
+                <div class="page-signboard star-ani"></div>
+                <div class="middle-wrap-input ani" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn">
+                    <div class="input-txt"></div>
+                    <div class="input">
+                        <input type="tel" maxlength="11" placeholder="请输入手机号" />
+                    </div>
+                    <div class="input-submit" num='3'></div>
+                    <div class="input-back-index"></div>
+                </div>
+            </aside>
+            <!-- ContentPage：格调鲜花 -->
+            <aside class="swiper-slide swiper-no-swiping">
+                <img class="img bottom ani" src="~/Content/2019/1031/images/page4/bg.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeInUp" />
+                <div class="flex-3">
+                    <img class="img4-1 top ani" src="~/Content/2019/1031/images/page4/1.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                    <img class="img4-2 top ani" src="~/Content/2019/1031/images/page4/2.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                    <img class="img4-3 top ani" src="~/Content/2019/1031/images/page4/3.png" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn" />
+                </div>
+                <div class="page-signboard star-ani"></div>
+                <div class="middle-wrap-input ani" swiper-animate-duration="0s" swiper-animate-delay="0s" swiper-animate-effect="fadeIn">
+                    <div class="input-txt"></div>
+                    <div class="input">
+                        <input type="tel" maxlength="11" placeholder="请输入手机号" />
+                    </div>
+                    <div class="input-submit" num='4'></div>
+                    <div class="input-back-index"></div>
+                </div>
+            </aside>
+        </div>
+    </div>
+    <!-- 礼物弹框 -->
+    <div style="display: none;" id="alertGift" class="alert">
+        <div class="mask"></div>
+        <div class="alert-logo"></div>
+        <div class="alert-wrap">
+            <div class="alert-closed"></div>
+            <!-- ~/Content/2019/1031/images/page1/alert.png -->
+            <img id="prizeSrc" src="~/Content/2019/1031/images/page1/alert.png" />
+        </div>
+        <div class="alert-num">ID:201599886</div>
+        <div class="alert-tel"></div>
+        <div class="alert-tips"></div>
+    </div>
+    <div style="display: none;" id="alertRule" class="alert">
+        <div class="mask"></div>
+        <div class="middle-wrap">
+            <div class="alert-wrap">
+                <img src="~/Content/2019/1031/images/alert/rule-txt.png" />
+            </div>
+            <div class="alert-btn-i-know"></div>
+        </div>
+    </div>
+    <div style="display:none ;" id="alertResult" class="alert">
+        <div class="mask"></div>
+        <div class="alert-logo"></div>
+        <div class="alert-wrap">
+            <div class="alert-closed-result"></div>
+            <img src="~/Content/2019/1031/images/alert/close-txt.png" />
+            <div class="alert-btn-my"></div>
+            <img src="~/Content/2019/1031/images/alert/close-txt-2.png" />
+        </div>
+    </div>
+    <!-- 固定的 -->
+    <!--  <div class="music music-ani"></div> -->
+
+    <div class="flip-over flip-over-ani"></div>
+    <!-- Alert -->
+    <div id="alerts" class="alerts"></div>
+    <div id="alertConfirm" class="alert-confirm"></div>
+    <!-- Music -->
+    <!--  <audio id="music" src="./bg.mp3" autoplay="autoplay" preload="auto" loop="loop" style="visibility: hidden;"></audio> -->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <script src="~/Content/2019/1031/script/share.js"></script>
+    <script>
+        SHARE.shareOption({
+            link: "http://weixin.seemoread.com/2019/1025",
+            pic: "http://weixin.seemoread.com/Content/2019/1031/share.png",
+            title: "【人生无限店】新店开张，首单全免，欢迎光临",
+            desc: "如果有家贩卖美好人生的店铺，你愿意来买些什么么？",
+            success: function () {
+
+            }
+        });
+    </script>
+    <script>
+        function Orientation(selector) { }
+
+        Orientation.prototype.init = function () {
+            window.addEventListener('deviceorientation', this.oriListener, false);
+            window.addEventListener('MozOrientation', this.oriListener, false); //为firefox所用
+            window.addEventListener('devicemotion', this.oriListener, false); //重力感应
+        }
+
+        Orientation.prototype.oriListener = function (e) {
+            setTimeout(function () {
+                handler(e);
+                deviceMotionHandler(e)
+            }, 10);
+
+            function handler(e) {
+                // For FF3.6+
+                if (!e.gamma && !e.beta) {
+                    e.gamma = (e.x * (180 / Math.PI)); //转换成角度值,
+                    e.beta = (e.y * (180 / Math.PI)); //转换成角度值
+                    e.alpha = (e.z * (180 / Math.PI)); //转换成角度值
+                }
+
+                var gamma = e.gamma
+                var beta = e.beta
+                var alpha = e.alpha
+
+                if (e.accelerationIncludingGravity) {
+                    gamma = e.accelerationIncludingGravity.x * 300
+                    beta = -e.accelerationIncludingGravity.y * 300
+                    alpha = event.accelerationIncludingGravity.z * 300
+                }
+
+                if (this._lastGamma != gamma || this._lastBeta != beta) {
+
+                    // document.querySelector("#msg").innerHTML = "x: "+ beta.toFixed(2) + " y: " + gamma.toFixed(2) + " z: " + (alpha != null?alpha.toFixed(2):0)
+
+                    this._lastGamma = gamma;
+                    this._lastBeta = beta;
+                }
+            }
+
+            function deviceMotionHandler(e) {
+                var gamma = e.gamma
+                var beta = e.beta
+                var alpha = e.alpha
+
+                var tiltLR = gamma; //Math.round(((beta) / 9) * -90);
+                var tiltFB = beta;
+
+                if (tiltLR >= 18) {
+                    tiltLR = 18
+                } else if (tiltLR <= -18) {
+                    tiltLR = -18
+                }
+
+                var rotation = "translate(" + tiltLR + "px)";
+                var style1 = document.querySelector("#indexBg").style;
+
+                style1.webkitTransform = rotation;
+                style2.webkitTransform = rotation;
+                style3.webkitTransform = rotation;
+            }
+        };
+
+        (new Orientation()).init();
+    </script>
+</body>
+</html>

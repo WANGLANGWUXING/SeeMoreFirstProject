@@ -1,0 +1,30 @@
+C:\Users\mayn\Desktop\Work\FristProject\DAL\bin\Release\DAL.dll
+C:\Users\mayn\Desktop\Work\FristProject\DAL\bin\Release\DAL.pdb
+C:\Users\mayn\Desktop\Work\FristProject\DAL\bin\Release\Dapper.dll
+C:\Users\mayn\Desktop\Work\FristProject\DAL\bin\Release\Dapper.pdb
+C:\Users\mayn\Desktop\Work\FristProject\DAL\bin\Release\Dapper.xml
+C:\Users\mayn\Desktop\Work\FristProject\DAL\obj\Release\DAL.csproj.CoreCompileInputs.cache
+C:\Users\mayn\Desktop\Work\FristProject\DAL\obj\Release\DAL.csproj.CopyComplete
+C:\Users\mayn\Desktop\Work\FristProject\DAL\obj\Release\DAL.dll
+C:\Users\mayn\Desktop\Work\FristProject\DAL\obj\Release\DAL.pdb
+C:\Users\mayn\Desktop\Work\FristProject\DAL\obj\Release\DAL.csprojAssemblyReference.cache
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\DAL\bin\Release\DAL.dll
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\DAL\bin\Release\DAL.pdb
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\DAL\bin\Release\Dapper.dll
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\DAL\bin\Release\Dapper.pdb
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\DAL\bin\Release\Dapper.xml
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\DAL\obj\Release\DAL.csprojAssemblyReference.cache
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\DAL\obj\Release\DAL.csproj.CoreCompileInputs.cache
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\DAL\obj\Release\DAL.csproj.CopyComplete
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\DAL\obj\Release\DAL.dll
+C:\Users\wz\Documents\WeChat Files\Yisen_77\FileStorage\File\2019-11\FristProject - 副本\DAL\obj\Release\DAL.pdb
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\DAL\bin\Release\DAL.dll
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\DAL\bin\Release\DAL.pdb
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\DAL\bin\Release\Dapper.dll
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\DAL\bin\Release\Dapper.pdb
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\DAL\bin\Release\Dapper.xml
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\DAL\obj\Release\DAL.csprojAssemblyReference.cache
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\DAL\obj\Release\DAL.csproj.CoreCompileInputs.cache
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\DAL\obj\Release\DAL.csproj.CopyComplete
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\DAL\obj\Release\DAL.dll
+C:\Users\mayn\Desktop\公司资料\Work\FristProject\DAL\obj\Release\DAL.pdb

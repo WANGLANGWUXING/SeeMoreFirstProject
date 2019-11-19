@@ -18,7 +18,7 @@ namespace WeiKeDAL
         {
 
             string selectSql = "select ROW_NUMBER() over(order by id ) RowIndex,* from [KTable]";
-            List<KTable> list = conn.Query<KTable>(selectSql).ToList();
+            List<KTable> list = DapperHelper<KTable>.Query(selectSql,null);
             return list;
         }
 
@@ -26,7 +26,7 @@ namespace WeiKeDAL
         {
 
             string selectSql = "select * from [KTable] where id=@id";
-            KTable t = conn.Query<KTable>(selectSql, new { id }).FirstOrDefault();
+            KTable t = DapperHelper<KTable>.Query(selectSql, new { id }).FirstOrDefault();
             return t;
         }
 

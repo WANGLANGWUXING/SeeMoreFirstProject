@@ -1,3 +1,5 @@
 .vs/
 obj/
 *.cache
+FristProject/bin/DAL.dll
+FristProject/bin/WeiKeDAL.dll

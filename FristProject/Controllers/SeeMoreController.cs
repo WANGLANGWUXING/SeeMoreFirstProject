@@ -445,18 +445,8 @@ namespace FristProject.Controllers
                         if (res > 0)
                         {
                             customCode = GetGiftCustomCode(gift.GiftName, activityName);
-                            //msg = "奖品是" + gift.GiftName;
-                            //if (gift.GiftDesc == "奖金")
-                            //{
-                            //    int hbTotalAmount = giftCountDAL.GetGiftMoneyByGiftId(gift.GiftId);
-                            //    desc = msg + "," + FHB("江语城红包抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount,openId);
-                            //    msg = gift.GiftId.ToString();
-                            //}
-                            //else
-                            //{
                             desc = msg;
                             msg = gift.GiftId.ToString();
-                            //}
                             res = giftLogDAL.AddGiftLog(new GiftLog
                             {
                                 OpenId = openId,
@@ -467,11 +457,6 @@ namespace FristProject.Controllers
                                 GiftDesc = gift.GiftName,
                                 GiftCustomNum = customCode
                             });
-                            if (res > 0)
-                            {
-                                isReceiveTableDAL.AddIsReceiveTable(openId);
-                            }
-
                         }
                     }
                     else
@@ -495,18 +480,8 @@ namespace FristProject.Controllers
                             if (res > 0)
                             {
                                 customCode = GetGiftCustomCode(gift.GiftName, activityName);
-                                //msg = "奖品是" + gift.GiftName;
-                                //if (gift.GiftDesc == "奖金")
-                                //{
-                                //    int hbTotalAmount = giftCountDAL.GetGiftMoneyByGiftId(gift.GiftId);
-                                //    desc = msg + "," + FHB("江语城抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount, openId);
-                                //    msg = gift.GiftId.ToString();
-                                //}
-                                //else
-                                //{
                                 desc = msg;
                                 msg = gift.GiftId.ToString();
-                                //}
                                 res = giftLogDAL.AddGiftLog(new GiftLog
                                 {
                                     OpenId = openId,
@@ -517,10 +492,7 @@ namespace FristProject.Controllers
                                     GiftDesc = gift.GiftName,
                                     GiftCustomNum = customCode
                                 });
-                                if (res > 0)
-                                {
-                                    isReceiveTableDAL.AddIsReceiveTable(openId);
-                                }
+
                             }
                         }
                         else
@@ -596,7 +568,7 @@ namespace FristProject.Controllers
                 {
                     id = 1;
                     msg = "添加成功";
-
+                    isReceiveTableDAL.AddIsReceiveTable(openId);
                     GiftLog giftLog = giftLogDAL.SelGiftLog(openId, "中铁建江语城H51118");
                     if (giftLog.GiftId >= 26 && giftLog.GiftId <= 31)
                     {
@@ -1418,14 +1390,17 @@ namespace FristProject.Controllers
         KTableDAL kTableDAL = new KTableDAL();
         WKWXUserDAL wKWXUserDAL = new WKWXUserDAL();
         KCommentDAL commentDAL = new KCommentDAL();
+        SelKTableDAL selKTableDAL = new SelKTableDAL();
+        SignRecordDAL signRecordDAL = new SignRecordDAL();
         public string WeiKeAddUser(string openid, string nickname)
         {
             string resstr;
             string rescode;
+            int UId = 0;
 
             if (!string.IsNullOrWhiteSpace(openid) || !string.IsNullOrWhiteSpace(nickname))
             {
-
+                WKWXUser wKWXUser = wKWXUserDAL.SelUserByOpenId(openid);
                 if (wKWXUserDAL.SelUserByOpenId(openid) == null)
                 {
                     int res = wKWXUserDAL.AddUser(new WKWXUser { OpenId = openid, NickName = nickname });
@@ -1433,6 +1408,7 @@ namespace FristProject.Controllers
                     {
                         resstr = "用户添加成功";
                         rescode = "1";
+                        UId = wKWXUserDAL.SelUserByOpenId(openid).Id;
                     }
                     else
                     {
@@ -1442,6 +1418,7 @@ namespace FristProject.Controllers
                 }
                 else
                 {
+                    UId = wKWXUser.Id;
                     resstr = "此用户不是第一次登录";
                     rescode = "1";
                 }
@@ -1452,7 +1429,7 @@ namespace FristProject.Controllers
                 resstr = "不是从微信打开";
                 rescode = "0";
             }
-            return JsonConvert.SerializeObject(new { id = rescode, msg = resstr });
+            return JsonConvert.SerializeObject(new { id = rescode, msg = resstr, UId });
 
         }
 
@@ -1460,6 +1437,64 @@ namespace FristProject.Controllers
         public string KList()
         {
             return JsonConvert.SerializeObject(kTableDAL.GetKTables());
+        }
+
+        public string GetSelKList(int UId)
+        {
+            return JsonConvert.SerializeObject(selKTableDAL.GetSelKTables(UId));
+        }
+
+        public string AddSelKTable(int KId, int UId)
+        {
+            string msg = "";
+            int id = 0;
+            int res = selKTableDAL.AddSelKTable(KId, UId);
+            if (res > 0)
+            {
+                id = 1;
+                msg = "添加成功";
+            }
+            else
+            {
+                id = 0;
+                msg = "添加失败";
+            }
+            return JsonConvert.SerializeObject(new { id, msg });
+        }
+
+        public string OnSign(int UId)
+        {
+            string msg = "";
+            int id = 0;
+            if (signRecordDAL.AddSign(UId) > 0)
+            {
+                id = 1;
+                msg = "签到成功";
+            }
+            else
+            {
+                id = 0;
+                msg = "签到失败";
+            }
+            return JsonConvert.SerializeObject(new { id, msg });
+
+        }
+
+        public string IsSign(int UId)
+        {
+            string msg = "";
+            int id = 0;
+            if (signRecordDAL.SelSignRecordByUId(UId) != null)
+            {
+                id = 1;
+                msg = "已签到";
+            }
+            else
+            {
+                id = 0;
+                msg = "未签到";
+            }
+            return JsonConvert.SerializeObject(new { id, msg });
         }
 
         public string AddComment(int KId, string Comment)

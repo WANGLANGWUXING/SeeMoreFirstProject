@@ -15,18 +15,26 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
 </head>
 <body>
-    <div>
-        <h1>微课平台欢迎您</h1>
-    </div>
-    <div>
-        <img id="UserImg" />
-        <label id="UserName">
+    <div class="container">
+        <div>
+            <h3>微课平台欢迎您</h3>
+        </div>
+        <div>
+            <img id="UserImg" style="width:2em" />
+            <label id="UserName">
 
-        </label>
+            </label>
+            <button type="button" class="btn btn-success" id="btnSign" onclick="onSign()">签到</button>
+
+        </div>
+        <div>
+            <table id="selTb"></table>
+        </div>
+        <div>
+            <table id="tb"></table>
+        </div>
     </div>
-    <div>
-        <table id="tb"></table>
-    </div>
+
 
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9+4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb" crossorigin="anonymous"></script>
@@ -36,28 +44,8 @@
     <script>
         $(function () {
             authorize();
-            $('#tb').bootstrapTable({
-                url: '/SeeMore/KList',
-                pagination: true,
-                search: true,
-                columns: [{
-                    field: 'RowIndex',
-                    title: '序号'
-                }, {
-                    field: 'KName',
-                    title: '课程名'
-                }, {
-                    field: 'KType',
-                    title: '课程类型'
-                }, {
-                    field: 'Id',
-                    title: '操作',
-                    formatter: function (value, row, index) {
-                        var id = value;
-                        return " <a href='/SeeMore/WeiKeInfo?Kid=" + id + "' class=\"btn btn-primary btn-xs\">查看</a>"
-                    }
-                }]
-            })
+
+
         })
 
 
@@ -100,7 +88,134 @@
                 success: function (data) {
                     console.log(data);
                     //alert(data);
+                    if (data.id == "1") {
+                        window["UId"] = data.UId;
+                        Init(data.UId);
+                    }
 
+                }
+            });
+        }
+
+        function addSelK(KId) {
+            $.ajax({
+                //以post方式发送代码
+                type: "post",
+                //目标路径
+                url: "/SeeMore/AddSelKTable",
+                data: { KId: KId, UId: window["UId"] },
+                //表名数据格式是json
+                dataType: "json",
+                //是否异步
+                async: true,
+                //数据成功返回后的操作，就是局部改变动态页面
+                success: function (data) {
+                    console.log(data);
+                    //alert(data);
+                    if (data.id == 1) {
+                        $("#selTb").bootstrapTable('refresh');
+                    }
+
+                }
+            });
+        }
+
+        function Init(UId) {
+            // 获取是否已经签到
+
+
+
+            $('#selTb').bootstrapTable({
+                url: '/SeeMore/GetSelKList?UId=' + UId,
+                pagination: true,
+                search: true,
+                columns: [{
+                    field: 'RowIndex',
+                    title: '序号'
+                }, {
+                    field: 'KName',
+                    title: '课程名'
+                }, {
+                    field: 'KType',
+                    title: '课程类型'
+                }, {
+                    field: 'Id',
+                    title: '操作',
+                    formatter: function (value, row, index) {
+                        var id = value;
+                        return " <a href='/SeeMore/WeiKeInfo?Kid=" + id + "' class=\"btn btn-primary btn-xs\">查看</a>"
+                    }
+                }]
+            })
+
+
+            $('#tb').bootstrapTable({
+                url: '/SeeMore/KList',
+                pagination: true,
+                search: true,
+                columns: [{
+                    field: 'RowIndex',
+                    title: '序号'
+                }, {
+                    field: 'KName',
+                    title: '课程名'
+                }, {
+                    field: 'KType',
+                    title: '课程类型'
+                }, {
+                    field: 'Id',
+                    title: '操作',
+                    formatter: function (value, row, index) {
+                        var id = value;
+                        return " <a href='#' class=\"btn btn-success\" onclick=\"addSelK(" + id + ")\">添加</a><a href='/SeeMore/WeiKeInfo?Kid=" + id + "' class=\"btn btn-primary btn-xs\">查看</a>"
+                    }
+                }]
+            })
+        }
+
+        function IsSign() {
+            $.ajax({
+                //以post方式发送代码
+                type: "post",
+                //目标路径
+                url: "/SeeMore/IsSign",
+                data: { UId: window["UId"] },
+                //表名数据格式是json
+                dataType: "json",
+                //是否异步
+                async: true,
+                //数据成功返回后的操作，就是局部改变动态页面
+                success: function (data) {
+                    console.log(data);
+                    //alert(data);
+                    if (data.id == 1) {
+                        $("#btnSign").html("已签到");
+                        $("#btnSign").attr("disabled", true);
+                    }
+
+                }
+            });
+        }
+
+        function onSign() {
+            $.ajax({
+                //以post方式发送代码
+                type: "post",
+                //目标路径
+                url: "/SeeMore/OnSign",
+                data: { UId: window["UId"] },
+                //表名数据格式是json
+                dataType: "json",
+                //是否异步
+                async: true,
+                //数据成功返回后的操作，就是局部改变动态页面
+                success: function (data) {
+                    console.log(data);
+                    //alert(data);
+                    if (data.id == 1) {
+                        $("#btnSign").html("已签到");
+                        $("#btnSign").attr("disabled", true);
+                    }
 
                 }
             });

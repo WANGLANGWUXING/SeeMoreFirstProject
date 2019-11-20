@@ -55,7 +55,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionTable.cs" />
     <Compile Include="SelKTable.cs" />
+    <Compile Include="SelKTableDAL.cs" />
     <Compile Include="SignRecord.cs" />
+    <Compile Include="SignRecordDAL.cs" />
     <Compile Include="WKWXUser.cs" />
     <Compile Include="WKWXUserDAL.cs" />
   </ItemGroup>

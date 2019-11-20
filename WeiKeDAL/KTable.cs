@@ -10,9 +10,10 @@ namespace WeiKeDAL
     {
         public int RowIndex { get; set; }
         public int Id { get; set; }
+        public int UId { get; set; }
         public string KName { get; set; }
         public string KDesc { get; set; }
         public string KType { get; set; }
-        public string CreateTime { get; set; }
+        public System.DateTime CreateTime { get; set; }
     }
 }

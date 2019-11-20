@@ -419,7 +419,7 @@ namespace FristProject.Controllers
         //}
 
         JYCPriceTimeDAL jYCPriceTime = new JYCPriceTimeDAL();
-
+        IsReceiveTableDAL isReceiveTableDAL = new IsReceiveTableDAL();
         public string JYCGetPrice(string openId, int last)
         {
             string activityName = "中铁建江语城H51118";
@@ -457,7 +457,7 @@ namespace FristProject.Controllers
                             desc = msg;
                             msg = gift.GiftId.ToString();
                             //}
-                            giftLogDAL.AddGiftLog(new GiftLog
+                            res = giftLogDAL.AddGiftLog(new GiftLog
                             {
                                 OpenId = openId,
                                 NickName = "",
@@ -467,6 +467,11 @@ namespace FristProject.Controllers
                                 GiftDesc = gift.GiftName,
                                 GiftCustomNum = customCode
                             });
+                            if (res > 0)
+                            {
+                                isReceiveTableDAL.AddIsReceiveTable(openId);
+                            }
+
                         }
                     }
                     else
@@ -502,7 +507,7 @@ namespace FristProject.Controllers
                                 desc = msg;
                                 msg = gift.GiftId.ToString();
                                 //}
-                                giftLogDAL.AddGiftLog(new GiftLog
+                                res = giftLogDAL.AddGiftLog(new GiftLog
                                 {
                                     OpenId = openId,
                                     NickName = "",
@@ -512,6 +517,10 @@ namespace FristProject.Controllers
                                     GiftDesc = gift.GiftName,
                                     GiftCustomNum = customCode
                                 });
+                                if (res > 0)
+                                {
+                                    isReceiveTableDAL.AddIsReceiveTable(openId);
+                                }
                             }
                         }
                         else
@@ -534,6 +543,12 @@ namespace FristProject.Controllers
                 prizeNum = 1;
                 msg = giftLog.GiftId.ToString();
                 customCode = giftLog.GiftCustomNum;
+                if (isReceiveTableDAL.SelIsReceiveTable(openId) != null)
+                {
+                    prizeNum = 3;
+                    msg = giftLog.GiftId.ToString();
+                    desc = "已经抽到了";
+                }
             }
             return JsonConvert.SerializeObject(new { prizeNum, msg, customCode, desc });
         }
@@ -565,7 +580,7 @@ namespace FristProject.Controllers
                 {
                     msg = "礼物记录添加过，却未提交登记信息";
                 }
-                
+
             }
             return JsonConvert.SerializeObject(new { isFirst, msg, customCode });
         }

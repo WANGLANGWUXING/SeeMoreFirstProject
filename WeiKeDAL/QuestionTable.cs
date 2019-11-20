@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace WeiKeDAL
 {
-    public class KComment
+    public class QuestionTable
     {
         public int Id { get; set; }
         public int KId { get; set; }
-        public int UId { get; set; }
-        public string UserName { get; set; }
-        public string Comment { get; set; }
+        public string Question { get; set; }
         public System.DateTime CreateTime { get; set; }
     }
 }

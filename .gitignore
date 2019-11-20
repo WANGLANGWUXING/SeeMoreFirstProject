@@ -3,3 +3,14 @@ obj/
 *.cache
 FristProject/bin/DAL.dll
 FristProject/bin/WeiKeDAL.dll
+FristProject/bin/ProjectDAL.dll
+WeiKeDAL/obj/Debug/WeiKeDAL.csproj.CoreCompileInputs.cache
+WeiKeDAL/obj/Debug/WeiKeDAL.csproj.CoreCompileInputs.cache
+DAL/obj/Debug/DAL.csproj.CoreCompileInputs.cache
+DAL/bin/Release/DAL.dll
+DAL/bin/Release/DAL.pdb
+DAL/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+DAL/obj/Release/DAL.csproj.CoreCompileInputs.cache
+WeiKeDAL/obj/Debug/WeiKeDAL.csproj.CoreCompileInputs.cache
+WeiKeDAL/obj/Release/WeiKeDAL.csproj.CoreCompileInputs.cache
+FristProject/obj/Release/Package/PackageTmp/bin/FristProject.dll

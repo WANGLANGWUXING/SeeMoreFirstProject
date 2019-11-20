@@ -52,6 +52,8 @@
     <Compile Include="GiftUser.cs" />
     <Compile Include="GiftUserDAL.cs" />
     <Compile Include="GiftLog.cs" />
+    <Compile Include="IsReceiveTable.cs" />
+    <Compile Include="IsReceiveTableDAL.cs" />
     <Compile Include="JYCPriceTime.cs" />
     <Compile Include="JYCPriceTimeDAL.cs" />
     <Compile Include="PVTable.cs" />

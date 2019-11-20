@@ -38,3 +38,13 @@ C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Release\DAL.csproj.Core
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Release\DAL.csproj.CopyComplete
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Release\DAL.dll
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Release\DAL.pdb
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\bin\Release\DAL.dll
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\bin\Release\DAL.pdb
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\bin\Release\Dapper.dll
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\bin\Release\Dapper.pdb
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\bin\Release\Dapper.xml
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Release\DAL.csprojAssemblyReference.cache
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Release\DAL.csproj.CoreCompileInputs.cache
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Release\DAL.csproj.CopyComplete
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Release\DAL.dll
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Release\DAL.pdb

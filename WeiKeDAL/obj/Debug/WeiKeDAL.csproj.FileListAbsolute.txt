@@ -25,3 +25,12 @@ C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Debug\WeiKeDAL.c
 C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Debug\WeiKeDAL.csproj.CopyComplete
 C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Debug\WeiKeDAL.dll
 C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Debug\WeiKeDAL.pdb
+C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\bin\Debug\WeiKeDAL.dll
+C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\bin\Debug\WeiKeDAL.pdb
+C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\bin\Debug\Dapper.dll
+C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\bin\Debug\Dapper.pdb
+C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\bin\Debug\Dapper.xml
+C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Debug\WeiKeDAL.csproj.CoreCompileInputs.cache
+C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Debug\WeiKeDAL.csproj.CopyComplete
+C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Debug\WeiKeDAL.dll
+C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Debug\WeiKeDAL.pdb

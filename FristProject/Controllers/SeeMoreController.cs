@@ -323,7 +323,7 @@ namespace FristProject.Controllers
                             //红包领取
                             //调用红包领取方法
                             //FHB();
-                            resstr = "领取成功" + ":" + FHB("光和创谷", "光和创谷", "恭喜发财", hbMoney);
+                            resstr = "领取成功" + ":" + FHB("光和创谷", "光和创谷", "恭喜发财", hbMoney, wXModel.Openid);
                             resname = name;
                             restel = tel;
                             rescode = "1";
@@ -402,21 +402,21 @@ namespace FristProject.Controllers
             return View();
         }
         PVTableDAL pVTableDAL = new PVTableDAL();
-        public string MyAuthorization()
-        {
-            //return Request.Url.AbsoluteUri;
-            string urlpath = Request.Url.AbsoluteUri;
-            WXModel user = GetUser(urlpath);
-            if (user != null)
-            {
-                if (userDAL.SelUserByOpenId(user.Openid) == 0)
-                {
-                    userDAL.AddUser(new WXUser { OpenId = user.Openid, Nickname = user.Nickname, Phone = "" });
-                }
-                pVTableDAL.AddPV(new PVTable { Url = urlpath, OpenId = user.Openid });
-            }
-            return JsonConvert.SerializeObject(user);
-        }
+        //public string MyAuthorization()
+        //{
+        //    //return Request.Url.AbsoluteUri;
+        //    string urlpath = Request.Url.AbsoluteUri;
+        //    WXModel user = GetUser(urlpath);
+        //    if (user != null)
+        //    {
+        //        if (userDAL.SelUserByOpenId(user.Openid) == 0)
+        //        {
+        //            userDAL.AddUser(new WXUser { OpenId = user.Openid, Nickname = user.Nickname, Phone = "" });
+        //        }
+        //        pVTableDAL.AddPV(new PVTable { Url = urlpath, OpenId = user.Openid });
+        //    }
+        //    return JsonConvert.SerializeObject(user);
+        //}
 
         JYCPriceTimeDAL jYCPriceTime = new JYCPriceTimeDAL();
 
@@ -429,6 +429,7 @@ namespace FristProject.Controllers
             // 次数是2,那么这一次必中
             int prizeNum;
             string msg = "";
+            string desc = "";
             if (giftLog == null)
             {
                 int count = jYCPriceTime.SelJYCPriceTime(openId);
@@ -444,12 +445,18 @@ namespace FristProject.Controllers
                         if (res > 0)
                         {
                             customCode = GetGiftCustomCode(gift.GiftName, activityName);
-                            msg = "奖品是" + gift.GiftName;
-                            if (gift.GiftDesc == "奖金")
-                            {
-                                int hbTotalAmount = giftCountDAL.GetGiftMoneyByGiftId(gift.GiftId);
-                                msg = msg + "," + FHB("江语城红包抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount);
-                            }
+                            //msg = "奖品是" + gift.GiftName;
+                            //if (gift.GiftDesc == "奖金")
+                            //{
+                            //    int hbTotalAmount = giftCountDAL.GetGiftMoneyByGiftId(gift.GiftId);
+                            //    desc = msg + "," + FHB("江语城红包抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount,openId);
+                            //    msg = gift.GiftId.ToString();
+                            //}
+                            //else
+                            //{
+                            desc = msg;
+                            msg = gift.GiftId.ToString();
+                            //}
                             giftLogDAL.AddGiftLog(new GiftLog
                             {
                                 OpenId = openId,
@@ -457,6 +464,7 @@ namespace FristProject.Controllers
                                 ActivityName = activityName,
                                 GiftId = gift.GiftId,
                                 GiftName = gift.GiftName,
+                                GiftDesc = gift.GiftName,
                                 GiftCustomNum = customCode
                             });
                         }
@@ -482,12 +490,18 @@ namespace FristProject.Controllers
                             if (res > 0)
                             {
                                 customCode = GetGiftCustomCode(gift.GiftName, activityName);
-                                msg = "奖品是" + gift.GiftName;
-                                if (gift.GiftDesc == "奖金")
-                                {
-                                    int hbTotalAmount = giftCountDAL.GetGiftMoneyByGiftId(gift.GiftId);
-                                    //msg = msg + "," + FHB("江语城红包抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount);
-                                }
+                                //msg = "奖品是" + gift.GiftName;
+                                //if (gift.GiftDesc == "奖金")
+                                //{
+                                //    int hbTotalAmount = giftCountDAL.GetGiftMoneyByGiftId(gift.GiftId);
+                                //    desc = msg + "," + FHB("江语城抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount, openId);
+                                //    msg = gift.GiftId.ToString();
+                                //}
+                                //else
+                                //{
+                                desc = msg;
+                                msg = gift.GiftId.ToString();
+                                //}
                                 giftLogDAL.AddGiftLog(new GiftLog
                                 {
                                     OpenId = openId,
@@ -495,6 +509,7 @@ namespace FristProject.Controllers
                                     ActivityName = activityName,
                                     GiftId = gift.GiftId,
                                     GiftName = gift.GiftName,
+                                    GiftDesc = gift.GiftName,
                                     GiftCustomNum = customCode
                                 });
                             }
@@ -507,7 +522,6 @@ namespace FristProject.Controllers
                     }
                     else
                     {
-
                         jYCPriceTime.AddJYCPriceTime(openId);
                         prizeNum = 2;
                         msg = "奖品不在这里";
@@ -518,12 +532,43 @@ namespace FristProject.Controllers
             else
             {
                 prizeNum = 1;
-                msg = "奖品是" + giftLog.GiftName;
+                msg = giftLog.GiftId.ToString();
                 customCode = giftLog.GiftCustomNum;
             }
-            return JsonConvert.SerializeObject(new { prizeNum, msg, customCode });
+            return JsonConvert.SerializeObject(new { prizeNum, msg, customCode, desc });
         }
 
+
+        public string IsFirst(string openId)
+        {
+            string activityName = "中铁建江语城H51118";
+            string customCode = "";
+            string msg = "";
+
+            string isFirst = "0";
+            // 判断是否领取过礼物
+            GiftLog giftLog = giftLogDAL.SelGiftLog(openId, activityName);
+
+            if (giftLog == null)
+            {
+                msg = "未领取过";
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(giftLog.Telphone) && !string.IsNullOrWhiteSpace(giftLog.Name))
+                {
+                    isFirst = "1";
+                    msg = giftLog.GiftId.ToString();
+                    customCode = giftLog.GiftCustomNum;
+                }
+                else
+                {
+                    msg = "礼物记录添加过，却未提交登记信息";
+                }
+                
+            }
+            return JsonConvert.SerializeObject(new { isFirst, msg, customCode });
+        }
 
         public string AddUserInfo(string name, string tel, string openId)
         {
@@ -536,6 +581,13 @@ namespace FristProject.Controllers
                 {
                     id = 1;
                     msg = "添加成功";
+
+                    GiftLog giftLog = giftLogDAL.SelGiftLog(openId, "中铁建江语城H51118");
+                    if (giftLog.GiftId >= 26 && giftLog.GiftId <= 31)
+                    {
+                        int hbTotalAmount = giftCountDAL.GetGiftMoneyByGiftId(giftLog.GiftId);
+                        msg = msg + "," + FHB("江语城红包抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount, openId);
+                    }
                 }
             }
             else
@@ -1160,7 +1212,7 @@ namespace FristProject.Controllers
         /// <param name="wishing">红包描述 展示在红包上</param>
         /// <param name="totalAmount">红包金额（分）</param>
         /// <returns></returns>
-        public string FHB(string activityName, string sendName, string wishing, int totalAmount)
+        public string FHB(string activityName, string sendName, string wishing, int totalAmount, string re_openId)
         {
 
             // 记得将此方法设置为私有的，防止刷红包
@@ -1172,7 +1224,7 @@ namespace FristProject.Controllers
             // 红包金额 
 
 
-            string strData = GetJsApiParameters(activityName, sendName, wishing, totalAmount);
+            string strData = GetJsApiParameters(activityName, sendName, wishing, totalAmount, re_openId);
             string strUrl = "https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack";//这个就是发送红包的API接口了
 
             string strResult = WxRedPackPost(strUrl, strData);
@@ -1207,7 +1259,7 @@ namespace FristProject.Controllers
         /// 构造调用的参数
         /// </summary>
         /// <returns></returns>
-        public string GetJsApiParameters(string activityName, string sendName, string wishing, int totalAmount)
+        public string GetJsApiParameters(string activityName, string sendName, string wishing, int totalAmount, string re_openId)
         {
             int iMin = 1000;
             int iMax = 9999;
@@ -1218,7 +1270,7 @@ namespace FristProject.Controllers
                 wXModel = (WXModel)Session["User"];
             }
 
-            string openId = !string.IsNullOrWhiteSpace(wXModel.Openid) ? wXModel.Openid : "";
+            string openId = re_openId;
             //Random rd = new Random();//构造随机数
             string strMch_billno = MCHID + DateTime.Now.ToString("yyyyMMddHHmmss") + random.Next(iMin, iMax).ToString();
             WxPayData jsApiParam = new WxPayData();
@@ -1232,7 +1284,7 @@ namespace FristProject.Controllers
             jsApiParam.SetValue("total_num", 1);//红包发放总人数
             jsApiParam.SetValue("wishing", wishing);//红包祝福语  显示在红包中间的文字
             jsApiParam.SetValue("client_ip", "39.104.81.240");//这里填写的是我本机的内网ip，实际应用不知道需不需要改。
-            jsApiParam.SetValue("act_name", "活动名称：" + activityName);//活动名称 最长32个字符
+            jsApiParam.SetValue("act_name", activityName);//活动名称 最长32个字符
             jsApiParam.SetValue("remark", "备注信息:test");//备注信息
             jsApiParam.SetValue("scene_id", "PRODUCT_2");//备注信息
 

@@ -555,9 +555,17 @@ namespace FristProject.Controllers
             }
             else
             {
-                isFirst = "1";
-                msg = giftLog.GiftId.ToString();
-                customCode = giftLog.GiftCustomNum;
+                if (!string.IsNullOrWhiteSpace(giftLog.Telphone) && !string.IsNullOrWhiteSpace(giftLog.Name))
+                {
+                    isFirst = "1";
+                    msg = giftLog.GiftId.ToString();
+                    customCode = giftLog.GiftCustomNum;
+                }
+                else
+                {
+                    msg = "礼物记录添加过，却未提交登记信息";
+                }
+                
             }
             return JsonConvert.SerializeObject(new { isFirst, msg, customCode });
         }

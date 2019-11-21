@@ -424,51 +424,23 @@ namespace FristProject.Controllers
         {
             string activityName = "中铁建江语城H51118";
             string customCode = "";
-            // 判断是否领取过礼物
-            GiftLog giftLog = giftLogDAL.SelGiftLog(openId, activityName);
-            // 次数是2,那么这一次必中
             int prizeNum;
             string msg = "";
             string desc = "";
-            if (giftLog == null)
+            GiftLog giftLog = giftLogDAL.SelGiftLog(openId, activityName);
+            if (GetPriceSumCount("中铁建江语城H51118") == 0 && giftLog == null)
             {
-                int count = jYCPriceTime.SelJYCPriceTime(openId);
-                if (last == 0 || count == 2)
+                prizeNum = 0;
+                msg = "奖品没有了";
+            }
+            else
+            {
+                // 判断是否领取过礼物
+                if (giftLog == null)
                 {
-                    Gift gift = JYCCJ1118();
-                    if (gift != null)
-                    {
-                        prizeNum = 1;
-                        // 减少奖品数量
-                        int res = giftCountDAL.EditGiftCountByGiftId(gift.GiftId);
-                        // 添加奖品记录
-                        if (res > 0)
-                        {
-                            customCode = GetGiftCustomCode(gift.GiftName, activityName);
-                            desc = msg;
-                            msg = gift.GiftId.ToString();
-                            res = giftLogDAL.AddGiftLog(new GiftLog
-                            {
-                                OpenId = openId,
-                                NickName = "",
-                                ActivityName = activityName,
-                                GiftId = gift.GiftId,
-                                GiftName = gift.GiftName,
-                                GiftDesc = gift.GiftName,
-                                GiftCustomNum = customCode
-                            });
-                        }
-                    }
-                    else
-                    {
-                        prizeNum = 0;
-                        msg = "奖品没有了";
-                    }
-                }
-                else
-                {
-                    int isExistPrice = random.Next(0, 2);
-                    if (isExistPrice == 1)
+                    int count = jYCPriceTime.SelJYCPriceTime(openId);
+                    // 次数是2,那么这一次必中
+                    if (last == 0 || count == 2)
                     {
                         Gift gift = JYCCJ1118();
                         if (gift != null)
@@ -492,7 +464,6 @@ namespace FristProject.Controllers
                                     GiftDesc = gift.GiftName,
                                     GiftCustomNum = customCode
                                 });
-
                             }
                         }
                         else
@@ -503,28 +474,71 @@ namespace FristProject.Controllers
                     }
                     else
                     {
-                        jYCPriceTime.AddJYCPriceTime(openId);
-                        prizeNum = 2;
-                        msg = "奖品不在这里";
+                        int isExistPrice = random.Next(0, 2);
+                        if (isExistPrice == 1)
+                        {
+                            Gift gift = JYCCJ1118();
+                            if (gift != null)
+                            {
+                                prizeNum = 1;
+                                // 减少奖品数量
+                                int res = giftCountDAL.EditGiftCountByGiftId(gift.GiftId);
+                                // 添加奖品记录
+                                if (res > 0)
+                                {
+                                    customCode = GetGiftCustomCode(gift.GiftName, activityName);
+                                    desc = msg;
+                                    msg = gift.GiftId.ToString();
+                                    res = giftLogDAL.AddGiftLog(new GiftLog
+                                    {
+                                        OpenId = openId,
+                                        NickName = "",
+                                        ActivityName = activityName,
+                                        GiftId = gift.GiftId,
+                                        GiftName = gift.GiftName,
+                                        GiftDesc = gift.GiftName,
+                                        GiftCustomNum = customCode
+                                    });
+
+                                }
+                            }
+                            else
+                            {
+                                prizeNum = 0;
+                                msg = "奖品没有了";
+                            }
+                        }
+                        else
+                        {
+                            jYCPriceTime.AddJYCPriceTime(openId);
+                            prizeNum = 2;
+                            msg = "奖品不在这里";
+                        }
+                    }
+
+                }
+                else
+                {
+                    prizeNum = 1;
+                    msg = giftLog.GiftId.ToString();
+                    customCode = giftLog.GiftCustomNum;
+                    if (isReceiveTableDAL.SelIsReceiveTable(openId) != null)
+                    {
+                        prizeNum = 3;
+                        msg = giftLog.GiftId.ToString();
+                        desc = "已经抽到了";
                     }
                 }
+            }
 
-            }
-            else
-            {
-                prizeNum = 1;
-                msg = giftLog.GiftId.ToString();
-                customCode = giftLog.GiftCustomNum;
-                if (isReceiveTableDAL.SelIsReceiveTable(openId) != null)
-                {
-                    prizeNum = 3;
-                    msg = giftLog.GiftId.ToString();
-                    desc = "已经抽到了";
-                }
-            }
+
             return JsonConvert.SerializeObject(new { prizeNum, msg, customCode, desc });
         }
 
+        public int GetPriceSumCount(string activityName)
+        {
+            return giftCountDAL.GetGiftCountSumByActName(activityName);
+        }
 
         public string IsFirst(string openId)
         {
@@ -569,16 +583,26 @@ namespace FristProject.Controllers
 
                 if (giftLog != null)
                 {
+
                     if (giftLogDAL.EditGiftLog(openId, activityName, name, tel) > 0)
                     {
                         id = 1;
                         msg = "添加成功";
+
+                        if (isReceiveTableDAL.SelIsReceiveTable(openId) != null)
+                        {
+
+                        }
+                        else
+                        {
+
+                        }
                         isReceiveTableDAL.AddIsReceiveTable(openId);
 
                         if (giftLog.GiftId >= 26 && giftLog.GiftId <= 31)
                         {
                             int hbTotalAmount = giftCountDAL.GetGiftMoneyByGiftId(giftLog.GiftId);
-                            //msg = msg + "," + FHB("江语城红包抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount, openId);
+                            msg = msg + "," + FHB("江语城红包抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount, openId);
                         }
                     }
                 }
@@ -592,12 +616,15 @@ namespace FristProject.Controllers
                         GiftId = 0,
                         GiftName = "",
                         GiftDesc = "",
+                        Name = name,
+                        Telphone = tel,
                         GiftCustomNum = ""
                     });
+                    isReceiveTableDAL.AddIsReceiveTable(openId);
                     id = 2;
                     msg = "添加成功,奖品已领完";
                 }
-                
+
             }
             else
             {
@@ -1225,8 +1252,8 @@ namespace FristProject.Controllers
         {
 
             // 记得将此方法设置为私有的，防止刷红包
-            string resstr = "";
-            string rescode = "0";
+            //string resstr = "";
+            //string rescode = "0";
             // 活动名称
             // 红包名称 展示在红包上
             // 红包描述 展示在红包上
@@ -1351,7 +1378,7 @@ namespace FristProject.Controllers
                 return content;
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //string err = ex.Message;
                 return string.Empty;
@@ -1411,6 +1438,7 @@ namespace FristProject.Controllers
         SelKTableDAL selKTableDAL = new SelKTableDAL();
         SignRecordDAL signRecordDAL = new SignRecordDAL();
         QuestionTableDAL questionTableDAL = new QuestionTableDAL();
+        AnswerStatusDAL answerStatusDAL = new AnswerStatusDAL();
         public string WeiKeAddUser(string openid, string nickname)
         {
             string resstr;
@@ -1575,9 +1603,26 @@ namespace FristProject.Controllers
         }
 
 
-        public string GetQuestion(string kid)
+        public string GetQuestion(string kid, string UId)
         {
-            return JsonConvert.SerializeObject(questionTableDAL.GetQuestionTables(kid));
+            return JsonConvert.SerializeObject(questionTableDAL.GetQuestionTables(Convert.ToInt32(kid), Convert.ToInt32(UId)));
+        }
+
+        public string AddAnswer(int QId, int UId, string answer)
+        {
+            string msg = "";
+            int id = 0;
+            if (answerStatusDAL.AddAnswer(UId, QId, answer) > 0)
+            {
+                id = 1;
+                msg = "添加成功";
+            }
+            else
+            {
+                id = 0;
+                msg = "添加失败";
+            }
+            return JsonConvert.SerializeObject(new { id, msg });
         }
         #endregion
 

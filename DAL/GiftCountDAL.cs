@@ -45,5 +45,12 @@ namespace DAL
             return giftCount;
         }
 
+        public int GetGiftCountSumByActName(string actName)
+        {
+            string selSql = "select SUM(Remainder) c from GiftCount a,Gift b where a.GiftId=b.GiftId and ActivityName=@actName";
+            int res = Convert.ToInt32(conn.ExecuteScalar(selSql, new { actName }));
+            return res;
+        }
+
     }
 }

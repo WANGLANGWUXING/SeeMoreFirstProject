@@ -188,7 +188,7 @@ namespace ProjectDAL
                         transaction.Commit();
                         return result;
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         transaction.Rollback();
                         return 0;
@@ -223,7 +223,7 @@ namespace ProjectDAL
                         transaction.Commit();
                         return result;
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         transaction.Rollback();
                         return 0;

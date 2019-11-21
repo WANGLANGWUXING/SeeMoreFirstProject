@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WeiKeDAL
 {
@@ -11,6 +7,15 @@ namespace WeiKeDAL
         public int Id { get; set; }
         public int KId { get; set; }
         public string Question { get; set; }
-        public System.DateTime CreateTime { get; set; }
+        public DateTime CreateTime { get; set; }
+    }
+
+    public class QuestionTableView
+    {
+        public int QId { get; set; }
+        public string Question { get; set; }
+        public int AId { get; set; }
+        public string AnswerDesc { get; set; }
+        public DateTime AnswerTime { get; set; }
     }
 }

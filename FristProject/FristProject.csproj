@@ -160,6 +160,10 @@
     <Compile Include="Models\WXModel.cs" />
     <Compile Include="Models\WXXML.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\SeeMore\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\2019\1031\css\common.css" />
@@ -369,6 +373,7 @@
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="MP_verify_4blXwp2h2pJdkQgp.txt" />
+    <Content Include="Views\SeeMore\index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -9,10 +9,10 @@ namespace WeiKeDAL
     public class QuestionTableDAL
     {
 
-        public List<QuestionTable> GetQuestionTables(string KId)
+        public List<QuestionTableView> GetQuestionTables(int KId,int UId)
         {
-            var selSql = "select * from QuestionTable where KId=@KId";
-            return DapperHelper<QuestionTable>.Query(selSql, new { KId });
+            var selSql = "select a.Id QId,Question,b.Id AId,AnswerDesc,AnswerTime from QuestionTable a left join AnswerStatusTable b  on UId =@UId and a.Id = b.QId where a.KId =@KId";
+            return DapperHelper<QuestionTableView>.Query(selSql, new { KId, UId });
         }
     }
 }

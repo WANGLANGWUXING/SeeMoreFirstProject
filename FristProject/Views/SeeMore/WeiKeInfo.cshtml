@@ -28,9 +28,7 @@
         </div>
         <div>
             <h5>习题区域</h5>
-            <ul id="Question">
-               
-            </ul>
+            <ul id="Question"></ul>
         </div>
         <div>
             <h5>评论区：</h5>
@@ -41,9 +39,9 @@
                 <br>
 
             </div>
-
+                  
         </div>
-        
+
         <button type="submit" class="btn btn-primary" onclick="addComment()">提交</button>
     </div>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -64,8 +62,10 @@
             return (false);
         }
         var kid;
+        var UId;
         $(function () {
             kid = getQueryVariable("Kid");
+            UId = getQueryVariable("UId");
             if (kid) {
                 $.ajax({
                     type: "post",
@@ -77,10 +77,11 @@
                     success: function (data) {
                         console.log(data);
                         $("#kName").html(data.KName);
-                       
+
                         $("#KType").html("类型：" + data.KType + "；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;创建时间：" + data.CreateTime.substring(0, 9))
                         $("#KDesc").html(data.KDesc)
                         getComments(kid);
+                        getQuestion(kid, UId);
                     }
                 })
             }
@@ -97,13 +98,13 @@
                 //数据成功返回后的操作，就是局部改变动态页面
                 success: function (data) {
                     console.log(data);
-                    
+
                     if (data.length > 0) {
                         var commentHtml = "";
                         for (var i = 0; i < data.length; i++) {
                             commentHtml += "<div>"
                             commentHtml += "<span>" + data[i].UserName + "</span>"
-                           
+
                             commentHtml += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>" + data[i].CreateTime.substring(0, 9) + "</span>"
                             commentHtml += "<div>" + data[i].Comment + "</div>"
                             commentHtml += "</div>"
@@ -145,32 +146,63 @@
             }
         }
 
-        function getQuestion(kid) {
+        function getQuestion(kid, UId) {
             $.ajax({
                 type: "post",
                 url: "/SeeMore/GetQuestion",
                 dataType: "json",
-                data: { kid: kid },
+                data: { kid: kid, UId },
                 async: true,
                 //数据成功返回后的操作，就是局部改变动态页面
                 success: function (data) {
                     console.log(data);
-                    
+
                     if (data.length > 0) {
                         var questionHtml = "";
                         for (var i = 0; i < data.length; i++) {
-                            questionHtml += "<li>"
+                            questionHtml += "<li id=\"QuestionItem-" + data[i].QId + "\">";
                             questionHtml += "<div>" + data[i].Question + "</div>"
+                            questionHtml += "<div>";
+                            if (data[i].AId != 0) {
+                                questionHtml += "<label>答：" + data[i].AnswerDesc + "</label>";
+                            } else {
+                                questionHtml += "<textarea style=\"width:50%;height:70px;float:left;\" id=\"QuestionItemDesc-" + data[i].QId + "\" class=\"form-control\" placeholder=\"清输入答案\"></textarea>"
+                                questionHtml += "<button type=\"submit\" style=\"width:30%;height:70px;\" class=\"btn btn-primary\" onclick=\"submitAnswer("
+                                    + data[i].QId + "," + UId + ")\">提交答案</button>"
 
-                            questionHtml += "<div><textarea id=\"" + data[i].id + "\" class=\"form-control\" placeholder=\"清输入答案\"></textarea></div>"
-                            questionHtml += "<button type=\"submit\" class=\"btn btn-primary\" onclick=\"addComment()\">提交答案</button>"
-                            questionHtml += "</li>"
+                            }
+                            questionHtml += "<span style=\"clear:both\"></span></div></li>"
                         }
                         $("#Question").append(questionHtml);
                     }
 
                 }
             })
+        }
+
+        function submitAnswer(QId, UId) {
+
+            var answer = $("#QuestionItemDesc-" + QId + "").val()
+            if (answer) {
+                $.ajax({
+                    type: "post",
+                    url: "/SeeMore/AddAnswer",
+                    dataType: "json",
+                    data: { QId, UId, answer },
+                    async: true,
+                    //数据成功返回后的操作，就是局部改变动态页面
+                    success: function (data) {
+                        console.log(data);
+                        if (data.id == 1) {
+                            $("#Question").html("");
+                            getQuestion(kid, UId);
+                        }
+
+
+                    }
+                })
+            }
+            
         }
 
     </script>

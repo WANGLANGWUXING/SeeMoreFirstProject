@@ -25,7 +25,8 @@
 
             </label>
             <button type="button" class="btn btn-success" id="btnSign" onclick="onSign()">签到</button>
-
+            <button type="button" class="btn btn-success" id="btnSign" onclick="SelSignRecord()">查看签到记录</button>
+         
         </div>
         <div>
             <table id="selTb"></table>
@@ -219,6 +220,10 @@
 
                 }
             });
+        }
+
+        function SelSignRecord() {
+            window.location.href = "/SeeMore/SignRecord?UId=" + window["UId"];
         }
     </script>
 </body>

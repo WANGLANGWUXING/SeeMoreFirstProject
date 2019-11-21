@@ -45,3 +45,4 @@ C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.csproj.CopyCo
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.dll
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.pdb
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.csprojAssemblyReference.cache

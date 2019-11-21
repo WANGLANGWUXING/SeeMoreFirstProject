@@ -389,6 +389,7 @@
     <Content Include="Views\SeeMore\GHCGIndex.cshtml" />
     <Content Include="Views\SeeMore\WeiKe.cshtml" />
     <Content Include="Views\SeeMore\WeiKeInfo.cshtml" />
+    <Content Include="Views\SeeMore\SignRecord.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,3 +18,13 @@ C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Release\WeiKeDAL.c
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Release\WeiKeDAL.csproj.CopyComplete
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Release\WeiKeDAL.dll
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Release\WeiKeDAL.pdb
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\bin\Release\WeiKeDAL.dll
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\bin\Release\WeiKeDAL.pdb
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\bin\Release\Dapper.dll
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\bin\Release\Dapper.pdb
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\bin\Release\Dapper.xml
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Release\WeiKeDAL.csprojAssemblyReference.cache
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Release\WeiKeDAL.csproj.CoreCompileInputs.cache
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Release\WeiKeDAL.csproj.CopyComplete
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Release\WeiKeDAL.dll
+C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\WeiKeDAL\obj\Release\WeiKeDAL.pdb

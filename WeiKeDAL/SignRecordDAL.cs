@@ -18,14 +18,24 @@ namespace WeiKeDAL
 
         public SignRecord SelSignRecordByUId(int UId)
         {
-            var selSql = "SELECT * FROM SignRecord where SId=@UId";
-            return DapperHelper<SignRecord>.Query(selSql, new { UId }).FirstOrDefault();
+            string date = DateTime.Now.ToShortDateString();
+            var selSql = "SELECT * FROM SignRecord where SId=@UId and  SignDate=@date";
+            return DapperHelper<SignRecord>.Query(selSql, new { UId,date }).FirstOrDefault();
         }
 
         public List<SignRecord> GetSignRecords()
         {
-            var selSql = "SELECT * FROM SignRecord";
+            var selSql = "SELECT ROW_NUMBER() over(order by SignDate desc ) RowIndex,* FROM SignRecord";
             return DapperHelper<SignRecord>.Query(selSql,null);
         }
+
+        public List<SignRecord> GetSignRecords(int UId)
+        {
+            var selSql = "SELECT ROW_NUMBER() over(order by SignDate desc ) RowIndex,* FROM SignRecord where SId=@UId";
+            return DapperHelper<SignRecord>.Query(selSql, new { UId });
+        }
+
+
+
     }
 }

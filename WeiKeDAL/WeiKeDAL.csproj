@@ -54,6 +54,7 @@
     <Compile Include="KTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionTable.cs" />
+    <Compile Include="QuestionTableDAL.cs" />
     <Compile Include="SelKTable.cs" />
     <Compile Include="SelKTableDAL.cs" />
     <Compile Include="SignRecord.cs" />

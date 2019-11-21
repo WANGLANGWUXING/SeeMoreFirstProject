@@ -561,21 +561,43 @@ namespace FristProject.Controllers
         {
             int id = 0;
             string msg = "";
-            if (!string.IsNullOrWhiteSpace(name) && !string.IsNullOrWhiteSpace(name))
+            string activityName = "中铁建江语城H51118";
+            if (!string.IsNullOrWhiteSpace(name) && !string.IsNullOrWhiteSpace(tel))
             {
 
-                if (giftLogDAL.EditGiftLog(openId, "中铁建江语城H51118", name, tel) > 0)
+                GiftLog giftLog = giftLogDAL.SelGiftLog(openId, activityName);
+
+                if (giftLog != null)
                 {
-                    id = 1;
-                    msg = "添加成功";
-                    isReceiveTableDAL.AddIsReceiveTable(openId);
-                    GiftLog giftLog = giftLogDAL.SelGiftLog(openId, "中铁建江语城H51118");
-                    if (giftLog.GiftId >= 26 && giftLog.GiftId <= 31)
+                    if (giftLogDAL.EditGiftLog(openId, activityName, name, tel) > 0)
                     {
-                        int hbTotalAmount = giftCountDAL.GetGiftMoneyByGiftId(giftLog.GiftId);
-                        msg = msg + "," + FHB("江语城红包抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount, openId);
+                        id = 1;
+                        msg = "添加成功";
+                        isReceiveTableDAL.AddIsReceiveTable(openId);
+
+                        if (giftLog.GiftId >= 26 && giftLog.GiftId <= 31)
+                        {
+                            int hbTotalAmount = giftCountDAL.GetGiftMoneyByGiftId(giftLog.GiftId);
+                            //msg = msg + "," + FHB("江语城红包抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount, openId);
+                        }
                     }
                 }
+                else
+                {
+                    giftLogDAL.AddGiftLog(new GiftLog
+                    {
+                        OpenId = openId,
+                        NickName = "",
+                        ActivityName = activityName,
+                        GiftId = 0,
+                        GiftName = "",
+                        GiftDesc = "",
+                        GiftCustomNum = ""
+                    });
+                    id = 2;
+                    msg = "添加成功,奖品已领完";
+                }
+                
             }
             else
             {
@@ -1366,10 +1388,6 @@ namespace FristProject.Controllers
         }
 
 
-
-
-
-
         #region 微课平台
         public ActionResult WeiKe()
         {
@@ -1392,6 +1410,7 @@ namespace FristProject.Controllers
         KCommentDAL commentDAL = new KCommentDAL();
         SelKTableDAL selKTableDAL = new SelKTableDAL();
         SignRecordDAL signRecordDAL = new SignRecordDAL();
+        QuestionTableDAL questionTableDAL = new QuestionTableDAL();
         public string WeiKeAddUser(string openid, string nickname)
         {
             string resstr;
@@ -1477,7 +1496,6 @@ namespace FristProject.Controllers
                 msg = "签到失败";
             }
             return JsonConvert.SerializeObject(new { id, msg });
-
         }
 
         public string IsSign(int UId)
@@ -1496,6 +1514,26 @@ namespace FristProject.Controllers
             }
             return JsonConvert.SerializeObject(new { id, msg });
         }
+
+        public ActionResult SignRecord()
+        {
+            return View();
+        }
+        public string GetSign()
+        {
+            string str = Request.QueryString["UId"];
+            List<SignRecord> signRecords = new List<SignRecord>();
+            if (!string.IsNullOrWhiteSpace(str))
+            {
+                signRecords = signRecordDAL.GetSignRecords(Convert.ToInt32(str));
+            }
+            else
+            {
+                signRecords = signRecordDAL.GetSignRecords();
+            }
+            return JsonConvert.SerializeObject(signRecords);
+        }
+
 
         public string AddComment(int KId, string Comment)
         {
@@ -1534,6 +1572,12 @@ namespace FristProject.Controllers
         public string GetWeike(string id)
         {
             return JsonConvert.SerializeObject(kTableDAL.GetKTableByKid(id));
+        }
+
+
+        public string GetQuestion(string kid)
+        {
+            return JsonConvert.SerializeObject(questionTableDAL.GetQuestionTables(kid));
         }
         #endregion
 

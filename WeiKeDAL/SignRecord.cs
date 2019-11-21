@@ -8,6 +8,7 @@ namespace WeiKeDAL
 {
     public class SignRecord
     {
+        public int RowIndex { get; set; }
         public int Id { get; set; }
         public int SId { get; set; }
         public string SignDate { get; set; }

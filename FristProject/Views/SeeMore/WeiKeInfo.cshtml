@@ -26,13 +26,24 @@
         <div>
             <p id="KDesc" style="text-indent:2em"></p>
         </div>
-        <h5>评论区：</h5>
-        <div id="Comment"></div>
-        <div id="CommentSubmit">
-            <textarea id="CommentDesc" class="form-control" placeholder="请在此输入评论"></textarea>
-            <br>
+        <div>
+            <h5>习题区域</h5>
+            <ul id="Question">
+               
+            </ul>
+        </div>
+        <div>
+            <h5>评论区：</h5>
+            <div id="Comment"></div>
+            <div id="CommentSubmit">
+                <br>
+                <textarea id="CommentDesc" class="form-control" placeholder="请在此输入评论"></textarea>
+                <br>
+
+            </div>
 
         </div>
+        
         <button type="submit" class="btn btn-primary" onclick="addComment()">提交</button>
     </div>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -92,7 +103,7 @@
                         for (var i = 0; i < data.length; i++) {
                             commentHtml += "<div>"
                             commentHtml += "<span>" + data[i].UserName + "</span>"
-                            console.log(typeof data[i].CreateTime);
+                           
                             commentHtml += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>" + data[i].CreateTime.substring(0, 9) + "</span>"
                             commentHtml += "<div>" + data[i].Comment + "</div>"
                             commentHtml += "</div>"
@@ -134,6 +145,33 @@
             }
         }
 
+        function getQuestion(kid) {
+            $.ajax({
+                type: "post",
+                url: "/SeeMore/GetQuestion",
+                dataType: "json",
+                data: { kid: kid },
+                async: true,
+                //数据成功返回后的操作，就是局部改变动态页面
+                success: function (data) {
+                    console.log(data);
+                    
+                    if (data.length > 0) {
+                        var questionHtml = "";
+                        for (var i = 0; i < data.length; i++) {
+                            questionHtml += "<li>"
+                            questionHtml += "<div>" + data[i].Question + "</div>"
+
+                            questionHtml += "<div><textarea id=\"" + data[i].id + "\" class=\"form-control\" placeholder=\"清输入答案\"></textarea></div>"
+                            questionHtml += "<button type=\"submit\" class=\"btn btn-primary\" onclick=\"addComment()\">提交答案</button>"
+                            questionHtml += "</li>"
+                        }
+                        $("#Question").append(questionHtml);
+                    }
+
+                }
+            })
+        }
 
     </script>
 </body>

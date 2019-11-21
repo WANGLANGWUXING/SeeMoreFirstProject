@@ -25,7 +25,8 @@
 
             </label>
             <button type="button" class="btn btn-success" id="btnSign" onclick="onSign()">签到</button>
-
+            <button type="button" class="btn btn-success" id="btnSign" onclick="SelSignRecord()">查看签到记录</button>
+         
         </div>
         <div>
             <table id="selTb"></table>
@@ -122,7 +123,7 @@
 
         function Init(UId) {
             // 获取是否已经签到
-
+            IsSign()
 
 
             $('#selTb').bootstrapTable({
@@ -139,7 +140,7 @@
                     field: 'KType',
                     title: '课程类型'
                 }, {
-                    field: 'Id',
+                    field: 'KId',
                     title: '操作',
                     formatter: function (value, row, index) {
                         var id = value;
@@ -219,6 +220,10 @@
 
                 }
             });
+        }
+
+        function SelSignRecord() {
+            window.location.href = "/SeeMore/SignRecord?UId=" + window["UId"];
         }
     </script>
 </body>

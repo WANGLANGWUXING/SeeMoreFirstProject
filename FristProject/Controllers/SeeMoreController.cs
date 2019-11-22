@@ -595,15 +595,15 @@ namespace FristProject.Controllers
                         }
                         else
                         {
+                            isReceiveTableDAL.AddIsReceiveTable(openId);
 
+                            if (giftLog.GiftId >= 26 && giftLog.GiftId <= 31)
+                            {
+                                int hbTotalAmount = giftCountDAL.GetGiftMoneyByGiftId(giftLog.GiftId);
+                                msg = msg + "," + FHB("江语城红包抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount, openId);
+                            }
                         }
-                        isReceiveTableDAL.AddIsReceiveTable(openId);
-
-                        if (giftLog.GiftId >= 26 && giftLog.GiftId <= 31)
-                        {
-                            int hbTotalAmount = giftCountDAL.GetGiftMoneyByGiftId(giftLog.GiftId);
-                            msg = msg + "," + FHB("江语城红包抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount, openId);
-                        }
+                        
                     }
                 }
                 else
@@ -783,7 +783,7 @@ namespace FristProject.Controllers
         #region 微信授权接口
         public void MyAuthorization(string url)
         {
-
+            pVTableDAL.AddPV(new PVTable { Url = url, OpenId = "" });
             GetWeixinCode(url);
         }
 

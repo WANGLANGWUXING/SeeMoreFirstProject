@@ -521,7 +521,6 @@ C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\FristProject\bin\zh-Hans\System
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\FristProject\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\FristProject\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\FristProject\obj\Release\FristProject.csprojAssemblyReference.cache
-C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\FristProject\obj\Release\FristProject.csproj.CoreCompileInputs.cache
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\FristProject\obj\Release\FristProject.csproj.CopyComplete
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\FristProject\obj\Release\FristProject.dll
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\FristProject\obj\Release\FristProject.pdb

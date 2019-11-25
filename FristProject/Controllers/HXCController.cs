@@ -92,7 +92,7 @@ namespace FristProject.Controllers
 
             }
 
-            return JsonConvert.SerializeObject(new { id, gitId, msg, gift, customCode });
+            return JsonConvert.SerializeObject(new { id, gitId, msg, gift,giftLog, customCode });
         }
 
 

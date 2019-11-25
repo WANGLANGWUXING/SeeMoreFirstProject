@@ -31,8 +31,6 @@ C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\bin\Debug\DAL.pdb
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\bin\Debug\Dapper.dll
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\bin\Debug\Dapper.pdb
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\bin\Debug\Dapper.xml
-C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.dll
 C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.pdb
-C:\Users\wz\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.csprojAssemblyReference.cache

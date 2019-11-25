@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DapperHelper.cs" />
     <Compile Include="GiftCount.cs" />
     <Compile Include="Gift.cs" />
     <Compile Include="GiftCountDAL.cs" />

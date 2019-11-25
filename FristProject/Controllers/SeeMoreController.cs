@@ -603,7 +603,7 @@ namespace FristProject.Controllers
                                 msg = msg + "," + FHB("江语城红包抽奖", "中国铁建·江语城", "恭喜发财", hbTotalAmount, openId);
                             }
                         }
-                        
+
                     }
                 }
                 else
@@ -654,6 +654,9 @@ namespace FristProject.Controllers
         #endregion
 
         #region 华翔城
+
+
+
 
 
 
@@ -780,10 +783,13 @@ namespace FristProject.Controllers
 
         #endregion
 
+        string RequestUrl = "";
+
         #region 微信授权接口
         public void MyAuthorization(string url)
         {
-            pVTableDAL.AddPV(new PVTable { Url = url, OpenId = "" });
+            //pVTableDAL.AddPV(new PVTable { Url = url, OpenId = "" });
+            RequestUrl = url;
             GetWeixinCode(url);
         }
 
@@ -793,6 +799,25 @@ namespace FristProject.Controllers
             string openid = GetOpenidByCode(code, out string access_token);
             string userinfo = WebRequestPostOrGet("https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN", "");
             WXModel model = JsonConvert.DeserializeObject<WXModel>(userinfo);
+            if (model != null && !string.IsNullOrWhiteSpace(model.Openid))
+            {
+                pVTableDAL.AddPV(new PVTable { Url = RequestUrl, OpenId = model.Openid });
+            }
+
+            return JsonConvert.SerializeObject(model);
+        }
+
+
+        public string MyGetUserInfoByCodeOrUrl(string code,string url)
+        {
+            string openid = GetOpenidByCode(code, out string access_token);
+            string userinfo = WebRequestPostOrGet("https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN", "");
+            WXModel model = JsonConvert.DeserializeObject<WXModel>(userinfo);
+            if (model != null && !string.IsNullOrWhiteSpace(model.Openid))
+            {
+                pVTableDAL.AddPV(new PVTable { Url = url, OpenId = model.Openid });
+            }
+
             return JsonConvert.SerializeObject(model);
         }
 

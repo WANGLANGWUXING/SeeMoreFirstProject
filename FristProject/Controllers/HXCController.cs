@@ -15,6 +15,7 @@ namespace FristProject.Controllers
         readonly GiftDAL giftDAL = new GiftDAL();
         readonly Random random = new Random();
         readonly GiftLogDAL giftLogDAL = new GiftLogDAL();
+       
 
         public string GetGiftCustomCode(string name)
         {
@@ -65,6 +66,9 @@ namespace FristProject.Controllers
                 if (gift != null)
                 {
                     customCode = GetGiftCustomCode(gift.GiftName);
+
+                    //奖品数量减一
+                    giftCountDAL.EditGiftCountByGiftId(gift.GiftId);
                     giftLogDAL.AddGiftLog(new
                     GiftLog
                     {
@@ -107,6 +111,8 @@ namespace FristProject.Controllers
                 for (int i = 0; i < giftLogs.Count; i++)
                 {
                     giftLogDAL.DelGiftLogById(giftLogs[i].Id);
+                    giftCountDAL.EditGiftCountByGiftIdAdd1(giftLogs[i].GiftId);
+
                 }
             }
 

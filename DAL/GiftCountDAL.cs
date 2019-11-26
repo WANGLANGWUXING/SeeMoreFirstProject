@@ -11,14 +11,26 @@ namespace DAL
         private static IDbConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"]);
 
         /// <summary>
-        /// 减少礼物实际数量
+        /// 奖品数量减一
         /// </summary>
         /// <param name="GiftId">礼物id</param>
         /// <returns></returns>
         public int EditGiftCountByGiftId(int GiftId)
         {
             string updateSql = "UPDATE [dbo].[GiftCount] SET [Remainder] =  [Remainder] -1 WHERE [GiftId]=@GiftId";
-            var result = conn.Execute(updateSql, new { GiftId = GiftId});
+            var result = conn.Execute(updateSql, new { GiftId });
+            return result;
+        }
+
+        /// <summary>
+        /// 奖品数量加一
+        /// </summary>
+        /// <param name="GiftId"></param>
+        /// <returns></returns>
+        public int EditGiftCountByGiftIdAdd1(int GiftId)
+        {
+            string updateSql = "UPDATE [dbo].[GiftCount] SET [Remainder] =  [Remainder] +1 WHERE [GiftId]=@GiftId";
+            var result = conn.Execute(updateSql, new { GiftId });
             return result;
         }
 

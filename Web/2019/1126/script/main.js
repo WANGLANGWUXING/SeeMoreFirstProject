@@ -1,6 +1,8 @@
 $(function () {
+
     var OpenId;
     getUserInfo();
+    document.getElementById("user-txt").focus();
     /*** 预加载 ***/
     var loader = new createjs.LoadQueue(true);
     loader.on("progress", handleFileLoad);
@@ -19,7 +21,56 @@ $(function () {
         $('.alert-btn-ok').on('click', function () {
             $('.alert').hide();
         });
+        
+        $("#user-txt").blur(function () {
+            if (!$("#user-txt").val()) {
+                toast("请将当前项填写完成", 500);
+                $("#user-txt")[0].focus();
+            }
+        });
 
+
+        $("#tel-txt").blur(function () {
+            var tel = $("#tel-txt").val();
+            console.log(tel.length)
+            console.log(tel)
+            if (!tel) {
+                toast("请将当前项填写完成", 500);
+                $("#tel-txt")[0].focus();
+            }
+            else if (tel.length !== 11) {
+                toast("请将当前项填写完成", 500);
+                $("#tel-txt")[0].focus();
+            }
+        });
+
+        $("#idCard-txt").blur(function () {
+            var idCard = $("#idCard-txt").val();
+            if (!idCard) {
+                toast("请将当前项填写完成", 500);
+                $("#idCard-txt")[0].focus();
+            } else if (idCard.length !== 18) {
+                toast("请输入正确身份证号", 500);
+                $("#idCard-txt")[0].focus();
+            }
+        });
+
+
+
+        $("#area-txt").blur(function () {
+            var area = $("#area-txt").val();
+            if (!area) {
+                toast("请将当前项填写完成", 500);
+                $("#area-txt")[0].focus();
+            }
+        });
+
+        $("#referrer-txt").blur(function () {
+            if (!$("#referrer-txt").val()) {
+                toast("请将当前项填写完成", 500);
+                $("#referrer-txt")[0].focus();
+            }
+        });
         // 提交表格
         $('#btnSubmit').on('click', function () {
             var user = $("#user-txt").val();
@@ -44,13 +95,15 @@ $(function () {
                     success: function (data) {
                         console.log(data);
 
-                        if (data.id == 1) {
+                        if (data.id === 1) {
                             $("#alert-ok").show();
                         } else {
                             $("#alert-err").show();
                         }
                     }
                 });
+            } else {
+                toast("请填写完毕后再提交", 1000);
             }
             
         });

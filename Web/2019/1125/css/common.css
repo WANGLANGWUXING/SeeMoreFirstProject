@@ -4227,6 +4227,9 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100% 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #loading .process {
@@ -4315,7 +4318,9 @@ body {
   top: 0;
   left: 0;
 }
-
+#PageMain .hourse img:first-child {
+  z-index: 1;
+}
 #PageMain .hourse img:last-child {
   width: 3.04rem;
   height: 13.2rem;
@@ -4324,6 +4329,7 @@ body {
   right: 0;
   top: auto;
   bottom: 0;
+  z-index: 6;
 }
 
 #PageMain .hourse .hourse-persimmon {
@@ -4339,8 +4345,9 @@ body {
   top: 8.666667rem;
   left: auto;
   right: 2.666667rem;
-  -webkit-animation: hoursePersimmon 1s ease-out 0s infinite alternate;
-  animation: hoursePersimmon 1s ease-out 0s infinite alternate;
+  /* -webkit-animation: hoursePersimmon 1s ease-out 0s infinite alternate;
+  animation: hoursePersimmon 1s ease-out 0s infinite alternate; */
+  z-index: 5;
 }
 
 #PageMain .page1-title {
@@ -4469,19 +4476,16 @@ body {
 }
 
 #PageBegin .btn-begin {
-  width: 3.96rem;
-  height: 4.906667rem;
-  line-height: 4.906667rem;
+  width: 100%;
+  height: 100%;
   background-image: url("./../images/page3-start.png");
   background-color: transparent;
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  background-position: calc(100% + 1.066667rem) calc(100% - 2.8rem);
+  background-size: 3.96rem 4.906667rem;
   position: absolute;
-  top: auto;
-  left: auto;
-  right: -1.066667rem;
-  bottom: 2.8rem;
+  top: 0;
+  left: 0;
 }
 
 #PageGame {
@@ -4600,6 +4604,46 @@ body {
   line-height: 0.666667rem;
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
+}
+
+.pos-109-0 {
+  top: 9.333333rem;
+  left: 14.666667rem;
+}
+
+.pos-109-1 {
+  top: 8.533333rem;
+  left: 13.066667rem;
+}
+
+.pos-109-2 {
+  top: 5.866667rem;
+  left: 21.333333rem;
+}
+
+.pos-109-3 {
+  top: 7.133333rem;
+  left: 14.186667rem;
+}
+
+.pos-120-0 {
+  top: 3.266667rem;
+  left: 12.133333rem;
+}
+
+.pos-120-1 {
+  top: 7.4rem;
+  left: 19.466667rem;
+}
+
+.pos-120-2 {
+  top: 9.666667rem;
+  left: 23.733333rem;
+}
+
+.pos-120-3 {
+  top: 11.2rem;
+  left: 21.533333rem;
 }
 
 .alert {
@@ -5097,4 +5141,78 @@ body {
 
 .hide {
   display: none;
+}
+
+html {
+  -ms-touch-action: none;
+}
+
+body, canvas, div {
+  display: block;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Remove spin of input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  margin: 0;
+
+  cursor: default;
+  color: #888;
+  background-color: #333;
+
+  text-align: center;
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  
+  /* fix bug: https://github.com/cocos-creator/2d-tasks/issues/791 */
+  /* overflow cannot be applied in Cocos2dGameContainer, 
+  otherwise child elements will be hidden when Cocos2dGameContainer rotated 90 deg */
+  overflow: hidden;
+}
+
+#Cocos2dGameContainer {
+  position: absolute;
+  margin: 0;
+  left: 0px;
+  top: 0px;
+
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+
+canvas {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#GameCanvas{
+  z-index: 1;
+}
+#PageBegin,#PageChoice,#PageMain{
+  z-index: 2;
 }

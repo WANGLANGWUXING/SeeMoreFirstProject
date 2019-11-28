@@ -64,5 +64,13 @@ namespace DAL
             return res;
         }
 
+
+        public int GetGiftCountSumByActNameAndType(string actName,string type)
+        {
+            string selSql = "select SUM(Remainder) c from GiftCount a,Gift b where a.GiftId=b.GiftId and ActivityName=@actName and GiftDesc=@type";
+            int res = Convert.ToInt32(conn.ExecuteScalar(selSql, new { actName,type }));
+            return res;
+        }
+
     }
 }

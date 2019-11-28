@@ -43,6 +43,12 @@ namespace DAL
             List<Gift> giftList = conn.Query<Gift>(selectSql, new { ActivityName = ActivityName }).ToList();
             return giftList;
         }
+        public List<Gift> GetGiftsByAcitvityNameAndType(string ActivityName,string Type)
+        {
+            string selectSql = "SELECT * FROM  [dbo].[Gift] WHERE ActivityName=@ActivityName and GiftDesc=@Type";
+            List<Gift> giftList = conn.Query<Gift>(selectSql, new { ActivityName, Type }).ToList();
+            return giftList;
+        }
         public List<Gift> GetGiftsByAcitvityNameIsExist(string ActivityName)
         {
             string selectSql = "SELECT * FROM  [dbo].[Gift] WHERE ActivityName=@ActivityName and giftid in(select giftid from GiftCount where Remainder>0)";

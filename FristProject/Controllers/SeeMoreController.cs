@@ -808,6 +808,11 @@ namespace FristProject.Controllers
         }
 
 
+        public void AddPV(string url,string openId)
+        {
+            pVTableDAL.AddPV(new PVTable { Url = url, OpenId = openId });
+        }
+
         public string MyGetUserInfoByCodeOrUrl(string code,string url)
         {
             string openid = GetOpenidByCode(code, out string access_token);
@@ -815,7 +820,7 @@ namespace FristProject.Controllers
             WXModel model = JsonConvert.DeserializeObject<WXModel>(userinfo);
             if (model != null && !string.IsNullOrWhiteSpace(model.Openid))
             {
-                pVTableDAL.AddPV(new PVTable { Url = url, OpenId = model.Openid });
+                AddPV(url, model.Openid);
             }
 
             return JsonConvert.SerializeObject(model);

@@ -112,12 +112,15 @@ function handleComplete() {
                 success: function (data) {
                     console.log(data);
                     if (data.id == 1) {
-                        $("#user-txt").removeAttr("disabled");
-                        $("#tel-txt").removeAttr("disabled");
+                        //$("#user-txt").removeAttr("disabled");
+                        //$("#tel-txt").removeAttr("disabled");
 
-                        $('#PageGame').hide()
-                        $('#loginAlert').hide()
-                        $('#PageChoice').show()
+                        $('#PageGame').hide();
+                        $('#loginAlert').hide();
+                        $('#PageChoice').show();
+
+                        $("#user-txt").val("");
+                        $("#tel-txt").val("");
                     } else {
                         alert(data.msg);
                     }
@@ -284,16 +287,17 @@ function getMyPriceInfo() {
             }
             else if (data.length == 1) {
                 if (!!data[0].Name && !!data[0].Telphone) {
-                    if (data.gitId == 32) {
+                    var tempGiftId = data[0].GiftId;
+                    if (tempGiftId == 32) {
                         $(".alert-my-prize-has").attr("src", "./images/alert-prize2.png");
                         $(".alert-my-prize-txt-has").attr("src", "./images/alert-prize2-txt.png");
-                    } else if (data.gitId == 33) {
+                    } else if (tempGiftId == 33) {
                         $(".alert-my-prize-has").attr("src", "./images/alert-prize1.png");
                         $(".alert-my-prize-txt-hast").attr("src", "./images/alert-prize1-txt.png");
-                    } else if (data.gitId == 34) {
+                    } else if (tempGiftId == 34) {
                         $(".alert-my-prize-has").attr("src", "./images/alert-prize3.png");
                         $(".alert-my-prize-txt-has").attr("src", "./images/alert-prize3-txt.png");
-                    } else if (data.gitId == 35) {
+                    } else if (tempGiftId == 35) {
                         $(".alert-my-prize-has").attr("src", "./images/alert-prize4.png");
                         $(".alert-my-prize-txt-has").attr("src", "./images/alert-prize4-txt.png");
                     }

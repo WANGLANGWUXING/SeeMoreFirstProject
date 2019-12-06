@@ -16,22 +16,27 @@ namespace DAL
         public int AddGiftLog(GiftLog giftLog)
         {
             string insertSql = "INSERT INTO [dbo].[GiftLog] ([OpenId] ,[NickName] ,[ActivityName],[GiftId],[GiftName] ,[GiftDesc],[AddTime],[Name],[Telphone],[GiftCustomNum]) VALUES (@OpenId ,@NickName,@ActivityName,@GiftId,@GiftName,@GiftDesc,Getdate(),@Name,@Telphone,@GiftCustomNum)";
-            var result = conn.Execute(insertSql, giftLog);
+            var result = DapperHelper<GiftLog>.Execute(insertSql, giftLog);
             return result;
         }
-
+        public int EditGiftLog(string openId, string activityName, int giftId,string giftName)
+        {
+            string editSql = "UPDATE [dbo].[GiftLog] SET [GiftName]=@giftName ,[GiftId]=@giftId WHERE OpenId=@openId and ActivityName=@activityName";
+            var result = DapperHelper<GiftLog>.Execute(editSql, new { giftName, giftId, openId, activityName });
+            return result;
+        }
 
         public int EditGiftLog(string openId, string activityName, string name, string telphone)
         {
             string editSql = "UPDATE [dbo].[GiftLog] SET [Name]=@Name ,[Telphone]=@Telphone WHERE OpenId=@OpenId and ActivityName=@ActivityName";
-            var result = conn.Execute(editSql, new { Name = name, Telphone = telphone, OpenId = openId, ActivityName = activityName });
+            var result = DapperHelper<GiftLog>.Execute(editSql, new { Name = name, Telphone = telphone, OpenId = openId, ActivityName = activityName });
             return result;
         }
 
         public int EditGiftLog(string openId, string activityName, string name, string telphone,string type)
         {
             string editSql = "UPDATE [dbo].[GiftLog] SET [Name]=@Name ,[Telphone]=@Telphone WHERE OpenId=@OpenId and ActivityName=@ActivityName and GiftDesc=@type";
-            var result = conn.Execute(editSql, new { Name = name, Telphone = telphone, OpenId = openId, ActivityName = activityName,type });
+            var result = DapperHelper<GiftLog>.Execute(editSql, new { Name = name, Telphone = telphone, OpenId = openId, ActivityName = activityName,type });
             return result;
         }
 
@@ -45,14 +50,14 @@ namespace DAL
         {
             string selectSql = "SELECT * FROM [dbo].[GiftLog] where OpenId=@OpenId and ActivityName=@ActivityName";
 
-            GiftLog giftLog = conn.Query<GiftLog>(selectSql, new { OpenId = openId, ActivityName = ActivityName }).FirstOrDefault();
+            GiftLog giftLog = DapperHelper<GiftLog>.Query(selectSql, new { OpenId = openId, ActivityName = ActivityName }).FirstOrDefault();
             return giftLog;
         }
         public GiftLog SelGiftLog(string openId, string ActivityName,string type)
         {
             string selectSql = "SELECT * FROM [dbo].[GiftLog] where OpenId=@OpenId and ActivityName=@ActivityName and GiftDesc=@type";
 
-            GiftLog giftLog = conn.Query<GiftLog>(selectSql, new { OpenId = openId,  ActivityName,type }).FirstOrDefault();
+            GiftLog giftLog = DapperHelper<GiftLog>.Query(selectSql, new { OpenId = openId,  ActivityName,type }).FirstOrDefault();
             return giftLog;
         }
 

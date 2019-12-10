@@ -21,7 +21,7 @@ $(function () {
         $('.alert-btn-ok').on('click', function () {
             $('.alert').hide();
         });
-        
+
         $("#user-txt").blur(function () {
             if (!$("#user-txt").val()) {
                 toast("请将当前项填写完成", 500);
@@ -39,7 +39,7 @@ $(function () {
                 $("#tel-txt")[0].focus();
             }
             else if (tel.length !== 11) {
-                toast("请将当前项填写完成", 500);
+                toast("请输入正确电话号码", 500);
                 $("#tel-txt")[0].focus();
             }
         });
@@ -71,6 +71,20 @@ $(function () {
                 $("#referrer-txt")[0].focus();
             }
         });
+
+        $("#refTel-txt").blur(function () {
+            var refTel = $("#refTel-txt").val();
+            console.log(refTel.length)
+            console.log(refTel)
+            if (!refTel) {
+                toast("请将当前项填写完成", 500);
+                $("#refTel-txt")[0].focus();
+            }
+            else if (refTel.length !== 11) {
+                toast("请输入正确电话号码", 500);
+                $("#refTel-txt")[0].focus();
+            }
+        });
         // 提交表格
         $('#btnSubmit').on('click', function () {
             var user = $("#user-txt").val();
@@ -78,11 +92,11 @@ $(function () {
             var idCard = $("#idCard-txt").val();
             var area = $("#area-txt").val();
             var referrer = $("#referrer-txt").val();
-
-            if (!!user && !!tel && !!idCard && !!area && !!referrer) {
+            var refTel = $("#refTel-txt").val();
+            if (!!user && !!tel && !!idCard && !!area && !!referrer && !!refTel) {
                 $.ajax({
                     type: "post",
-                    url: "http://weixin.seemoread.com/ZGTJZYC/AddVIP",
+                    url: "http://weixin.seemoread.com/ZGTJZYC/AddVIPS",
                     dataType: "json",
                     data: {
                         openId: OpenId,
@@ -90,7 +104,8 @@ $(function () {
                         tel,
                         idCard,
                         area,
-                        referrer
+                        referrer,
+                        refTel
                     },
                     success: function (data) {
                         console.log(data);
@@ -105,7 +120,7 @@ $(function () {
             } else {
                 toast("请填写完毕后再提交", 1000);
             }
-            
+
         });
 
     }

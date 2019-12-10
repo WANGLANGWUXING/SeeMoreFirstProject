@@ -313,7 +313,7 @@ namespace FristProject.Controllers
         //  3 没有超过上一次的分数
         //  4 礼物一样的
         //  5 添加记录成功
-        public string GetPrice2019Christmas(string openId, string nickName, int score)
+        public string GetPrice2019Christmas(string openId, string nickName, string img, int score)
         {
             int id = 0;
             string msg = "";
@@ -363,6 +363,7 @@ namespace FristProject.Controllers
                 //  超过，向下执行6
                 // 先修改分数，再执行6
                 gameScore.Score = score;
+                //gameScore.WeiXinImg = img;
                 gameScoreDAL.EditGameScore(gameScore);
             }
             else
@@ -372,6 +373,7 @@ namespace FristProject.Controllers
                     new GameScore
                     {
                         OpenId = openId,
+                        WeiXinImg = img,
                         Score = score,
                         ActivityName = actName
                     });
@@ -507,7 +509,12 @@ namespace FristProject.Controllers
         public string GetWeiXinInfo2019Christmas(string openId)
         {
             string actName = "新影华翔城2019圣诞老人";
-            return JsonConvert.SerializeObject(giftLogDAL.SelGiftLog(openId, actName));
+            return JsonConvert.SerializeObject(
+                new
+                {
+                    giftLog = giftLogDAL.SelGiftLog(openId, actName),
+                    gameScore = gameScoreDAL.SelGameScore(openId, actName)
+                });
         }
         #endregion
         #region 华翔城2019圣诞助力

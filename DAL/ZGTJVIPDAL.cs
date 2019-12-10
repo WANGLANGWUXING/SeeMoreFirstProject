@@ -9,7 +9,10 @@ namespace DAL
     {
         public int AddZGTJVIP(ZGTJVIP zgtjVIP)
         {
-            string insertSql = "INSERT INTO [dbo].[ZGTJVIP]  ([OpenId] ,[Name] ,[Tel] ,[IdCard] ,[Area] ,[Referrer] ,[CreateTime]) VALUES (@OpenId ,@Name  ,@Tel ,@IdCard ,@Area  ,@Referrer ,GETDATE())"; ;
+            string insertSql = "INSERT INTO [dbo].[ZGTJVIP] " +
+                " ([OpenId] ,[Name] ,[Tel] ,[IdCard] ," +
+                "[Area] ,[Referrer],[RefTel] ,[CreateTime]) " +
+                "VALUES (@OpenId ,@Name  ,@Tel ,@IdCard ,@Area  ,@Referrer,@RefTel ,GETDATE())"; ;
 
             return DapperHelper<ZGTJVIP>.Execute(insertSql, zgtjVIP);
         }

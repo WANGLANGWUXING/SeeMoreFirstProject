@@ -312,7 +312,6 @@ C:\Users\mayn\Desktop\公司资料\Work\FristProject\FristProject\obj\Release\Fr
 C:\Users\mayn\Desktop\公司资料\Work\FristProject\FristProject\obj\Release\FristProject.dll
 C:\Users\mayn\Desktop\公司资料\Work\FristProject\FristProject\obj\Release\FristProject.pdb
 C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\FristProject\obj\Release\FristProject.csprojAssemblyReference.cache
-C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\FristProject\obj\Release\FristProject.csproj.CoreCompileInputs.cache
 C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\FristProject\obj\Release\FristProject.dll
 C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\FristProject\obj\Release\FristProject.pdb
 C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\FristProject\bin\FristProject.dll.config

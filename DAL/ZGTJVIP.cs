@@ -14,6 +14,7 @@ namespace DAL
         public string IdCard { get; set; }
         public string Area { get; set; }
         public string Referrer { get; set; }
+        public string RefTel { get; set; }
         public DateTime CreateTime { get; set; }
     }
 }

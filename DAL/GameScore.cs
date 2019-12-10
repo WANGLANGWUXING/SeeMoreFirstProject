@@ -6,8 +6,9 @@ namespace DAL
     {
         public int Id { get; set; }
         public string OpenId { get; set; }
+        public string WeiXinImg { get; set; }
         public int Score { get; set; }
         public string ActivityName { get; set; }
-        public DateTime AddTime { get; set; }
+        public System.DateTime AddTime { get; set; }
     }
 }

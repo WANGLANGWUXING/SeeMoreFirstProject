@@ -9,7 +9,7 @@ namespace DAL
     {
         public int AddGameScore(GameScore gameScore)
         {
-            string sql = "INSERT INTO [dbo].[GameScore] ([OpenId] ,[Score] ,[ActivityName] ,[AddTime]) VALUES (@OpenId,@Score ,@ActivityName ,GETDATE())";
+            string sql = "INSERT INTO [dbo].[GameScore] ([OpenId],[WeiXinImg],[Score] ,[ActivityName] ,[AddTime]) VALUES (@OpenId,@WeiXinImg,@Score ,@ActivityName,GETDATE())";
             return DapperHelper<GameScore>.Execute(sql, gameScore);
         }
 
@@ -21,7 +21,7 @@ namespace DAL
 
         public int EditGameScore(GameScore gameScore)
         {
-            string sql = "UPDATE GameScore SET Score=@Score WHERE OpenId=@OpenId AND ActivityName=@ActivityName ";
+            string sql = "UPDATE GameScore SET Score=@Score and WeiXinImg=@WeiXinImg WHERE OpenId=@OpenId AND ActivityName=@ActivityName ";
             return DapperHelper<GameScore>.Execute(sql, gameScore);
         }
     }

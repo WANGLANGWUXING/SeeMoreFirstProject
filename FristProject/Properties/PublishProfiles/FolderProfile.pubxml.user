@@ -16,10 +16,10 @@
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/DAL.dll">
-      <publishTime>11/28/2019 17:39:35</publishTime>
+      <publishTime>12/10/2019 14:59:58</publishTime>
     </File>
     <File Include="bin/DAL.pdb">
-      <publishTime>11/28/2019 17:39:35</publishTime>
+      <publishTime>12/10/2019 14:59:58</publishTime>
     </File>
     <File Include="bin/Dapper.dll">
       <publishTime>05/06/2015 13:05:20</publishTime>
@@ -28,10 +28,10 @@
       <publishTime>05/06/2015 13:05:20</publishTime>
     </File>
     <File Include="bin/FristProject.dll">
-      <publishTime>11/28/2019 17:39:35</publishTime>
+      <publishTime>12/10/2019 14:59:58</publishTime>
     </File>
     <File Include="bin/FristProject.pdb">
-      <publishTime>11/28/2019 17:39:35</publishTime>
+      <publishTime>12/10/2019 14:59:58</publishTime>
     </File>
     <File Include="bin/LitJSON.dll">
       <publishTime>10/21/2019 15:16:02</publishTime>
@@ -52,10 +52,10 @@
       <publishTime>01/21/2012 19:45:34</publishTime>
     </File>
     <File Include="bin/ProjectDAL.dll">
-      <publishTime>11/26/2019 13:45:37</publishTime>
+      <publishTime>12/10/2019 14:59:58</publishTime>
     </File>
     <File Include="bin/ProjectDAL.pdb">
-      <publishTime>11/26/2019 13:45:37</publishTime>
+      <publishTime>12/10/2019 14:59:58</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>05/24/2018 13:38:22</publishTime>
@@ -238,10 +238,10 @@
       <publishTime>01/23/2014 13:57:34</publishTime>
     </File>
     <File Include="bin/WeiKeDAL.dll">
-      <publishTime>11/26/2019 13:45:37</publishTime>
+      <publishTime>12/10/2019 14:59:58</publishTime>
     </File>
     <File Include="bin/WeiKeDAL.pdb">
-      <publishTime>11/26/2019 13:45:37</publishTime>
+      <publishTime>12/10/2019 14:59:58</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Web.Helpers.resources.dll">
       <publishTime>11/29/2018 13:29:50</publishTime>

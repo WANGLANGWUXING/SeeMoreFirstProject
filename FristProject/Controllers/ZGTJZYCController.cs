@@ -38,5 +38,38 @@ namespace FristProject.Controllers
             return JsonConvert.SerializeObject(new { id, msg });
 
         }
+
+
+        public string AddVIPS(string openId, 
+            string name, string tel,
+            string idCard, string area, 
+            string referrer, string refTel)
+        {
+            int id = 0;
+            string msg = "";
+            // 先判断是否存在openId
+            if (zgtjDAL.SelZGTJVIPByOpenId(openId) != null)
+            {
+                msg = "已存在记录";
+            }
+            else
+            { //不存在添加
+                zgtjDAL.AddZGTJVIP(new ZGTJVIP
+                {
+                    OpenId = openId,
+                    Name = name,
+                    Tel = tel,
+                    IdCard = idCard,
+                    Area = area,
+                    Referrer = referrer,
+                    RefTel = refTel
+                });
+                id = 1;
+                msg = "添加成功";
+            }
+
+            return JsonConvert.SerializeObject(new { id, msg });
+
+        }
     }
 }

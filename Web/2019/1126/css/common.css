@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 
 html,
 body,
@@ -4701,25 +4701,38 @@ form ul .m2 input {
   width: calc(100% - 2.2rem);
 }
 
-form ul .re-tel {
-  background-image: url("./../images/input-re-tel.png");
-  margin-top: 0.4rem;
-}
+    form ul .re-tel {
+        background-image: url("./../images/input-res.png");
+        margin-top: 0.4rem;
+        margin-left: 0.2rem;
+        margin-right: 0.2rem;
+        width: auto;
+    }
 
-form ul .re-tel input {
-  width: calc(100% - 2.733333rem);
-}
+        form ul .re-tel input {
+            margin-left: 2.0rem;
+            
+        }
 
-form ul #block {
-  width: 100%;
-  height: 3.333333rem;
-  line-height: 1;
-  background-image: url("./../images/block.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100% 100%;
-}
+        form ul .re-tel #referrer-txt {
+            width: calc(100% - 4.5rem);
+        }
+
+        form ul .re-tel #refTel-txt {
+            margin-left: 2.3rem;
+            width: calc(100% - 1.5rem);
+        }
+
+        form ul #block {
+            width: 100%;
+            height: 3.333333rem;
+            line-height: 1;
+            background-image: url("./../images/block.png");
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% 100%;
+        }
 
 form .btns-flex {
   width: 2.56rem;

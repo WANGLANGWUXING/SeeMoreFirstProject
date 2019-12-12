@@ -10,6 +10,7 @@ namespace DAL
         public int UserId { get; set; }
         public string OpenId { get; set; }
         public string Nickname { get; set; }
+        public string Headimgurl { get; set; }
         public string Phone { get; set; }
 
     }

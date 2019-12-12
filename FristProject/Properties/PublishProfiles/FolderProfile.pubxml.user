@@ -16,10 +16,10 @@
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/DAL.dll">
-      <publishTime>12/10/2019 14:59:58</publishTime>
+      <publishTime>12/12/2019 16:48:42</publishTime>
     </File>
     <File Include="bin/DAL.pdb">
-      <publishTime>12/10/2019 14:59:58</publishTime>
+      <publishTime>12/12/2019 16:48:42</publishTime>
     </File>
     <File Include="bin/Dapper.dll">
       <publishTime>05/06/2015 13:05:20</publishTime>
@@ -28,10 +28,10 @@
       <publishTime>05/06/2015 13:05:20</publishTime>
     </File>
     <File Include="bin/FristProject.dll">
-      <publishTime>12/10/2019 14:59:58</publishTime>
+      <publishTime>12/12/2019 16:48:43</publishTime>
     </File>
     <File Include="bin/FristProject.pdb">
-      <publishTime>12/10/2019 14:59:58</publishTime>
+      <publishTime>12/12/2019 16:48:43</publishTime>
     </File>
     <File Include="bin/LitJSON.dll">
       <publishTime>10/21/2019 15:16:02</publishTime>

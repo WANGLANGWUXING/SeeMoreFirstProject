@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html style="overflow: hidden">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="robots" content="index,follow">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="force-rendering" content="webk`it">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta http-equiv="Expires" content="-1" />
+		<meta http-equiv="pragram" content="no-cache" />
+		<meta content="email=no" name="format-detection" />
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<script>!function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("将根据已有的meta标签来设置缩放比例");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=(a.navigator.appVersion.match(/android/gi),a.navigator.appVersion.match(/iphone/gi)),q=a.devicePixelRatio;i=p?q>=3&&(!i||i>=3)?3:q>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var r=e.createElement("div");r.appendChild(g),e.write(r.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));</script>
+		<link rel="stylesheet" href="css/common.css" />
+		<script type="text/javascript" src="script/jquery.min.js"></script>
+		<script type="text/javascript" src="script/fastclick.js"></script>
+		<script type="text/javascript" src="script/preloadImg.js"></script>
+		<script type="text/javascript" src="script/srcImg.js"></script>
+		<script type="text/javascript" src="script/pixi.js"></script>
+		<!-- <script type="text/javascript" src="script/tween.js"></script> -->
+		<!-- <script type="text/javascript" src="script/swiper.min.js"></script>
+		<script type="text/javascript" src="script/swiper.animate.min.js"></script> -->
+		<script type="text/javascript" src="script/main2.js"></script>
+		<script type="text/javascript" src="script/main.js"></script>
+		<!-- <script type="text/javascript" src="script/sulando.js"></script> -->
+	</head>
+
+	<body id="index">
+		<!-- loading -->
+		<aside id="loading" class="wrap">
+			<div class="load-green">
+				<div class="load-img">
+					<div class="load-head"></div>
+				</div>
+			</div>
+			<div class="process">
+				<div class="progress-bg">
+					<div class="progress-color"></div>
+				</div>
+				<span></span>
+			</div>
+			<div class="load-snow"></div>
+		</aside>
+
+		<aside class="wrap">
+			<!-- Page: Main -->
+			<article id="PageCanvas" class="page"></article>
+			<article id="PageIndex" class="page">
+				<div class="snow"></div>
+				<div class="cloud1"></div>
+				<div class="cloud2"></div>
+				<div class="hourse"></div>
+				<div class="btns-index-flex">
+					<button id="btnGameIntroductions" type="button" value="游戏说明"></button>
+					<button id="btnGameStart" type="button" value="开始游戏"></button>
+					<button id="btnMyPrize" type="button" value="我的奖品"></button>
+				</div>
+				<div class="logo"></div>
+			</article>
+			<!-- Page: Game -->
+			<article id="PageGame" class="page">
+				<div class="contain">
+					<div id="bgChange" class="wrap">
+						<div class="game-bg"></div>
+						<div class="snow"></div>
+						<div class="cloud1"></div>
+						<div class="cloud2"></div>
+						<div class="content">
+							<div id="neckChange" class="cont-head"></div>
+							<div class="cont-hourse"></div>
+						</div>
+					</div>
+					<div class="game-score-cont">
+						<div class="game-score-cont-up" id="countDownTime"></div>
+						<div class="game-score-cont-down my-score-show" id="yourScore"></div>
+					</div>
+					<div class="logo"></div>
+					<div class="count-down-tip"></div>
+				</div>
+				<div id="clickEve" class="page"></div>
+			</article>
+
+			<!-- 弹出：提示如何游戏 -->
+			<div id="alertTip" class="alert">
+				<div class="mask"></div>
+				<div class="alert-content tip-img">
+					<button id="alertTipIknow" type="button"></button>
+				</div>
+			</div>
+			<!-- 弹出：提示如何游戏2 游戏倒计时 -->
+			<div id="alertCountDown" class="alert">
+				<div class="mask"></div>
+				<div class="alert-content count-down-num" id="countDownNum"></div>
+				<div class="count-down-tip"></div>
+			</div>
+			<!-- 弹出：规则 -->
+			<div id="alertRule" class="alert">
+				<div class="mask"></div>
+				<div class="alert-content rule-img">
+					<div class="alert-close green"></div>
+				</div>
+			</div>
+			<!-- 弹出：我的奖品 —— 没有玩过，空的 -->
+			<div id="alertMyPrizeEmpty" class="alert">
+				<div class="mask"></div>
+				<div class="alert-content my-prize-empty-img">
+					<div class="alert-close green"></div>
+				</div>
+			</div>
+			<!-- 弹出：我的奖品 —— 玩过，没有登记 -->
+			<div id="alertMyPrizeUnlogin" class="alert">
+				<div class="mask"></div>
+				<div class="alert-content my-prize-empty-unlogin">
+					<div id="alertMyPrizeUnloginScore"><span class="my-score-show">0</span><small>m</small></div>
+					<button id="alertMyPrizeUnloginToLogin" type="button"></button>
+					<div class="alert-close green"></div>
+				</div>
+			</div>
+			<!-- 弹出：我的奖品 —— 玩过，登记过，有奖品 -->
+			<div id="alertMyPrizeHave" class="alert">
+				<div class="mask"></div>
+				<div class="alert-content my-prize-have">
+					<div class="my-prize-your-txt"></div>
+					<div class="my-prize-your-txt2">[<span class="my-prize-show-name">字符串字符串字符串</span>]</div>
+					<div class="my-prize-your-txt3">奖品ID：<span class="my-prize-id">0</span></div>
+					<img class="my-prize-img my-prize-pic-src" src="./../images/prize/prize1.png" />
+					<div class="my-prize-icon"></div>
+					<button id="alertMyPrizeHaveShare" type="button"></button>
+					<div class="alert-close red"></div>
+				</div>
+			</div>
+			<!-- 弹出：游戏时间结束——奖品已领完 -->
+			<div id="alertGameOverEmptyPrize" class="alert">
+				<div class="mask"></div>
+				<div class="alert-content game-over-empty-prize">
+					<div class="txt-your-score"></div>
+					<div class="game-over-your-score"><span class="my-score-show">0</span>m</div>
+					<div class="alert-close red"></div>
+				</div>
+			</div>
+			<!-- 弹出：游戏时间结束——弹出奖品——待登记 -->
+			<div id="alertGameOverPrize" class="alert">
+				<div class="mask"></div>
+				<div class="alert-content game-over-unlogin">
+					<div class="txt-your-score"></div>
+					<div class="game-over-your-score"><span class="my-score-show">0</span>m</div>
+					<div class="game-over-your-prize">恭喜您获得<span>[<strong class="my-prize-show-name">字符串字符串字符串</strong>]</span></div>
+					<div class="game-over-pic">
+						<img class="my-prize-pic-src" src="./../images/prize/prize1.png" />
+						<button id="alertRestart" type="button"></button>
+						<button id="alertLoginNow" type="button"></button>
+					</div>
+					<div class="alert-close red"></div>
+				</div>
+			</div>
+			<!-- 弹出：游戏时间结束——登记——弹出奖品 -->
+			<div id="alertGameOverLogin" class="alert">
+				<div class="mask"></div>
+				<div class="alert-content game-over-login">
+					<div class="game-over-your-prize-name">
+						<div class="game-over-txt-your-prize"></div>
+						<div class="game-over-txt-your-prize2">[<span class="my-prize-show-name">字符串字符串字符串</span>]</div>
+					</div>
+					<img class="my-prize-pic-src" id="gameOverYourPrizeImg" src="./../images/prize/img1.png" />
+					<from>
+						<ul>
+							<li class="user"><span></span><input id="user-txt" type="text" maxlength="8" /></li>
+							<li class="phone"><span></span><input id="phone-txt" type="tel" maxlength="11" /></li>
+						</ul>
+					</from>
+					<button id="gameOverYourPrizeSubmit" type="submit"></button>
+					<div class="game-over-txt-your-prize-tip"></div>
+					<div class="alert-close red"></div>
+				</div>
+			</div>
+			<!-- 弹出：游戏时间结束——登记——弹出奖品——确认提交登记弹框 -->
+			<div id="alertSureLogin" class="alert">
+				<div class="mask"></div>
+				<div class="alert-content sure-login">
+					<div class="sure-login-txt"></div>
+					<div class="sure-login-btn-flex">
+						<button id="alertSureLoginFalse" type="button"></button>
+						<button id="alertSureLoginTrue" type="button"></button>
+					</div>
+					<div class="alert-close green"></div>
+				</div>
+			</div>
+		</aside>
+		<div id="wxShareImg" class="alert">
+			<div class="mask"></div>
+			<img id="PageCanvasImg" />
+			<div class="alert-close red"></div>
+			<div id="shareWxTxt">长按保存图片可分享至朋友圈邀请好友共玩</div>
+		</div>
+
+		<!-- 固定的 -->
+		<div class="music music-ani hide"></div>
+
+		<!-- Alert -->
+		<div id="alerts" class="alerts"></div>
+		<div id="alertConfirm" class="alert-confirm"></div>
+
+		<!-- Music -->
+		<!-- <audio id="music" src="./bg.mp3" autoplay="autoplay" preload="auto" loop="loop" style="visibility: hidden;"></audio> -->
+		<!-- <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> -->
+	</body>
+</html>

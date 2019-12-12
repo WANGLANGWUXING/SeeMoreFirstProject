@@ -21,7 +21,7 @@ namespace DAL
 
         public int EditGameScore(GameScore gameScore)
         {
-            string sql = "UPDATE GameScore SET Score=@Score and WeiXinImg=@WeiXinImg WHERE OpenId=@OpenId AND ActivityName=@ActivityName ";
+            string sql = "UPDATE GameScore SET Score=@Score, WeiXinImg=@WeiXinImg WHERE OpenId=@OpenId AND ActivityName=@ActivityName ";
             return DapperHelper<GameScore>.Execute(sql, gameScore);
         }
     }

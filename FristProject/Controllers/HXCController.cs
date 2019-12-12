@@ -452,7 +452,9 @@ namespace FristProject.Controllers
                     NickName = nickName,
                     ActivityName = actName,
                     GiftId = selGift.GiftId,
-                    GiftName = selGift.GiftName
+                    GiftName = selGift.GiftName,
+                    GiftCustomNum = DateTime.Now.ToString("yyyyMMddHHmmssms")
+
                 });
             }
 
@@ -559,13 +561,50 @@ namespace FristProject.Controllers
 
 
         }
-
+        CollectLikeDAL collectLikeDAL = new CollectLikeDAL();
 
         public string AddHelpUser(string shareId, string openId, string url)
         {
+            string actName = "新影华翔城2019圣诞助力";
             // 添加助力用户
             // 参数 被助力人分享Id ， 助力人微信Id, 助力链接
-            return "";
+            int id = 0;
+            string msg = "";
+            CollectLike collectLike = collectLikeDAL.SelHelperUser(openId, shareId,actName);
+            if (collectLike != null)
+            {
+                // 助力过了
+                msg = "此人已经助力过此用户";
+            }
+            else
+            {
+                if (collectLikeDAL.AddHelperUser(new CollectLike()
+                {
+                    UserShareId = shareId,
+                    HelpOpenId = openId,
+                    Url = url,
+                    ActivityName = actName
+                }) > 0)
+                {
+                    id = 1;
+                    msg = "助力成功";
+                }
+                else
+                {
+                    id = 0;
+                    msg = "助力出现错误，接口需调整";
+                }
+
+            }
+
+            // 第一次助力
+
+            return JsonConvert.SerializeObject(new { id, msg });
+        }
+
+        public string GetHelpCount(string openId)
+        {
+            return JsonConvert.SerializeObject(collectLikeDAL.SelHelperCount(openId, "新影华翔城2019圣诞助力"));
         }
 
         public string SelHelpRank()

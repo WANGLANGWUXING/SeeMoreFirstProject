@@ -801,6 +801,9 @@ namespace FristProject.Controllers
             WXModel model = JsonConvert.DeserializeObject<WXModel>(userinfo);
             if (model != null && !string.IsNullOrWhiteSpace(model.Openid))
             {
+                // 添加用户信息到数据库 有则查看是否需要修改
+                userDAL.AddUserS(new WXUser { OpenId = model.Openid, Nickname = model.Nickname, Headimgurl = model.Headimgurl });
+                // 添加访问记录
                 pVTableDAL.AddPV(new PVTable { Url = RequestUrl, OpenId = model.Openid });
             }
 
@@ -820,6 +823,9 @@ namespace FristProject.Controllers
             WXModel model = JsonConvert.DeserializeObject<WXModel>(userinfo);
             if (model != null && !string.IsNullOrWhiteSpace(model.Openid))
             {
+                // 添加用户信息到数据库 有则查看是否需要修改
+                userDAL.AddUserS(new WXUser { OpenId = model.Openid, Nickname = model.Nickname, Headimgurl = model.Headimgurl });
+                // 添加访问记录
                 AddPV(url, model.Openid);
             }
 

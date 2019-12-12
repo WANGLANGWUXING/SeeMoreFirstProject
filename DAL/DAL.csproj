@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectLike.cs" />
+    <Compile Include="CollectLikeDAL.cs" />
     <Compile Include="DapperHelper.cs" />
     <Compile Include="GameScore.cs" />
     <Compile Include="GameScoreDAL.cs" />

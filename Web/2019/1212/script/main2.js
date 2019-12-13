@@ -8,7 +8,9 @@ var heighter = 20,  // 点击增速
     prizeName = '礼品名称', // $('.my-prize-show-name')
     prizeID = '',   // $('.my-prize-id')
     prizeSrc = '';  // $('.my-prize-pic-src')
-scoreNum = 0;   // $('.my-score-show')
+var scoreNum = 0;   // $('.my-score-show')
+var scoreMissFlag = false;
+var scoreLastNum = 0;
 var neckHeighChangeInt = null;
 
 function alertCloseClick() {
@@ -46,7 +48,7 @@ function gameOverYourPrizeSubmitFun() {
     if (!!user && !!tel) {
         $("#alertSureLogin").show();
 
-        
+
     }
 }
 
@@ -73,18 +75,25 @@ function reg() {
     });
 }
 
+
+
+function noReg() {
+    $('.alert').hide();
+    $("#alertMyPrizeUnlogin").show();
+}
+
 function arrowAni(dom, arrow) { // 向上滑动事件的动画Fun
     dom.animate({ 'height': arrow }, 100)
 }
-function myPrizeShowClick(eve) {
-    if (eve.data.key === 0) { // 没有玩过，空的
-        $('#alertMyPrizeEmpty').show();
-    } else if (eve.data.key === 1) { // 玩过，没有登记
-        $('#alertMyPrizeUnlogin').show();
-    } else if (eve.data.key === 2) { // 玩过，登记过，有奖品
-        getUserGiftInfo(2);
-        $('#alertMyPrizeHave').show();
-    }
+function myPrizeShowClick() {
+    //if (eve.data.key === 0) { // 没有玩过，空的
+    //    $('#alertMyPrizeEmpty').show();
+    //} else if (eve.data.key === 1) { // 玩过，没有登记
+    //    $('#alertMyPrizeUnlogin').show();
+    //} else if (eve.data.key === 2) { // 玩过，登记过，有奖品
+    getUserGiftInfo(10);
+    //$('#alertMyPrizeHave').show();
+    //}
 }
 function alertTipIknowClick() {
     $('#alertTip').hide();
@@ -93,8 +102,8 @@ function alertTipIknowClick() {
     GameStartFun();
 }
 function GameStartFun() {
-    beforeGameCountDownTime = 1;
-    GameCountDownTime = 1;// 30改为1  用于测试
+    beforeGameCountDownTime = 3;// 倒计时
+    GameCountDownTime = 30;// 30改为1  用于测试
     $('#neckChange').height(neckOrg);
     $('#bgChange').height(winH);
     $('#countDownNum').text(beforeGameCountDownTime);
@@ -143,12 +152,16 @@ function snowClickEvent(e) { // 游戏点击事件Fun
 }
 function GameCountDownTimeFun() {
     GameCountDownTimeInt = setInterval(function () {
-        if (GameCountDownTime < 1) {
+        // 时间为0时停留太久 ，所有从1改为2
+        if (GameCountDownTime < 2) {
+            //alert("时间为0")
+            $('#clickEve').off('click');
             clearInterval(GameCountDownTimeInt)
             clearInterval(neckHeighChangeInt)
             GameCountDownTime = 30;
             lastStamp = 0;
-            scoreNum = 501;// 用于测试几种分数下的接口调用是否正常
+            //scoreNum = 1001;// 用于测试几种分数下的接口调用是否正常
+            //alert("时间为0后：wxOpenId:" + wxOpenId + ",wxUserName:" + wxUserName + ",wxImgSrc:" + wxImgSrc + ",scoreNum:" + scoreNum)
             $.ajax({
                 type: "post",
                 url: "http://weixin.seemoread.com/HXC/GetPrice2019Christmas",
@@ -161,11 +174,11 @@ function GameCountDownTimeFun() {
                 },
                 success: function (data) {
                     console.log(data);
-
+                    //alert(JSON.stringify(data))
                     GameOverShowPrize(data.id);
                 }
             });
-
+            
             // GameOverShowPrize(1);
         } else {
             GameCountDownTime--
@@ -184,25 +197,99 @@ function getUserGiftInfo(flag) {
         },
         success: function (data) {
             console.log(data);
-            scoreNum = data.gameScore.Score;
-            prizeName = data.giftLog.GiftName;
-            prizeID = data.giftLog.GiftCustomNum;
-            if (prizeName == "围脖手套礼盒") {
-                prizeSrc = "images/prize/img1.png";
-            } else if (prizeName == "娃娃公仔+暖心抱枕") {
-                prizeSrc = "images/prize/img2.png";
-            }
-            //alertCloseClick();
-            $('.my-prize-id').html(prizeID);
-            $('.my-score-show').html(scoreNum);
-            $('.my-prize-show-name').html(prizeName+"一份");
-            $('.my-prize-pic-src').attr('src', prizeSrc);
 
-            if (flag == 2) {
-                $('#alertMyPrizeHave').show();
-            } else {
-                $('#alertGameOverPrize').show();
+            if (scoreMissFlag) {
+                // 显示文字提示
+                $(".game-over-your-prize").show();
+                // 设置按钮位置
+                $("#alertRestart").removeClass("alertRestart2");
+                // 隐藏登记按钮
+                $("#alertLoginNow").show();
+
+                scoreMissFlag = false;
             }
+
+            if (data.giftLog == null && flag == 10) {
+                $("#alertMyPrizeEmpty").show();
+            } else {
+                //alert(scoreNum);
+                //scoreNum = data.gameScore.Score;
+                wxImgSrc = data.gameScore.WeiXinImg;
+                
+                scoreLastNum = data.gameScore.Score;
+                $('.my-score-show').html(scoreNum);
+                if (data.giftLog != null) {
+                    prizeID = data.giftLog.GiftCustomNum;
+                    prizeName = data.giftLog.GiftName;
+                    //alertCloseClick();
+                    $('.my-prize-id').html(prizeID);
+                    if (prizeName == "围脖手套礼盒") {
+                        prizeSrc = "images/prize/img1.png";
+                    } else if (prizeName == "娃娃公仔+暖心抱枕") {
+                        prizeSrc = "images/prize/img2.png";
+                    }
+
+                    $('.my-prize-show-name').html(prizeName + "一份");
+                    $('.my-prize-pic-src').attr('src', prizeSrc);
+                    if (flag == 2) {
+                        $('#alertMyPrizeHave').show();
+                    }
+                    else if (flag >= 3 && flag <= 5) {
+
+                        $('#alertGameOverPrize').show();
+                    } else if (flag == 10) {
+                        if (data.giftLog.Name != null) {
+                            $('#alertMyPrizeHave').show();
+                        } else {
+                            $('.my-score-show').html(scoreLastNum);
+                            $("#alertMyPrizeUnlogin").show();
+                        }
+                    }
+
+                    
+                } else {
+
+                    if (scoreNum > 200) {
+                        prizeName = "围脖手套礼盒";
+                    } else if (scoreNum > 100) {
+                       prizeName = "娃娃公仔+暖心抱枕"
+                    } else {
+                        prizeName = "";
+                    }
+
+                    if (prizeName == "围脖手套礼盒") {
+                        prizeSrc = "images/prize/img1.png";
+                    } else if (prizeName == "娃娃公仔+暖心抱枕") {
+                        prizeSrc = "images/prize/img2.png";
+                    }
+                    $('.my-prize-show-name').html(prizeName + "一份");
+                    $('.my-prize-pic-src').attr('src', prizeSrc);
+
+                    if (prizeName == "") {
+                        scoreMiss();
+                    } else {
+                        if (flag >= 3 && flag <= 5) {
+
+                            $('#alertGameOverPrize').show();
+                        }
+                        else if (flag == 10) {
+                            $("#alertMyPrizeUnlogin").show();
+                        }
+                        else {
+                            // 设置分数
+                            $('.my-score-show').html(scoreNum);
+
+                            $('#alertGameOverEmptyPrize').show();
+                        }
+                    }
+
+                    
+                    
+                }
+                scoreNum = data.gameScore.Score;
+            }
+
+
 
         }
     });
@@ -217,28 +304,45 @@ function GameOverShowPrize(key) {
     //  4 和上次一样的分数 礼物一样的
     //  5 添加记录成功
     // 3,4,5 类似的情况
-
     if (key === 0) { // 奖品已领完
+        // 设置分数
+        $('.my-score-show').html(scoreNum);
         $('#alertGameOverEmptyPrize').show();
     } else if (key === 1) {
-        alert("分数没有达到领奖标准");
-        alertCloseClick();
-        //$('#alertGameOverPrize').show();
+        scoreMiss();
+
     } else if (key === 2) {
         getUserGiftInfo(2);
     } else if (key === 3) {
         getUserGiftInfo(3);
-
     } else if (key === 4) {
         getUserGiftInfo(4);
-
     } else if (key === 5) {
         getUserGiftInfo(5);
 
     }
 }
+
+function scoreMiss() {
+    $(".my-prize-pic-src").attr('src', 'images/alert/score-misss.png');
+    // 设置分数
+    $('.my-score-show').html(scoreNum);
+
+    // 隐藏文字提示
+    $(".game-over-your-prize").hide();
+    // 设置按钮位置
+    $("#alertRestart").addClass("alertRestart2");
+    // 隐藏登记按钮
+    $("#alertLoginNow").hide();
+    $('#alertGameOverPrize').show();
+    scoreMissFlag = true;
+}
+
 function shareWxImgFun() {
     console.log(wxImgSrc);
+    wxImgSrc = "WxImgs/" + wxImgSrc;
+
+   // alert(wxImgSrc)
     $('.alert').hide();
     $('#wxShareImg').show();
 
@@ -274,8 +378,8 @@ function shareWxImgFun() {
     });
 
     var message = new PIXI.Text(wxUserName, style);
-    var scoreMessage = new PIXI.Text(scoreNum + 'm', style2);
-    var prizeMessage = new PIXI.Text(prizeName, style3);
+    var scoreMessage = new PIXI.Text(scoreLastNum + 'm', style2);
+    var prizeMessage = new PIXI.Text("获得"+prizeName+"一份", style3);
     message.x = 150;
     message.y = 130;
     prizeMessage.x = 70;

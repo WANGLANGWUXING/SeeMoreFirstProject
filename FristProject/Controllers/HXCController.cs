@@ -3,7 +3,11 @@ using Newtonsoft.Json;
 using Pinyin4net;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -307,6 +311,12 @@ namespace FristProject.Controllers
 
         #region 华翔城2019拯救圣诞老人
         GameScoreDAL gameScoreDAL = new GameScoreDAL();
+
+        //public int Get
+        // 高分 手套
+        readonly int bigLength = 200;
+        // 低分 公仔
+        readonly int smaliLength = 100;
         //  0 礼物领完了
         //  1 分数没有达到领奖标准
         //  2 已登记
@@ -336,16 +346,7 @@ namespace FristProject.Controllers
 
                 // 没值，向下执行3
             }
-            // 没记录，向下执行3
-            //3.是否礼物已经领完 giftcount 两种礼物数量Remainder是否已经都是0
-            int giftSum = giftCountDAL.GetGiftCountSumByActName(actName);
-            if (giftSum == 0)
-            {
-                // 领完，退出判断
-                id = 0;
-                msg = "礼物领完了";
-                return JsonConvert.SerializeObject(new { id, msg });
-            }
+
             // 没领完，向下执行4
             //4.查询是否有分数记录 GameScore
             GameScore gameScore = gameScoreDAL.SelGameScore(openId, actName);
@@ -368,15 +369,29 @@ namespace FristProject.Controllers
             }
             else
             {
+                // 图片下载，位置保存到数据库
+                string temp = SaveWxImg(img, openId);
+
                 //  没记录：添加记录，并向下执行6
                 gameScoreDAL.AddGameScore(
                     new GameScore
                     {
                         OpenId = openId,
-                        WeiXinImg = img,
+                        WeiXinImg = openId + ".jpg",
                         Score = score,
                         ActivityName = actName
                     });
+            }
+
+            // 没记录，向下执行3
+            //3.是否礼物已经领完 giftcount 两种礼物数量Remainder是否已经都是0
+            int giftSum = giftCountDAL.GetGiftCountSumByActName(actName);
+            if (giftSum == 0)
+            {
+                // 领完，退出判断
+                id = 0;
+                msg = "礼物领完了";
+                return JsonConvert.SerializeObject(new { id, msg });
             }
             //娃娃公仔
             Gift gift1 = giftDAL.GetGiftsByAcitvityNameAndType(actName, "大于1000").FirstOrDefault();
@@ -386,7 +401,7 @@ namespace FristProject.Controllers
             int count2 = giftCountDAL.GetGiftCountByGiftId(gift2.GiftId);
             Gift selGift = null;
             //6.判断分数范围
-            if (score > 1000)
+            if (score > bigLength)
             {
                 // 两个礼物都没了
                 if (count1 <= 0 && count2 <= 0)
@@ -404,7 +419,7 @@ namespace FristProject.Controllers
                     selGift = gift1;
                 }
             }
-            else if (score > 500)
+            else if (score > smaliLength)
             {
                 if (count2 >= 0)
                 {
@@ -464,8 +479,78 @@ namespace FristProject.Controllers
             return JsonConvert.SerializeObject(new { id, msg });
 
         }
+        public Image UrlToImage(string url)
+        {
+            WebClient mywebclient = new WebClient();
+            byte[] Bytes = mywebclient.DownloadData(url);
+            using (MemoryStream ms = new MemoryStream(Bytes))
+            {
+                Image outputImg = Image.FromStream(ms);
+                return outputImg;
+            }
+        }
+
+        public string SaveWxImg(string imgNetWork, string openId)
+        {
+
+            string path = Path.Combine("E:", "www", "wx", "2019", "1212", "WxImgs", openId + ".jpg");
+            if (System.IO.File.Exists(path))
+            {
+                return path;
+            }
+
+            HttpDownload(imgNetWork, path);
+
+            return path;
+
+        }
 
 
+        /// <summary>
+        /// http下载文件
+        /// </summary>
+        /// <param name="url">下载文件地址</param>
+        /// <param name="path">文件存放地址，包含文件名</param>
+        /// <returns></returns>
+        public static bool HttpDownload(string url, string path)
+        {
+            string tempPath = System.IO.Path.GetDirectoryName(path) + @"\temp";
+            System.IO.Directory.CreateDirectory(tempPath);  //创建临时文件目录
+            string tempFile = tempPath + @"\" + System.IO.Path.GetFileName(path) + ".temp"; //临时文件
+            if (System.IO.File.Exists(tempFile))
+            {
+                System.IO.File.Delete(tempFile);    //存在则删除
+            }
+            try
+            {
+                FileStream fs = new FileStream(tempFile, FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
+                // 设置参数
+                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+                //发送请求并获取相应回应数据
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                //直到request.GetResponse()程序才开始向目标网页发送Post请求
+                Stream responseStream = response.GetResponseStream();
+                //创建本地文件写入流
+                //Stream stream = new FileStream(tempFile, FileMode.Create);
+                byte[] bArr = new byte[1024];
+                int size = responseStream.Read(bArr, 0, (int)bArr.Length);
+                while (size > 0)
+                {
+                    //stream.Write(bArr, 0, size);
+                    fs.Write(bArr, 0, size);
+                    size = responseStream.Read(bArr, 0, (int)bArr.Length);
+                }
+                //stream.Close();
+                fs.Close();
+                responseStream.Close();
+                System.IO.File.Move(tempFile, path);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// 登记并将礼物数量减少
@@ -570,7 +655,7 @@ namespace FristProject.Controllers
             // 参数 被助力人分享Id ， 助力人微信Id, 助力链接
             int id = 0;
             string msg = "";
-            CollectLike collectLike = collectLikeDAL.SelHelperUser(openId, shareId,actName);
+            CollectLike collectLike = collectLikeDAL.SelHelperUser(openId, shareId, actName);
             if (collectLike != null)
             {
                 // 助力过了

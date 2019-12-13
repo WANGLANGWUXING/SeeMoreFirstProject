@@ -247,46 +247,6 @@ a:visited {
   }
 }
 
-@-webkit-keyframes downTipAni {
-  from {
-    background-image: url("./../images/alert/point-tip.png");
-  }
-
-  to {
-    background-image: url("./../images/alert/point-tip2.png");
-  }
-}
-
-@keyframes downTipAni {
-  from {
-    background-image: url("./../images/alert/point-tip.png");
-  }
-
-  to {
-    background-image: url("./../images/alert/point-tip2.png");
-  }
-}
-
-@-webkit-keyframes cloudAni {
-  from {
-    background-position-x: calc(100% + 2.706667rem);
-  }
-
-  to {
-    background-position-x: -100%;
-  }
-}
-
-@keyframes cloudAni {
-  from {
-    background-position-x: calc(100% + 2.706667rem);
-  }
-
-  to {
-    background-position-x: -100%;
-  }
-}
-
 /**
  * Swiper 4.3.2
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -4309,232 +4269,102 @@ body {
 }
 
 #PageIndex {
-  background-image: url("./../images/bg.png");
-  background-color: #03004c;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: 100% auto;
-}
-
-.snow {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-image: url("./../images/snow.png");
+  background-image: url("./../images/bg.jpg");
   background-color: transparent;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center bottom;
   background-size: 100% 100%;
+  background-image: url("./../images/index-top.png"), url("./../images/bg.jpg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: center top, center bottom;
+  background-size: 10rem 14.906667rem, 100% 100%;
 }
 
-.cloud1 {
-  width: 100%;
-  height: 100%;
-  background-image: url("./../images/index/snow1.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: calc(100% + 2.706667rem) 20vh;
-  background-size: 2.706667rem 2.16rem;
-  position: fixed;
-  top: 0;
-  left: 0;
-  -webkit-animation: cloudAni 10s ease-in-out 0s infinite;
-  animation: cloudAni 10s ease-in-out 0s infinite;
-  opacity: 0.5;
-}
-
-.cloud2 {
-  width: 100%;
-  height: 100%;
-  background-image: url("./../images/index/snow1.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: calc(100% + 2.706667rem) 45vh;
-  background-size: 2.706667rem 1.773333rem;
-  position: fixed;
-  top: 0;
-  left: 0;
-  -webkit-animation: cloudAni 10s linear 3s infinite;
-  animation: cloudAni 10s linear 3s infinite;
-  opacity: 0.3;
-}
-
-.hourse {
-  width: 100%;
-  height: 100%;
+#PageIndex .index-txt {
+  font-size: 0.4rem;
+  color: #fff;
+  font-weight: 700;
   position: absolute;
-  top: 0;
-  left: 0;
-  background-image: url("./../images/index/img.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: 100% auto;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
-.btns-index-flex {
-  width: 6rem;
-  height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+#PageIndex .index-txt span {
+  padding: 0 0.2rem;
+  text-decoration: underline;
+}
+
+#PageIndex .btns-index-flex {
+  width: 8.613333rem;
+  height: 5.666667rem;
+  background-image: url("./../images/index-bottom.png");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   position: absolute;
   left: 50%;
   -webkit-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
-  bottom: 0.533333rem;
+  bottom: 0.8rem;
+  padding: 1.666667rem 1.933333rem 0;
 }
 
-.btns-index-flex #btnGameIntroductions {
-  width: 1.32rem;
-  height: 1.32rem;
-  background-image: url("./../images/btn/btn-rule.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.btns-index-flex #btnGameStart {
-  width: 1.653333rem;
-  height: 1.653333rem;
-  background-image: url("./../images/btn/btn-start.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.btns-index-flex #btnMyPrize {
-  width: 1.32rem;
-  height: 1.32rem;
-  background-image: url("./../images/btn/btn-my-prize.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-#PageGame {
-  background-color: #03004c;
-}
-
-#PageGame .wrap {
-  height: 100vh;
-}
-
-#PageGame .game-bg {
+#PageIndex .btns-index-flex button {
+  display: block;
   width: 100%;
-  height: 100%;
-  background-image: url("./../images/bg.png");
-  background-color: transparent;
+  height: 0.853333rem;
   background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: 100% auto;
-  position: absolute;
-  top: auto;
-  left: 0;
-  bottom: 0;
+  background-position: center center;
+  background-size: 100% 100%;
+  letter-spacing: 0.093333rem;
+  text-indent: 0.093333rem;
 }
 
-#PageGame .content {
+#PageIndex .btns-index-flex button.btn-true {
+  color: #c53643;
+  background-image: url("./../images/btn-white.png");
+}
+
+#PageIndex .btns-index-flex button.btn-false {
+  color: #fff;
+  background-image: url("./../images/btn-white-bg.png");
+}
+
+#PageIndex .btns-index-flex button:first-child {
+  margin-bottom: 0.293333rem;
+}
+
+#PageIndex .btns-index-flex button:nth-child(2n) {
+  position: relative;
+}
+
+#PageIndex .btns-index-flex button:nth-child(2n):after {
+  content: '';
+  display: block;
+  width: 1.533333rem;
+  height: 0.026667rem;
+  background-color: #fff;
   position: absolute;
   top: auto;
   left: 50%;
-  bottom: 2.773333rem;
-  margin-left: -4.02rem;
+  margin-left: -0.766667rem;
+  bottom: -0.133333rem;
 }
 
-#PageGame .cont-hourse {
-  width: 8.04rem;
-  height: 5.36rem;
-  background-image: url("./../images/game/house.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-#PageGame .cont-head {
-  width: 0.693333rem;
-  height: 1.333333rem;
-  background-color: #f7c0b2;
-  margin-left: 1.36rem;
-}
-
-#PageGame .cont-head:after {
-  content: '';
-  display: block;
-  width: 2.426667rem;
-  height: 2.786667rem;
-  background-image: url("./../images/game/head.png");
+#PageIndex #btnRank {
+  width: 1.146667rem;
+  height: 2.32rem;
+  background-image: url("./../images/btn-rank.png");
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   position: absolute;
-  top: -0.266667rem;
-  left: 0.533333rem;
-  -webkit-animation: headAni2 1s ease-in-out 0s infinite;
-  animation: headAni2 1s ease-in-out 0s infinite;
-  -webkit-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-  -webkit-animation-direction: alternate;
-  animation-direction: alternate;
-}
-
-#PageGame .game-score-cont {
-  width: 3.826667rem;
-  height: 2.706667rem;
-  background-image: url("./../images/game/leftTime/bg.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  position: fixed;
-  top: 2.426667rem;
-  left: auto;
-  right: 0;
-  padding: 0.333333rem 0.733333rem 0.266667rem 0.866667rem;
-}
-
-#PageGame .game-score-cont .game-score-cont-up {
-  width: 2.226667rem;
-  height: 1.173333rem;
-  background-image: url("./../images/game/leftTime/left-time.png"), url("./../images/game/leftTime/line.png"), url("./../images/game/leftTime/s.png");
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position: left center, center bottom, right top;
-  background-size: 0.24rem 0.96rem, 2.226667rem 0.04rem, 0.386667rem 0.56rem;
-  font-size: 1.066667rem;
-  color: #fff;
-  font-weight: 700;
-  line-height: 1;
-  padding: 0 0.4rem 0.133333rem 0.4rem;
-  text-align: right;
-}
-
-#PageGame .game-score-cont .game-score-cont-down {
-  width: 2.226667rem;
-  height: 0.933333rem;
-  background-image: url("./../images/game/leftTime/m.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: right bottom;
-  background-size: 0.52rem 0.36rem;
-  padding: 0 0.6rem 0 0;
-  text-align: right;
-  font-size: 0.853333rem;
-  color: #fff;
-  font-weight: 700;
-  line-height: 1.35;
+  top: 2.373333rem;
+  left: 0;
 }
 
 .alert {
@@ -4552,49 +4382,9 @@ body {
 }
 
 .alert .alert-close {
-  width: 0.56rem;
-  height: 0.56rem;
-  border-width: 0.013333rem;
-  border-style: solid;
-  border-color: #fff;
-  border-radius: 50%;
+  width: 0.666667rem;
+  height: 0.666667rem;
   position: absolute;
-  right: -0.28rem;
-  top: -0.28rem;
-  z-index: 1;
-}
-
-.alert .alert-close:before,
-.alert .alert-close:after {
-  content: '';
-  display: block;
-  width: 0.026667rem;
-  height: 60%;
-  background-color: #fff;
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
-  top: 20%;
-  z-index: 2;
-}
-
-.alert .alert-close:before {
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.alert .alert-close:after {
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-.alert .alert-close.green {
-  background-color: #00561f;
-}
-
-.alert .alert-close.red {
-  background-color: #a40000;
 }
 
 .alert .mask {
@@ -4614,399 +4404,75 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.alert .tip-img {
-  width: 7.346667rem;
-  height: 4.533333rem;
-  background-image: url("./../images/alert/tip.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.alert .tip-img #alertTipIknow {
-  width: 3.88rem;
-  height: 1rem;
-  background-image: url("./../images/btn/btn-i-know.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
-  bottom: -0.5rem;
-}
-
 .alert .rule-img {
-  width: 7.346667rem;
-  height: 11.28rem;
-  background-image: url("./../images/alert/rule.png");
+  width: 10rem;
+  height: 16.08rem;
+  background-image: url("./../images/rule.png");
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
-.alert .my-prize-empty-img {
-  width: 7.346667rem;
-  height: 11.28rem;
-  background-image: url("./../images/alert/prize-empty.png");
+.alert .rule-img .alert-close {
+  left: 4.906667rem;
+  bottom: 1.573333rem;
+}
+
+.alert .tip-img {
+  width: 10rem;
+  height: 16.08rem;
+  background-image: url("./../images/tip.png");
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
-.alert .my-prize-empty-unlogin {
-  width: 7.346667rem;
-  height: 5.173333rem;
-  background-image: url("./../images/alert/score.png");
+.alert .tip-img .alert-close {
+  top: 6.866667rem;
+  left: 4.933333rem;
+}
+
+.alert .rank-img {
+  width: 10rem;
+  height: 16.08rem;
+  background-image: url("./../images/rank.png");
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  padding: 2.266667rem 1.2rem 1.266667rem;
 }
 
-.alert .my-prize-empty-unlogin #alertMyPrizeUnloginToLogin {
-  width: 2.373333rem;
-  height: 0.813333rem;
-  background-image: url("./../images/btn/btn-alert-login.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  margin: 2.6rem auto 0;
-}
-
-.alert .my-prize-empty-unlogin #alertMyPrizeUnloginScore {
-  width: 2.266667rem;
-  height: 0.72rem;
-  font-size: 0.72rem;
-  color: #cfa972;
-  font-weight: 700;
-  line-height: 1;
-  position: absolute;
-  top: 0.826667rem;
-  left: 4.266667rem;
-}
-
-.alert .my-prize-empty-unlogin #alertMyPrizeUnloginScore small {
-  font-size: 0.4rem;
-  padding-left: 0.066667rem;
-}
-
-.alert .my-prize-have {
-  width: 7.346667rem;
-  height: 11.28rem;
-  background-image: url("./../images/alert/prize-bg.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  padding: 0.533333rem 0.333333rem 0 0.333333rem;
-}
-
-.alert .my-prize-have .my-prize-your-txt {
-  width: 2.666667rem;
-  height: 0.586667rem;
-  background-image: url("./../images/alert/txt-your-prize.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.alert .my-prize-have .my-prize-your-txt2 {
-  font-size: 0.373333rem;
-  color: #cfa972;
-  font-weight: 700;
-  margin-top: 0.2rem;
-  margin-bottom: 0.093333rem;
-}
-
-.alert .my-prize-have .my-prize-your-txt3 {
-  font-size: 0.266667rem;
-  color: #fff;
-  font-weight: 500;
-}
-
-.alert .my-prize-have .my-prize-img {
-  display: block;
+.alert .rank-img .rank-title {
   width: 100%;
-  height: auto;
-  margin: 2.066667rem auto 0;
-}
-
-.alert .my-prize-have .my-prize-icon {
-  width: 0.453333rem;
-  height: 0.48rem;
-  background-image: url("./../images/alert/prize-bg-img.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  position: absolute;
-  top: auto;
-  left: auto;
-  right: 0;
-  bottom: 0;
-}
-
-.alert .my-prize-have #alertMyPrizeHaveShare {
-  width: 2.373333rem;
-  height: 0.813333rem;
-  background-image: url("./../images/btn/btn-share.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
-  bottom: 0.666667rem;
-}
-
-.alert .game-over-empty-prize {
-  width: 7.346667rem;
-  height: 11.28rem;
-  background-image: url("./../images/alert/prize-empty2.png"), url("./../images/alert/login.png");
-  background-repeat: no-repeat, no-repeat;
-  background-position: center 101%, center bottom;
-  background-size: 6.453333rem 7.28rem, 7.346667rem,11.28rem;
-  padding: 0.533333rem 1rem 0;
-}
-
-.alert .game-over-login {
-  width: 7.346667rem;
-  height: 11.28rem;
-  background-image: url("./../images/alert/login.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.alert .game-over-login .game-over-your-prize-name {
-  margin: 0.533333rem auto 0.2rem;
-}
-
-.alert .game-over-login .game-over-your-prize-name .game-over-txt-your-prize {
-  width: 2.933333rem;
-  height: 0.4rem;
-  background-image: url("./../images/alert/txt-your-prize.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  margin: 0 auto 0.133333rem;
-}
-
-.alert .game-over-login .game-over-your-prize-name .game-over-txt-your-prize2 {
-  font-size: 0.373333rem;
-  color: #cfa972;
+  height: 0.533333rem;
+  font-size: 0.453333rem;
+  color: #fff;
+  letter-spacing: 0.066667rem;
+  text-indent: 0.066667rem;
   font-weight: 700;
   text-align: center;
+  line-height: 0.533333rem;
 }
 
-.alert .game-over-login #gameOverYourPrizeImg {
-  display: block;
-  width: 5.466667rem;
-  height: 3.866667rem;
-  margin: 0 auto;
-}
-
-.alert .game-over-login from {
-  display: block;
-  margin: 0.266667rem auto;
-  width: 5.466667rem;
-}
-
-.alert .game-over-login from ul li {
-  height: 0.8rem;
-  background-color: #00561f;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-width: 0.026667rem;
-  border-style: solid;
-  border-color: #fff;
-  border-radius: 0.2rem;
-}
-
-.alert .game-over-login from ul li span {
-  display: block;
-  width: 1.4rem;
-  height: 0.373333rem;
-}
-
-.alert .game-over-login from ul li.user {
-  margin-bottom: 0.133333rem;
-}
-
-.alert .game-over-login from ul li.user span {
-  background-image: url("./../images/alert/from-user.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.alert .game-over-login from ul li.phone span {
-  background-image: url("./../images/alert/from-tel.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.alert .game-over-login from ul li input {
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 0 0.133333rem;
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.alert .game-over-login #gameOverYourPrizeSubmit {
-  width: 2.373333rem;
-  height: 0.813333rem;
-  background-image: url("./../images/btn/btn-alert-submit.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  margin: 0 auto;
-}
-
-.alert .game-over-login .game-over-txt-your-prize-tip {
-  width: 5.253333rem;
-  height: 0.6rem;
-  background-image: url("./../images/alert/from-tips.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  margin: 0.2rem auto 0;
-}
-
-.alert .game-over-unlogin {
-  width: 7.346667rem;
-  height: 11.28rem;
-  background-image: url("./../images/alert/login.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  padding: 0.533333rem 1rem 0;
-}
-
-.alert .txt-your-score {
-  width: 4.173333rem;
-  height: 0.613333rem;
-  background-image: url("./../images/alert/txt-your-score.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  margin-bottom: 0.133333rem;
-}
-
-.alert .game-over-your-score {
-  background-image: url("./../images/game/leftTime/line.png"), url("./../images/game/leftTime/line.png");
-  background-repeat: no-repeat, no-repeat;
-  background-position: center bottom, center top;
-  background-size: 100% 0.04rem, 100% 0.04rem;
-  color: #fff;
-  font-size: 1.066667rem;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.alert .game-over-your-score span {
-  font-size: 2rem;
-}
-
-.alert .game-over-your-prize {
-  color: #fff;
-  font-weight: 700;
-  padding: 0.173333rem 0;
-}
-
-.alert .game-over-your-prize span {
-  color: #cfa972;
-}
-
-.alert .game-over-pic {
+.alert .rank-img .rank-user {
+  background-color: #005f4b;
+  border-radius: 0.093333rem;
+  padding: 0.266667rem;
+  margin: 0.333333rem auto 0.133333rem;
   position: relative;
+  min-height: 1rem;
 }
 
-.alert .game-over-pic img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 0.266667rem;
+.alert .rank-img .rank-user img {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
 }
 
-.alert .game-over-pic #alertRestart {
-  width: 2.373333rem;
-  height: 0.613333rem;
-  background-image: url("./../images/btn/btn-alert-again.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  position: absolute;
-  bottom: -0.306667rem;
-  left: 0.266667rem;
-}
-
-.alert .game-over-pic #alertLoginNow {
-  width: 2.373333rem;
-  height: 0.613333rem;
-  background-image: url("./../images/btn/btn-alert-login.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  position: absolute;
-  bottom: -0.306667rem;
-  right: 0.266667rem;
-}
-
-.alert .sure-login {
-  width: 7.346667rem;
-  height: 5.173333rem;
-  background-image: url("./../images/alert/warn-bg.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.alert .sure-login .sure-login-txt {
-  width: 6.44rem;
-  height: 1.933333rem;
-  background-image: url("./../images/alert/warn-txt.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  margin: 0.4rem auto;
-}
-
-.alert .sure-login .sure-login-btn-flex {
-  width: 5.333333rem;
+.alert .rank-img .rank-user .rank-user-name {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5016,80 +4482,114 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  margin: 0 auto;
-}
-
-.alert .sure-login .sure-login-btn-flex button {
-  width: 2.373333rem;
-  height: 0.813333rem;
-}
-
-.alert .sure-login .sure-login-btn-flex button#alertSureLoginFalse {
-  background-image: url("./../images/btn/btn-alert-false.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.alert .sure-login .sure-login-btn-flex button#alertSureLoginTrue {
-  background-image: url("./../images/btn/btn-alert-true.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.count-down-num {
-  font-size: 5.066667rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
   color: #fff;
+  position: absolute;
+  top: 0.266667rem;
+  left: 1.466667rem;
+}
+
+.alert .rank-img .rank-user .rank-user-name strong {
+  display: block;
+  font-weight: 700;
+  font-size: 0.4rem;
+}
+
+.alert .rank-img .rank-user .rank-user-name small {
+  display: block;
+  font-size: 0.266667rem;
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7);
+}
+
+.alert .rank-img .rank-user .rank-user-score {
+  font-size: 0.746667rem;
+  color: #fff;
+  font-weight: 700;
+  position: absolute;
+  top: 0.266667rem;
+  left: auto;
+  right: 0.266667rem;
+}
+
+.alert .rank-img .rank-content {
+  width: 100%;
+  height: auto;
+}
+
+.alert .rank-img .rank-content .rank-content-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 0.266667rem;
+  color: #fff;
+  font-weight: 700;
+  border-bottom: 0.026667rem solid rgba(0, 0, 0, 0.7);
+  padding: 0.2rem 0;
+}
+
+.alert .rank-img .rank-content .rank-content-wrap {
+  width: 100%;
+  height: 8.933333rem;
+}
+
+.alert .rank-img .rank-content .rank-content-wrap ul li {
+  color: #fff;
+  font-weight: 700;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: 0.013333rem solid rgba(0, 0, 0, 0.7);
+  padding: 0.266667rem 0;
+}
+
+.alert .rank-img .rank-content .rank-content-wrap ul li .rank-content-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.alert .rank-img .rank-content .rank-content-wrap ul li .rank-content-left span {
+  font-size: 0.506667rem;
+  width: 0.666667rem;
+  text-align: center;
+}
+
+.alert .rank-img .rank-content .rank-content-wrap ul li .rank-content-left img {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  margin: 0 0.2rem;
+}
+
+.alert .rank-img .rank-content .rank-content-wrap ul li .rank-content-left strong {
+  font-size: 0.32rem;
   font-weight: 700;
 }
 
-.count-down-tip {
-  width: 2.12rem;
-  height: 3.186667rem;
-  background-image: url("./../images/alert/point-tip.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  position: absolute;
-  right: 1.066667rem;
-  bottom: 0.933333rem;
-  -webkit-animation: downTipAni 0.1s ease-in-out 0s infinite alternate;
-  animation: downTipAni 0.1s ease-in-out 0s infinite alternate;
-}
-
-#wxShareImg .mask {
-  background-color: #01561f;
-}
-
-#wxShareImg #PageCanvasImg {
-  width: 100%;
-  height: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-#wxShareImg #shareWxTxt {
-  text-align: center;
-  width: 100%;
-  height: 0.266667rem;
-  font-size: 0.266667rem;
-  color: #efefef;
-  position: absolute;
-  top: auto;
-  left: 0;
-  bottom: 0.266667rem;
-}
-
-#wxShareImg .alert-close {
-  right: 0.266667rem;
-  top: 0.266667rem;
+.alert .rank-img .rank-content .rank-content-wrap ul li small {
+  font-size: 0.56rem;
 }
 
 /** common:alert **/
@@ -5207,13 +4707,13 @@ body {
 
 .logo {
   width: 100%;
-  height: 0.946667rem;
+  height: 0.853333rem;
   background-image: url("./../images/logo.png");
   background-repeat: no-repeat, no-repeat;
-  background-position: 0.533333rem center;
+  background-position: 0.426667rem center;
   background-size: contain;
   position: absolute;
-  top: 0.666667rem;
+  top: 0.333333rem;
   left: 0;
   z-index: 91;
 }
@@ -5238,21 +4738,9 @@ body {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .show {
   display: block;
-}
-
-#PageGame {
-  z-index: 2;
-}
-
-#PageIndex {
-  z-index: 3;
-}
-
-#PageCanvas {
-  z-index: 1;
 }

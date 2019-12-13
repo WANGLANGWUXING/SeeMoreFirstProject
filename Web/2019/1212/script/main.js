@@ -28,12 +28,15 @@ $(function () {
         $('#bgChange').css('height', winH)
         neckOrg = Math.floor($('#neckChange').height());
         $('#neckChange').height(neckOrg)
+
+        //输入文字设置为白色
+        $("input").css("color", "white");
         // 关闭所有的弹窗事件
         $('.alert-close').on('click', alertCloseClick);
         // 显示规则事件
         $('#btnGameIntroductions').on('click', ruleShowClick);
         // 显示我的奖品
-        $('#btnMyPrize').on('click', { key: 2 }, myPrizeShowClick);
+        $('#btnMyPrize').on('click', myPrizeShowClick);
         // 开始游戏按钮
         $('#btnGameStart').on('click', gameStartClick);
         // 开始游戏tip按钮
@@ -48,6 +51,8 @@ $(function () {
         $('#alertMyPrizeHaveShare').on('click', shareWxImgFun);
         // 确认登记
         $('#alertSureLoginTrue').on('click', reg);
+        // 取消登记
+        $("#alertSureLoginFalse").on('click', noReg);
 
     }
 
@@ -92,53 +97,79 @@ $(function () {
         }
         return (false);
     }
-
+    function isEmpty (input){
+        return input + '' === 'null' || input + '' === 'undefined' || input.trim ? input.trim() === '' : input.replace(/^\s+|\s+$/gm, '') === '';
+    };
     function getUserInfo() {
-        //OpenId = getCookie("OpenId");
-        //if (OpenId !== "") {
-        //    console.log(OpenId);
-        //} else {
-        var code = getQueryVariable('code');
-        if (code) {
-            $.ajax({
-                url: "http://weixin.seemoread.com/seemore/MyGetUserInfoByCodeOrUrl",
-                dataType: 'json',
-                data: { code, url: "http://wx.seemoread.com/2019/1212" },
-                success: function (data) {
-                    console.log(data);
-                    if (data !== null) {
-                        //setCookie("OpenId", data.Openid, 30);
-                        wxOpenId = data.Openid;
-                        wxImgSrc = data.Headimgurl;
-                        wxUserName = data.Nickname;
-                    }
-                }
-            });
-        } else {
-            window.location.href = 'http://weixin.seemoread.com/seemore/MyAuthorization?url=http://wx.seemoread.com/2019/1212';
+        //wxOpenId = getCookie("OpenId");
+        //wxImgSrc = getCookie("ImgSrc");
+        //wxUserName = getCookie("User");
+        //alert(typeof (wxOpenId));
+        //if (wxOpenId.length>0)
+        ////if ((wxOpenId !== null && wxOpenId !== "") &&
+        ////    (wxImgSrc !== null && wxImgSrc !== "") &&
+        ////    (wxUserName !== null && wxUserName !== ""))
+        //{
+        //    console.log(wxOpenId);
+        //    console.log(wxImgSrc);
+        //    console.log(wxUserName);
+            
+        //    alert("Cookie: 这是第一次测试：  wxOpenId:" + wxOpenId + ",wxImgSrc:" + wxImgSrc + ",wxUserName:" + wxUserName)
+        //    $.ajax({
+        //        url: "http://weixin.seemoread.com/seemore/AddPV",
+        //        dataType: 'json',
+        //        data: { url: "http://wx.seemoread.com/2019/1212/", openId: wxOpenId },
+        //        success: function (data) {
 
-        }
+        //        }
+        //    });
+        //} else {
+            var code = getQueryVariable('code');
+            if (code) {
+                //alert("已经转发"+ code)
+                $.ajax({
+                    url: "http://weixin.seemoread.com/seemore/MyGetUserInfoByCodeOrUrl",
+                    dataType: 'json',
+                    data: { code, url: "http://wx.seemoread.com/2019/1212" },
+                    success: function (data) {
+                        console.log(data);
+                        //alert(JSON.stringify(data))
+                        if (data !== null) {
+                            setCookie("OpenId", data.Openid, 30);
+                            setCookie("ImgSrc", data.Headimgurl, 30);
+                            setCookie("User", data.Nickname, 30);
+                            wxOpenId = data.Openid;
+                            wxImgSrc = data.Headimgurl;
+                            wxUserName = data.Nickname;
+                        }
+                    }
+                });
+            } else {
+                //alert("开始转发")
+                window.location.href = 'http://weixin.seemoread.com/seemore/MyAuthorization?url=http://wx.seemoread.com/2019/1212';
+
+            }
         //}
 
     }
 
 
-    //function setCookie(cname, cvalue, exdays) {
-    //    var d = new Date();
-    //    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    //    var expires = "expires=" + d.toGMTString();
-    //    document.cookie = cname + "=" + cvalue + "; " + expires;
-    //}
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
 
-    //function getCookie(cname) {
-    //    var name = cname + "=";
-    //    var ca = document.cookie.split(';');
-    //    for (var i = 0; i < ca.length; i++) {
-    //        var c = ca[i].trim();
-    //        if (c.indexOf(name) === 0) { return c.substring(name.length, c.length); }
-    //    }
-    //    return "";
-    //}
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name) === 0) { return c.substring(name.length, c.length); }
+        }
+        return "";
+    }
 
     function toast(txt, time) { // 提示信息弹出
         var dom = $('.alerts');

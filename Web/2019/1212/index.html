@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title></title>
+		<title>拯救圣诞老人大作战</title>
 		<meta name="keywords" content="">
 		<meta name="description" content="">
 		<meta name="robots" content="index,follow">
@@ -163,6 +163,21 @@
 					<div class="alert-close red"></div>
 				</div>
 			</div>
+
+			<!-- 弹出：游戏时间结束——弹出奖品——待登记 -->
+			<div id="alertGameOverScoreMiss" class="alert">
+				<div class="mask"></div>
+				<div class="alert-content game-over-score-miss">
+					<div class="txt-your-score"></div>
+					<div class="game-over-your-score"><span class="my-score-show">0</span>m</div>
+					<div class="game-over-pic">
+						<img class="my-prize-pic-src" src="./../images/prize/prize1.png" />
+						<button id="alertRestart" type="button"></button>
+						<button id="alertLoginNow" type="button"></button>
+					</div>
+					<div class="alert-close red"></div>
+				</div>
+			</div>
 			<!-- 弹出：游戏时间结束——登记——弹出奖品 -->
 			<div id="alertGameOverLogin" class="alert">
 				<div class="mask"></div>
@@ -213,5 +228,18 @@
 		<!-- Music -->
 		<!-- <audio id="music" src="./bg.mp3" autoplay="autoplay" preload="auto" loop="loop" style="visibility: hidden;"></audio> -->
 		<!-- <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> -->
+
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="script/share.js"></script>
+		<script>
+
+			SHARE.shareOption({
+				link: "http://weixin.seemoread.com/seemore/MyAuthorization?url=http://wx.seemoread.com/2019/1212",
+				pic: "http://wx.seemoread.com/2019/1212/share.jpg",
+				title: "拯救圣诞老人大作战",
+				desc: "玩出新高度 赢圣诞好礼！",
+				success: function () { }
+			});
+		</script>
 	</body>
 </html>

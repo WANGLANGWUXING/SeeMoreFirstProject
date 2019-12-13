@@ -40,7 +40,6 @@ C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\bin\Debug\Dapper.dll
 C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\bin\Debug\Dapper.pdb
 C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\bin\Debug\Dapper.xml
 C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
-C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.dll
 C:\Users\mayn\Documents\GitHub\SeeMoreFirstProject\DAL\obj\Debug\DAL.pdb

@@ -173,12 +173,13 @@ function GameCountDownTimeFun() {
                     score: scoreNum
                 },
                 success: function (data) {
+                    $("#countDownTime").html("0")
                     console.log(data);
                     //alert(JSON.stringify(data))
                     GameOverShowPrize(data.id);
                 }
             });
-            
+
             // GameOverShowPrize(1);
         } else {
             GameCountDownTime--
@@ -209,13 +210,19 @@ function getUserGiftInfo(flag) {
                 scoreMissFlag = false;
             }
 
+            if (data.id == 0 && flag == 10) {
+                $('.my-score-show').html(data.gameScore.Score);
+                $('#alertGameOverEmptyPrize').show();
+                return;
+            }
+
             if (data.giftLog == null && flag == 10) {
                 $("#alertMyPrizeEmpty").show();
             } else {
                 //alert(scoreNum);
                 //scoreNum = data.gameScore.Score;
                 wxImgSrc = data.gameScore.WeiXinImg;
-                
+
                 scoreLastNum = data.gameScore.Score;
                 $('.my-score-show').html(scoreNum);
                 if (data.giftLog != null) {
@@ -246,13 +253,13 @@ function getUserGiftInfo(flag) {
                         }
                     }
 
-                    
+
                 } else {
 
                     if (scoreNum > 200) {
                         prizeName = "围脖手套礼盒";
                     } else if (scoreNum > 100) {
-                       prizeName = "娃娃公仔+暖心抱枕"
+                        prizeName = "娃娃公仔+暖心抱枕"
                     } else {
                         prizeName = "";
                     }
@@ -283,8 +290,8 @@ function getUserGiftInfo(flag) {
                         }
                     }
 
-                    
-                    
+
+
                 }
                 scoreNum = data.gameScore.Score;
             }
@@ -304,6 +311,7 @@ function GameOverShowPrize(key) {
     //  4 和上次一样的分数 礼物一样的
     //  5 添加记录成功
     // 3,4,5 类似的情况
+    $("#countDownTime").html("0")
     if (key === 0) { // 奖品已领完
         // 设置分数
         $('.my-score-show').html(scoreNum);
@@ -342,7 +350,7 @@ function shareWxImgFun() {
     console.log(wxImgSrc);
     wxImgSrc = "WxImgs/" + wxImgSrc;
 
-   // alert(wxImgSrc)
+    // alert(wxImgSrc)
     $('.alert').hide();
     $('#wxShareImg').show();
 
@@ -379,7 +387,7 @@ function shareWxImgFun() {
 
     var message = new PIXI.Text(wxUserName, style);
     var scoreMessage = new PIXI.Text(scoreLastNum + 'm', style2);
-    var prizeMessage = new PIXI.Text("获得"+prizeName+"一份", style3);
+    var prizeMessage = new PIXI.Text("获得" + prizeName + "一份", style3);
     message.x = 150;
     message.y = 130;
     prizeMessage.x = 70;

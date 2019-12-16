@@ -141,6 +141,10 @@ $(function () {
                             wxOpenId = data.Openid;
                             wxImgSrc = data.Headimgurl;
                             wxUserName = data.Nickname;
+                            //alert("Test2:wxOpenId=" + wxOpenId);
+                            if (wxOpenId === ""  || wxOpenId === null) {
+                                window.location.href = 'http://weixin.seemoread.com/seemore/MyAuthorization?url=http://wx.seemoread.com/2019/1212';
+                            }
                         }
                     }
                 });

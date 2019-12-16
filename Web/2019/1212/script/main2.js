@@ -355,8 +355,8 @@ function shareWxImgFun() {
     $('#wxShareImg').show();
 
     var app = new PIXI.Application({
-        width: 375,
-        height: 603,
+        width: 375 * 2,
+        height: 603 * 2,
         antialias: true,
         transparent: true,
         resolution: 1,
@@ -365,21 +365,21 @@ function shareWxImgFun() {
 
     const style = new PIXI.TextStyle({
         fontFamily: 'Microsoft YaHei',
-        fontSize: 27,
+        fontSize: 27 * 2,
         fontWeight: 'bold',
         fill: ['#cfa972', '#cfa972'],
         wordWrap: true,
     });
     const style2 = new PIXI.TextStyle({
         fontFamily: 'Microsoft YaHei',
-        fontSize: 76,
+        fontSize: 76 * 2,
         fontWeight: 'bold',
         fill: ['#fff', '#fff'],
         wordWrap: true,
     });
     const style3 = new PIXI.TextStyle({
         fontFamily: 'Microsoft YaHei',
-        fontSize: 18,
+        fontSize: 18 * 2,
         fontWeight: 'bold',
         fill: ['#a40000', '#a40000'],
         wordWrap: true,
@@ -388,12 +388,12 @@ function shareWxImgFun() {
     var message = new PIXI.Text(wxUserName, style);
     var scoreMessage = new PIXI.Text(scoreLastNum + 'm', style2);
     var prizeMessage = new PIXI.Text("获得" + prizeName + "一份", style3);
-    message.x = 150;
-    message.y = 130;
-    prizeMessage.x = 70;
-    prizeMessage.y = 300;
-    scoreMessage.x = 60;
-    scoreMessage.y = 190;
+    message.x = 150 * 2;
+    message.y = 130 * 2;
+    prizeMessage.x = 70 * 2;
+    prizeMessage.y = 300 * 2;
+    scoreMessage.x = 60 * 2;
+    scoreMessage.y = 190 * 2;
 
     PIXI.loader
         .add("images/share/bg.jpg")
@@ -407,16 +407,16 @@ function shareWxImgFun() {
         let headDom = new PIXI.Sprite(PIXI.loader.resources[wxImgSrc].texture);
         let txtDom = new PIXI.Sprite(PIXI.loader.resources["images/share/txt.png"].texture);
         //Add the dom to the stage
-        bgDom.width = 375;
-        bgDom.height = 603;
-        headDom.width = 70;
-        headDom.height = 70;
-        txtDom.width = 69;
-        txtDom.height = 9;
-        headDom.x = 70;
-        headDom.y = 105;
-        txtDom.x = 150;
-        txtDom.y = 165;
+        bgDom.width = 375 * 2;
+        bgDom.height = 603 * 2;
+        headDom.width = 70 * 2;
+        headDom.height = 70 * 2;
+        txtDom.width = 69 * 2;
+        txtDom.height = 9 * 2;
+        headDom.x = 70 * 2;
+        headDom.y = 105 * 2;
+        txtDom.x = 150 * 2;
+        txtDom.y = 165 * 2;
 
         app.stage.addChild(bgDom);
         app.stage.addChild(headDom);

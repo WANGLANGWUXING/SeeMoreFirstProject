@@ -330,176 +330,184 @@ namespace FristProject.Controllers
             GiftLog giftLog = giftLogDAL.SelGiftLog(openId, actName);
             int isHaveLog = 0;
 
-
-            try
+            if (!string.IsNullOrWhiteSpace(openId))
             {
-                //1.是否中有记录 在giftlog中有记录
-                // 有记录，向下执行2
-                if (giftLog != null)
+                try
                 {
-                    isHaveLog = 1;
-                    //2.是否已经登记过 giftLog name和tel 有值，直接弹出值 
-                    // 有值，退出判断
-                    if (!string.IsNullOrWhiteSpace(giftLog.Name) && !string.IsNullOrWhiteSpace(giftLog.Telphone))
+                    //1.是否中有记录 在giftlog中有记录
+                    // 有记录，向下执行2
+                    if (giftLog != null)
                     {
-                        id = 2;
-                        msg = "已登记";
-                        return JsonConvert.SerializeObject(new { id, msg });
-                    }
-
-                    // 没值，向下执行3
-                }
-
-                // 没领完，向下执行4
-                //4.查询是否有分数记录 GameScore
-                GameScore gameScore = gameScoreDAL.SelGameScore(openId, actName);
-                if (gameScore != null)
-                {
-                    //  有记录：5
-                    //5.分数是否超过记录数
-                    //  没超过，退出判断
-                    if (score <= gameScore.Score)
-                    {
-                        id = 3;
-                        msg = "分数没有超过";
-                        return JsonConvert.SerializeObject(new { id, msg });
-                    }
-                    //  超过，向下执行6
-                    // 先修改分数，再执行6
-                    gameScore.Score = score;
-                    //gameScore.WeiXinImg = img;
-                    gameScoreDAL.EditGameScore(gameScore);
-                }
-                else
-                {
-                    // 图片下载，位置保存到数据库
-                    string temp = SaveWxImg(img, openId);
-
-                    //  没记录：添加记录，并向下执行6
-                    gameScoreDAL.AddGameScore(
-                        new GameScore
+                        isHaveLog = 1;
+                        //2.是否已经登记过 giftLog name和tel 有值，直接弹出值 
+                        // 有值，退出判断
+                        if (!string.IsNullOrWhiteSpace(giftLog.Name) && !string.IsNullOrWhiteSpace(giftLog.Telphone))
                         {
-                            OpenId = openId,
-                            WeiXinImg = openId + ".jpg",
-                            Score = score,
-                            ActivityName = actName
-                        });
-                }
+                            id = 2;
+                            msg = "已登记";
+                            return JsonConvert.SerializeObject(new { id, msg });
+                        }
 
-                // 没记录，向下执行3
-                //3.是否礼物已经领完 giftcount 两种礼物数量Remainder是否已经都是0
-                int giftSum = giftCountDAL.GetGiftCountSumByActName(actName);
-                if (giftSum == 0)
-                {
-                    // 领完，退出判断
-                    id = 0;
-                    msg = "礼物领完了";
-                    return JsonConvert.SerializeObject(new { id, msg });
-                }
-                //围脖手套
-                Gift gift1 = giftDAL.GetGiftsByAcitvityNameAndType(actName, "大于1000").FirstOrDefault();
-                //娃娃公仔
-                Gift gift2 = giftDAL.GetGiftsByAcitvityNameAndType(actName, "小于1000").FirstOrDefault();
-                int count1 = giftCountDAL.GetGiftCountByGiftId(gift1.GiftId);
-                int count2 = giftCountDAL.GetGiftCountByGiftId(gift2.GiftId);
-                Gift selGift = null;
-                int liwu2 = 0;
-                //6.判断分数范围
-                if (score > bigLength)
-                {
-                    // 两个礼物都没了
-                    if (count1 <= 0 && count2 <= 0)
-                    {
-                        selGift = null;
+                        // 没值，向下执行3
                     }
-                    // 娃娃公仔没有，围脖手套还有
-                    else if (count1 <= 0)
-                    {
-                        selGift = gift2;
-                    }
-                    // 娃娃公仔还有
-                    else if (count1 > 0)
-                    {
-                        selGift = gift1;
-                    }
-                }
 
-
-                else if (score > smaliLength)
-                {
-                    if (count2 > 0)
+                    // 没领完，向下执行4
+                    //4.查询是否有分数记录 GameScore
+                    GameScore gameScore = gameScoreDAL.SelGameScore(openId, actName);
+                    if (gameScore != null)
                     {
-
-                        selGift = gift2;
+                        //  有记录：5
+                        //5.分数是否超过记录数
+                        //  没超过，退出判断
+                        if (score <= gameScore.Score)
+                        {
+                            id = 3;
+                            msg = "分数没有超过";
+                            return JsonConvert.SerializeObject(new { id, msg });
+                        }
+                        //  超过，向下执行6
+                        // 先修改分数，再执行6
+                        gameScore.Score = score;
+                        //gameScore.WeiXinImg = img;
+                        gameScoreDAL.EditGameScore(gameScore);
                     }
-                }
-                // 7.分数是否达到有礼物的标准
-                // 没有达到标准，跳出
-                else
-                {
-                    id = 1;
-                    msg = "分数没有达到领奖标准";
-                    return JsonConvert.SerializeObject(new { id, msg });
-                }
-                // 得到低分 高分礼物还有，低分礼物没有的情况
-                if (selGift == null)
-                {
-                    // 领完，退出判断
-                    id = 0;
-                    msg = "礼物领完了";
-                    return JsonConvert.SerializeObject(new { id, msg });
-                }
-                // 达到标准
-                // 8.礼物是否和记录里面的礼物相等
-                // 8.1 是否有记录
-                // 有记录，开始比较
-                if (isHaveLog == 1)
-                {
-                    // 礼物一样 退出判断
-                    if (selGift.GiftId == giftLog.GiftId)
-                    {
-                        id = 4;
-                        msg = "礼物一样的";
-                        return JsonConvert.SerializeObject(new { id, msg });
-                    }
-                    // 礼物不一样 修改礼物记录
                     else
                     {
-                        giftLogDAL.EditGiftLog(
-                            openId,
-                            actName,
-                            selGift.GiftId,
-                            selGift.GiftName
-                            );
+                        // 图片下载，位置保存到数据库
+                        string temp = SaveWxImg(img, openId);
+
+                        //  没记录：添加记录，并向下执行6
+                        gameScoreDAL.AddGameScore(
+                            new GameScore
+                            {
+                                OpenId = openId,
+                                WeiXinImg = openId + ".jpg",
+                                Score = score,
+                                ActivityName = actName
+                            });
                     }
-                }
-                // 没记录，直接添加记录
-                else
-                {
-                    giftLogDAL.AddGiftLog(new GiftLog
+
+                    // 没记录，向下执行3
+                    //3.是否礼物已经领完 giftcount 两种礼物数量Remainder是否已经都是0
+                    int giftSum = giftCountDAL.GetGiftCountSumByActName(actName);
+                    if (giftSum == 0)
                     {
-                        OpenId = openId,
-                        NickName = nickName,
-                        ActivityName = actName,
-                        GiftId = selGift.GiftId,
-                        GiftName = selGift.GiftName,
-                        GiftCustomNum = DateTime.Now.ToString("yyyyMMddHHmmssms")
+                        // 领完，退出判断
+                        id = 0;
+                        msg = "礼物领完了";
+                        return JsonConvert.SerializeObject(new { id, msg });
+                    }
+                    //围脖手套
+                    Gift gift1 = giftDAL.GetGiftsByAcitvityNameAndType(actName, "大于1000").FirstOrDefault();
+                    //娃娃公仔
+                    Gift gift2 = giftDAL.GetGiftsByAcitvityNameAndType(actName, "小于1000").FirstOrDefault();
+                    int count1 = giftCountDAL.GetGiftCountByGiftId(gift1.GiftId);
+                    int count2 = giftCountDAL.GetGiftCountByGiftId(gift2.GiftId);
+                    Gift selGift = null;
+                    int liwu2 = 0;
+                    //6.判断分数范围
+                    if (score > bigLength)
+                    {
+                        // 两个礼物都没了
+                        if (count1 <= 0 && count2 <= 0)
+                        {
+                            selGift = null;
+                        }
+                        // 娃娃公仔没有，围脖手套还有
+                        else if (count1 <= 0)
+                        {
+                            selGift = gift2;
+                        }
+                        // 娃娃公仔还有
+                        else if (count1 > 0)
+                        {
+                            selGift = gift1;
+                        }
+                    }
 
-                    });
+
+                    else if (score > smaliLength)
+                    {
+                        if (count2 > 0)
+                        {
+
+                            selGift = gift2;
+                        }
+                    }
+                    // 7.分数是否达到有礼物的标准
+                    // 没有达到标准，跳出
+                    else
+                    {
+                        id = 1;
+                        msg = "分数没有达到领奖标准";
+                        return JsonConvert.SerializeObject(new { id, msg });
+                    }
+                    // 得到低分 高分礼物还有，低分礼物没有的情况
+                    if (selGift == null)
+                    {
+                        // 领完，退出判断
+                        id = 0;
+                        msg = "礼物领完了";
+                        return JsonConvert.SerializeObject(new { id, msg });
+                    }
+                    // 达到标准
+                    // 8.礼物是否和记录里面的礼物相等
+                    // 8.1 是否有记录
+                    // 有记录，开始比较
+                    if (isHaveLog == 1)
+                    {
+                        // 礼物一样 退出判断
+                        if (selGift.GiftId == giftLog.GiftId)
+                        {
+                            id = 4;
+                            msg = "礼物一样的";
+                            return JsonConvert.SerializeObject(new { id, msg });
+                        }
+                        // 礼物不一样 修改礼物记录
+                        else
+                        {
+                            giftLogDAL.EditGiftLog(
+                                openId,
+                                actName,
+                                selGift.GiftId,
+                                selGift.GiftName
+                                );
+                        }
+                    }
+                    // 没记录，直接添加记录
+                    else
+                    {
+                        giftLogDAL.AddGiftLog(new GiftLog
+                        {
+                            OpenId = openId,
+                            NickName = nickName,
+                            ActivityName = actName,
+                            GiftId = selGift.GiftId,
+                            GiftName = selGift.GiftName,
+                            GiftCustomNum = DateTime.Now.ToString("yyyyMMddHHmmssms")
+
+                        });
+                    }
+                    id = 5;
+                    msg = "添加记录成功";
+
+                    if (liwu2 == 1)
+                    {
+                        msg = msg + "礼物2还有：" + count2;
+                    }
+                    return JsonConvert.SerializeObject(new { id, msg });
                 }
-                id = 5;
-                msg = "添加记录成功";
-
-                if (liwu2 == 1)
+                catch (Exception ex)
                 {
-                    msg = msg + "礼物2还有：" + count2;
+                    id = 99;
+                    msg = ex.Message;
+                    return JsonConvert.SerializeObject(new { id, msg });
                 }
-                return JsonConvert.SerializeObject(new { id, msg });
             }
-            catch (Exception ex)
+            else
             {
-                id = 99;
-                msg = ex.Message;
+                id = 98;
+                msg = "openId为空";
                 return JsonConvert.SerializeObject(new { id, msg });
             }
 
@@ -627,34 +635,46 @@ namespace FristProject.Controllers
             int id = 0;
             string msg = "";
             string actName = "新影华翔城2019圣诞老人";
-            // 
-            GiftLog giftLog = giftLogDAL.SelGiftLog(openId, actName);
-            // 判断是否有礼物记录
-            // 无礼物记录
-            if (giftLog == null)
+
+
+            if (!string.IsNullOrWhiteSpace(openId))
             {
-                id = 0;
-                msg = "没有礼物记录";
+                // 
+                GiftLog giftLog = giftLogDAL.SelGiftLog(openId, actName);
+                // 判断是否有礼物记录
+                // 无礼物记录
+                if (giftLog == null)
+                {
+                    id = 0;
+                    msg = "没有礼物记录";
+                    return JsonConvert.SerializeObject(new { id, msg });
+                }
+
+
+                // 礼物记录已经登记过
+                if (!string.IsNullOrWhiteSpace(giftLog.Name) && !string.IsNullOrWhiteSpace(giftLog.Telphone))
+                {
+                    id = 2;
+                    msg = "已登记";
+                    return JsonConvert.SerializeObject(new { id, msg });
+                }
+                // 未登记
+                if (giftLogDAL.EditGiftLog(openId, actName, name, tel) > 0)
+                {
+                    giftCountDAL.EditGiftCountByGiftId(giftLog.GiftId);
+
+                    id = 1;
+                    msg = "登记成功";
+                }
                 return JsonConvert.SerializeObject(new { id, msg });
             }
-
-
-            // 礼物记录已经登记过
-            if (!string.IsNullOrWhiteSpace(giftLog.Name) && !string.IsNullOrWhiteSpace(giftLog.Telphone))
+            else
             {
-                id = 2;
-                msg = "已登记";
+                id = 98;
+                msg = "openId为空";
                 return JsonConvert.SerializeObject(new { id, msg });
             }
-            // 未登记
-            if (giftLogDAL.EditGiftLog(openId, actName, name, tel) > 0)
-            {
-                giftCountDAL.EditGiftCountByGiftId(giftLog.GiftId);
-
-                id = 1;
-                msg = "登记成功";
-            }
-            return JsonConvert.SerializeObject(new { id, msg });
+                
         }
 
 
@@ -684,45 +704,62 @@ namespace FristProject.Controllers
                 });
         }
         #endregion
+
         #region 华翔城2019圣诞助力
         ShareActivityUserDAL shareActivityUserDAL = new ShareActivityUserDAL();
         public string AddShareUser(string openId, string img, string nickName)
         {
             int id = 0;
             string msg = "";
+            string shareId = "";
             string actName = "新影华翔城2019圣诞助力";
-            ShareActivityUser shareUser = shareActivityUserDAL.SelShareUser(openId, "新影华翔城2019圣诞助力");
-            // 如果存在，不添加
-            // 如果不存在，添加
-            if (shareUser != null)
-            {
-                id = 0;
-                msg = "已存在此分享人";
-            }
-            else
-            {
-                int res = shareActivityUserDAL.AddShareUser(new ShareActivityUser
-                {
-                    UserShareId = CreateGUID(),
-                    OpenId = openId,
-                    UserImg = img,
-                    NickName = nickName,
-                    ActivityName = actName
-                });
-                if (res > 0)
-                {
 
-                    id = 1;
-                    msg = "添加分享人成功";
+            if (!string.IsNullOrWhiteSpace(openId))
+            {
+                ShareActivityUser shareUser = shareActivityUserDAL.SelShareUser(openId, "新影华翔城2019圣诞助力");
+                // 如果存在，不添加
+                // 如果不存在，添加
+                if (shareUser != null)
+                {
+                    id = 0;
+                    msg = "已存在此分享人";
+                    shareId = shareUser.UserShareId;
                 }
                 else
                 {
-                    id = 2;
-                    msg = "添加分享人失败";
-                }
+                    int res = shareActivityUserDAL.AddShareUser(new ShareActivityUser
+                    {
+                        UserShareId = CreateGUID(),
+                        OpenId = openId,
+                        UserImg = img,
+                        NickName = nickName,
+                        ActivityName = actName
+                    });
+                    if (res > 0)
+                    {
 
+                        id = 1;
+                        msg = "添加分享人成功";
+                        shareUser = shareActivityUserDAL.SelShareUser(openId, "新影华翔城2019圣诞助力");
+
+                        shareId = shareUser.UserShareId;
+                    }
+                    else
+                    {
+                        id = 2;
+                        msg = "添加分享人失败";
+                    }
+
+                }
             }
-            return JsonConvert.SerializeObject(new { id, msg });
+            else
+            {
+                id = 4;
+                msg = "微信用户信息不存在";
+            }
+
+            
+            return JsonConvert.SerializeObject(new { id, msg, shareId });
 
 
         }
@@ -735,34 +772,46 @@ namespace FristProject.Controllers
             // 参数 被助力人分享Id ， 助力人微信Id, 助力链接
             int id = 0;
             string msg = "";
-            CollectLike collectLike = collectLikeDAL.SelHelperUser(openId, shareId, actName);
-            if (collectLike != null)
+
+            if (!string.IsNullOrWhiteSpace(openId))
             {
-                // 助力过了
-                msg = "此人已经助力过此用户";
-            }
-            else
-            {
-                if (collectLikeDAL.AddHelperUser(new CollectLike()
+                CollectLike collectLike = collectLikeDAL.SelHelperUser(openId, shareId, actName);
+                if (collectLike != null)
                 {
-                    UserShareId = shareId,
-                    HelpOpenId = openId,
-                    Url = url,
-                    ActivityName = actName
-                }) > 0)
-                {
-                    id = 1;
-                    msg = "助力成功";
+                    // 助力过了
+                    msg = "此人已经助力过此用户";
                 }
                 else
                 {
-                    id = 0;
-                    msg = "助力出现错误，接口需调整";
-                }
+                    // 第一次助力
+                    if (collectLikeDAL.AddHelperUser(new CollectLike()
+                    {
+                        UserShareId = shareId,
+                        HelpOpenId = openId,
+                        Url = url,
+                        ActivityName = actName
+                    }) > 0)
+                    {
+                        id = 1;
+                        msg = "助力成功";
+                    }
+                    else
+                    {
+                        id = 0;
+                        msg = "助力出现错误，接口需调整";
+                    }
 
+                }
+            }
+            else
+            {
+                id = 3;
+                msg = "微信用户信息不存在";
             }
 
-            // 第一次助力
+           
+
+            
 
             return JsonConvert.SerializeObject(new { id, msg });
         }

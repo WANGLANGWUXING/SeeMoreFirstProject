@@ -793,7 +793,11 @@ namespace FristProject.Controllers
             GetWeixinCode(url);
         }
 
-
+        /// <summary>
+        /// 版本1
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public string MyGetUserInfoByCode(string code)
         {
             string openid = GetOpenidByCode(code, out string access_token);
@@ -803,20 +807,20 @@ namespace FristProject.Controllers
             {
                 // 添加用户信息到数据库 有则查看是否需要修改
                 userDAL.AddUserS(new WXUser { OpenId = model.Openid, Nickname = model.Nickname, Headimgurl = model.Headimgurl });
+                
                 // 添加访问记录
                 pVTableDAL.AddPV(new PVTable { Url = RequestUrl, OpenId = model.Openid });
             }
 
             return JsonConvert.SerializeObject(model);
         }
-
-
-        public void AddPV(string url,string openId)
-        {
-            pVTableDAL.AddPV(new PVTable { Url = url, OpenId = openId });
-        }
-
-        public string MyGetUserInfoByCodeOrUrl(string code,string url)
+        /// <summary>
+        /// 版本二
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public string MyGetUserInfoByCodeOrUrl(string code, string url)
         {
             string openid = GetOpenidByCode(code, out string access_token);
             string userinfo = WebRequestPostOrGet("https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN", "");
@@ -831,6 +835,63 @@ namespace FristProject.Controllers
 
             return JsonConvert.SerializeObject(model);
         }
+        /// <summary>
+        /// 版本3
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public string MyGetUserInfoByCodeVer03(string code,string url)
+        {
+            string openid = GetOpenidByCode(code, out string access_token);
+            string userinfo = WebRequestPostOrGet("https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN", "");
+            WXModel model = JsonConvert.DeserializeObject<WXModel>(userinfo);
+            if (model != null && !string.IsNullOrWhiteSpace(model.Openid))
+            {
+
+                // 添加用户信息到数据库 有则查看是否需要修改
+                userDAL.AddUserS(new WXUser { 
+                    OpenId = model.Openid, 
+                    Nickname = model.Nickname, 
+                    Headimgurl = DateTime.Now.ToString("yyyyMMdd")+"/"+ model.Openid + ".jpg"
+                });
+                // 保存用户图片
+                string path = SaveUserImg(model.Openid, model.Headimgurl);
+
+
+                // 按照日期保存
+                // 如果日期
+
+
+                // 添加访问记录
+                AddPV(url, model.Openid);
+            }
+
+            return JsonConvert.SerializeObject(model);
+        }
+
+
+        public string SaveUserImg(string openId,string url)
+        {
+            string path = Path.Combine("E:", "www", "wx", "WxImgs", DateTime.Now.ToString("yyyyMMdd"), openId + ".jpg");
+
+            string resPath = Path.Combine(DateTime.Now.ToString("yyyyMMdd"), openId + ".jpg");
+            if (System.IO.File.Exists(path))
+            {
+                return path;
+            }
+
+            HXCController.HttpDownload(url, path);
+
+            return path;
+
+        }
+
+        public void AddPV(string url,string openId)
+        {
+            pVTableDAL.AddPV(new PVTable { Url = url, OpenId = openId });
+        }
+
 
         #endregion
 

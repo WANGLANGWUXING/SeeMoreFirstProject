@@ -592,7 +592,7 @@ namespace FristProject.Controllers
         /// </summary>
         /// <param name="URL">下载文件地址</param>
         /// <param name="Filename">下载后另存为（全路径）</param>
-        private bool DownloadFile(string URL, string filename)
+        public static bool DownloadFile(string URL, string filename)
         {
             if (System.IO.File.Exists(filename))
             {
@@ -707,7 +707,8 @@ namespace FristProject.Controllers
 
         #region 华翔城2019圣诞助力
         ShareActivityUserDAL shareActivityUserDAL = new ShareActivityUserDAL();
-        public string AddShareUser(string openId, string img, string nickName)
+        UserDAL userDAL = new UserDAL();
+        public string AddShareUser(string openId)
         {
             int id = 0;
             string msg = "";
@@ -727,12 +728,14 @@ namespace FristProject.Controllers
                 }
                 else
                 {
+                    WXUser wXUser = userDAL.SelUserInfoByOpenId(openId);
+
                     int res = shareActivityUserDAL.AddShareUser(new ShareActivityUser
                     {
                         UserShareId = CreateGUID(),
                         OpenId = openId,
-                        UserImg = img,
-                        NickName = nickName,
+                        UserImg = wXUser.Headimgurl,
+                        NickName = wXUser.Nickname,
                         ActivityName = actName
                     });
                     if (res > 0)
@@ -778,6 +781,7 @@ namespace FristProject.Controllers
                 CollectLike collectLike = collectLikeDAL.SelHelperUser(openId, shareId, actName);
                 if (collectLike != null)
                 {
+                    id = 4;
                     // 助力过了
                     msg = "此人已经助力过此用户";
                 }
@@ -816,16 +820,20 @@ namespace FristProject.Controllers
             return JsonConvert.SerializeObject(new { id, msg });
         }
 
-        public string GetHelpCount(string openId)
+        public string GetHelpCount(string shareId)
         {
-            return JsonConvert.SerializeObject(collectLikeDAL.SelHelperCount(openId, "新影华翔城2019圣诞助力"));
+            return JsonConvert.SerializeObject(collectLikeDAL.SelHelperCount(shareId, "新影华翔城2019圣诞助力"));
         }
 
         public string SelHelpRank()
         {
+
+            string actName = "新影华翔城2019圣诞助力";
             //序号  头像   姓名  助力数
             //分页
-            return "";
+            var rankList = collectLikeDAL.GetHelpRank(actName);
+
+            return JsonConvert.SerializeObject(rankList);
         }
 
         public string CreateGUID()

@@ -29,11 +29,18 @@ namespace DAL
             return DapperHelper<CollectLike>.Query(sql, new {  userShareId, actName }).Count;
         }
 
-        public List<HelpeRank> GetHelpRank()
+
+
+        public List<HelpeRank> GetHelpRank(string actName)
         {
-            string sql = "SELECT * FROM CollectLike a,ShareActivityUser b " +
-                "WHERE a.UserShareId=b.UserShareId";
-            return null;
+            string sql = "select count(*) HelpCount,c.OpenId,c.Headimgurl UserImg,c.Nickname NickName " +
+                "from  (select a.UserShareId,a.OpenId,d.Headimgurl,d.Nickname,a.ActivityName  " +
+                "from ShareActivityUser a " +
+                "left join CollectLike b on a.UserShareId=b.UserShareId " +
+                "left join WXUser d on a.OpenId=d.OpenId where a.ActivityName=@actName ) c " +
+                "group by c.OpenId,c.Headimgurl,c.NickName " +
+                "order by HelpCount desc";
+            return DapperHelper<HelpeRank>.Query(sql,new { actName });
          
         }
     }
@@ -41,8 +48,10 @@ namespace DAL
 
     public class HelpeRank
     {
-        public string Img { get; set; }
-        public string UserShareId { get; set; }
-        public int HelperCount { get; set; }
+        public string OpenId { get; set; }
+        public string UserImg { get; set; }
+        public string NickName { get; set; }
+
+        public int HelpCount { get; set; }
     }
 }

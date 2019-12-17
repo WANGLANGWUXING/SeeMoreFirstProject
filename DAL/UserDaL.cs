@@ -44,13 +44,17 @@ namespace DAL
             }
 
         }
-
+        public WXUser SelUserInfoByOpenId(string openId)
+        {
+            string selectSql = "SELECT * FROM [dbo].[WXUser] WHERE OpenId = @OpenId";
+            return DapperHelper<WXUser>.Query(selectSql, new { OpenId = openId }).FirstOrDefault();
+        }
 
         public int SelUserByOpenId(string openId)
         {
 
             string selectSql = "SELECT UserId,OpenId,Nickname,Phone FROM [dbo].[WXUser] WHERE OpenId = @OpenId";
-            List<WXUser> wXUserList = conn.Query<WXUser>(selectSql, new { OpenId = openId }).ToList();
+            List<WXUser> wXUserList = DapperHelper<WXUser>.Query(selectSql, new { OpenId = openId });
             return wXUserList.Count;
         }
 

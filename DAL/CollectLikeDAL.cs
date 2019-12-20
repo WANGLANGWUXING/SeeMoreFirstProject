@@ -33,8 +33,8 @@ namespace DAL
 
         public List<HelpeRank> GetHelpRank(string actName)
         {
-            string sql = "select count(*) HelpCount,c.OpenId,c.Headimgurl UserImg,c.Nickname NickName " +
-                "from  (select a.UserShareId,a.OpenId,d.Headimgurl,d.Nickname,a.ActivityName  " +
+            string sql = "select count(shareId) HelpCount,c.OpenId,c.Headimgurl UserImg,c.Nickname NickName " +
+                "from  (select a.UserShareId,a.OpenId,a.UserImg Headimgurl,d.Nickname,a.ActivityName ,b.UserShareId shareId " +
                 "from ShareActivityUser a " +
                 "left join CollectLike b on a.UserShareId=b.UserShareId " +
                 "left join WXUser d on a.OpenId=d.OpenId where a.ActivityName=@actName ) c " +

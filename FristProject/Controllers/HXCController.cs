@@ -1,6 +1,8 @@
 ﻿using DAL;
+using FristProject.Models;
 using Newtonsoft.Json;
 using Pinyin4net;
+using Senparc.CO2NET.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,12 +14,8 @@ using System.Web.Mvc;
 
 namespace FristProject.Controllers
 {
-    public class HXCController : Controller
+    public class HXCController : BaseController
     {
-        readonly GiftCountDAL giftCountDAL = new GiftCountDAL();
-        readonly GiftDAL giftDAL = new GiftDAL();
-        readonly Random random = new Random();
-        readonly GiftLogDAL giftLogDAL = new GiftLogDAL();
 
         #region 华翔城事事如意20191123
         public string GetGiftCustomCode(string name)
@@ -309,7 +307,7 @@ namespace FristProject.Controllers
 
 
         #region 华翔城2019拯救圣诞老人
-        GameScoreDAL gameScoreDAL = new GameScoreDAL();
+        readonly GameScoreDAL gameScoreDAL = new GameScoreDAL();
 
         //public int Get
         // 高分 手套
@@ -324,12 +322,12 @@ namespace FristProject.Controllers
         //  5 添加记录成功
         public string GetPrice2019Christmas(string openId, string nickName, string img, int score)
         {
-            int id = 0;
-            string msg = "";
             string actName = "新影华翔城2019圣诞老人";
             GiftLog giftLog = giftLogDAL.SelGiftLog(openId, actName);
             int isHaveLog = 0;
 
+            int id;
+            string msg;
             if (!string.IsNullOrWhiteSpace(openId))
             {
                 try
@@ -580,7 +578,7 @@ namespace FristProject.Controllers
                 System.IO.File.Move(tempFile, path);
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -706,15 +704,14 @@ namespace FristProject.Controllers
         #endregion
 
         #region 华翔城2019圣诞助力
-        ShareActivityUserDAL shareActivityUserDAL = new ShareActivityUserDAL();
-        UserDAL userDAL = new UserDAL();
+        readonly ShareActivityUserDAL shareActivityUserDAL = new ShareActivityUserDAL();
         public string AddShareUser(string openId)
         {
-            int id = 0;
-            string msg = "";
             string shareId = "";
             string actName = "新影华翔城2019圣诞助力";
 
+            int id;
+            string msg;
             if (!string.IsNullOrWhiteSpace(openId))
             {
                 ShareActivityUser shareUser = shareActivityUserDAL.SelShareUser(openId, "新影华翔城2019圣诞助力");
@@ -761,21 +758,22 @@ namespace FristProject.Controllers
                 msg = "微信用户信息不存在";
             }
 
-            
+
             return JsonConvert.SerializeObject(new { id, msg, shareId });
 
 
         }
-        CollectLikeDAL collectLikeDAL = new CollectLikeDAL();
+
+        readonly CollectLikeDAL collectLikeDAL = new CollectLikeDAL();
 
         public string AddHelpUser(string shareId, string openId, string url)
         {
             string actName = "新影华翔城2019圣诞助力";
+
             // 添加助力用户
             // 参数 被助力人分享Id ， 助力人微信Id, 助力链接
-            int id = 0;
-            string msg = "";
-
+            int id;
+            string msg;
             if (!string.IsNullOrWhiteSpace(openId))
             {
                 CollectLike collectLike = collectLikeDAL.SelHelperUser(openId, shareId, actName);
@@ -813,9 +811,9 @@ namespace FristProject.Controllers
                 msg = "微信用户信息不存在";
             }
 
-           
 
-            
+
+
 
             return JsonConvert.SerializeObject(new { id, msg });
         }
@@ -835,6 +833,31 @@ namespace FristProject.Controllers
 
             return JsonConvert.SerializeObject(rankList);
         }
+
+
+        public ActionResult HXC2019SHZL()
+        {
+            ControllerContext.HttpContext.Response.AddHeader("cache-control", "no-cache");
+            WXModel user;
+            string urlpath = Request.Url.AbsoluteUri;
+            if (Session["User"] != null)
+            {
+                user = (WXModel)Session["User"];
+            }
+            else
+            {
+                user = GetUser(urlpath);
+                Session["User"] = user;
+                user.ShareId = Request.QueryString["shareId"];
+                
+            }
+            UserInfoSave(user);
+            // 添加访问记录
+            AddPV(urlpath, user.Openid);
+            return View(user);
+        }
+
+
 
         public string CreateGUID()
         {

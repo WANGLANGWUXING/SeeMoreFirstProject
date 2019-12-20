@@ -14,5 +14,6 @@ namespace FristProject.Models
         public string City { get; set; }
         public string Country { get; set; }
         public string Headimgurl { get; set; }
+        public string ShareId { get; set; }
     }
 }

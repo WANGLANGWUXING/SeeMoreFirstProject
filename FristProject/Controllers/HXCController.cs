@@ -10,7 +10,9 @@ using System.IO;
 
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace FristProject.Controllers
 {
@@ -834,10 +836,11 @@ namespace FristProject.Controllers
             return JsonConvert.SerializeObject(rankList);
         }
 
-
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult HXC2019SHZL()
         {
-            ControllerContext.HttpContext.Response.AddHeader("cache-control", "no-cache");
+            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            //Response.Cache.SetExpires(DateTime.Today.AddYears(-2));
             WXModel user;
             string urlpath = Request.Url.AbsoluteUri;
             if (Session["User"] != null)

@@ -113,6 +113,7 @@ $(function () {
         Scroll1.destroy();
     }
     function alertRuleShow() {
+        $(".alert .rule-img").css("background-image","url(/Content/2019/1212C/images/rule.png)")
         $('#alertRule').show();
     }
     function alertRuleClose() {
@@ -172,8 +173,8 @@ $(function () {
                     //alert("http://weixin.seemoread.com/2019/1212C?shareId="
                         //+ shareId + ";\n"
                         //+ "beShareId="
-                        //+ beShareId + ";\nshareId =" + shareId);
-
+                    //+ beShareId + ";\nshareId =" + shareId);
+                    $("#PageIndex").css("background-image", "url(/Content/2019/1212C/images/index-top.png), url(/Content/2019/1212C/images/bg.jpg)");
 
                     if (beShareId == "" || shareId == beShareId ) {
                         // alert("没有从其他人的分享链接进来");

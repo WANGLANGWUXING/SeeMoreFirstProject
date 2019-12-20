@@ -31,7 +31,7 @@ function getCookie(cname) {
 
 $(function () {
     var Scroll1;
-   
+    $("#PageIndex").css("background-image", "url(/Content/2019/1212C/images/index-top.png?v=" + + Math.floor(Math.random() * 1000) + "), url(/Content/2019/1212C/images/bg.jpg?v=" + + Math.floor(Math.random() * 1000) +")");
     /*** 预加载 ***/
     var loader = new createjs.LoadQueue(true);
     loader.on("progress", handleFileLoad);
@@ -113,6 +113,9 @@ $(function () {
         Scroll1.destroy();
     }
     function alertRuleShow() {
+        // 为了处理微信
+        $(".alert .rule-img").css("background-image", "url(/Content/2019/1212C/images/rule.png?v=" + + Math.floor(Math.random() * 1000)  + ")");
+        
         $('#alertRule').show();
     }
     function alertRuleClose() {
@@ -172,8 +175,8 @@ $(function () {
                     //alert("http://weixin.seemoread.com/2019/1212C?shareId="
                         //+ shareId + ";\n"
                         //+ "beShareId="
-                        //+ beShareId + ";\nshareId =" + shareId);
-
+                    //+ beShareId + ";\nshareId =" + shareId);
+                    $("#PageIndex").css("background-image", "url(/Content/2019/1212C/images/index-top.png), url(/Content/2019/1212C/images/bg.jpg)");
 
                     if (beShareId == "" || shareId == beShareId ) {
                         // alert("没有从其他人的分享链接进来");

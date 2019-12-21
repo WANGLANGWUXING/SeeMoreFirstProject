@@ -33,13 +33,10 @@ namespace DAL
 
         public List<HelpeRank> GetHelpRank(string actName)
         {
-            string sql = "select count(shareId) HelpCount,c.OpenId,c.Headimgurl UserImg,c.Nickname NickName " +
-                "from  (select a.UserShareId,a.OpenId,a.UserImg Headimgurl,d.Nickname,a.ActivityName ,b.UserShareId shareId " +
-                "from ShareActivityUser a " +
-                "left join CollectLike b on a.UserShareId=b.UserShareId " +
-                "left join WXUser d on a.OpenId=d.OpenId where a.ActivityName=@actName ) c " +
-                "group by c.OpenId,c.Headimgurl,c.NickName " +
-                "order by HelpCount desc";
+            string sql = "select count(shareId) HelpCount,c.OpenId,c.Headimgurl UserImg,c.Nickname NickName,c.AddTime " +
+                " from  (select a.UserShareId,a.OpenId,a.UserImg Headimgurl,d.Nickname,a.ActivityName ,b.UserShareId shareId,a.AddTime from ShareActivityUser a " +
+                "left join CollectLike b on a.UserShareId=b.UserShareId left join WXUser d on a.OpenId=d.OpenId where a.ActivityName=@actName ) c " +
+                "group by c.OpenId,c.Headimgurl,c.NickName,c.AddTime order by HelpCount desc ,AddTime asc";
             return DapperHelper<HelpeRank>.Query(sql,new { actName });
          
         }

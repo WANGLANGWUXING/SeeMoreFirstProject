@@ -73,7 +73,8 @@ var Scroll1;
       Scroll1 = new BScroll('#pageScroll', {
             scrollY: true,
             click: true
-        }) ;  if (initFlag === true) {
+        }) ;  
+        if (initFlag === true) {
             $('#alertRank').show();
             return;
         }

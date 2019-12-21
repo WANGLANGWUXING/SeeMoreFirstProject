@@ -23,18 +23,9 @@ using WxPayAPI.lib;
 
 namespace FristProject.Controllers
 {
-    public class SeeMoreController : Controller
+    public class SeeMoreController : BaseController
     {
-        public static readonly string Token = WebConfigurationManager.AppSettings["WeixinToken"];//与微信公众账号后台的Token设置保持一致，区分大小写。
-        public static readonly string EncodingAESKey = WebConfigurationManager.AppSettings["WeixinEncodingAESKey"];//与微信公众账号后台的EncodingAESKey设置保持一致，区分大小写。
-        public static readonly string AppId = WebConfigurationManager.AppSettings["WeixinAppId"];//与微信公众账号后台的AppId设置保持一致，区分大小写。
-        public static readonly string WeixinAppSecret = WebConfigurationManager.AppSettings["WeixinAppSecret"];
-        readonly UserDAL userDAL = new UserDAL();
-        readonly GiftDAL giftDAL = new GiftDAL();
-        readonly GiftUserDAL giftUserDAL = new GiftUserDAL();
-        readonly GiftLogDAL giftLogDAL = new GiftLogDAL();
-        readonly GiftCountDAL giftCountDAL = new GiftCountDAL();
-        Random random = new Random();
+
         public ActionResult Index()
         {
             return View();
@@ -131,9 +122,6 @@ namespace FristProject.Controllers
         /// <returns></returns>
         public string ReceiveGift(string telephone, string giftCode)
         {
-            string resstr = "";
-            string rescode = "0";
-            string alertcode = "";
             WXModel wXModel = (WXModel)Session["User"];
             string activityName = "中铁建知语城H5";
 
@@ -142,6 +130,9 @@ namespace FristProject.Controllers
             //如果已经领取过
             GiftLog giftLog = giftLogDAL.SelGiftLog(wXModel.Openid, activityName);
 
+            string alertcode;
+            string rescode;
+            string resstr;
             if (giftLog == null)
             {
 
@@ -401,7 +392,7 @@ namespace FristProject.Controllers
 
             return View();
         }
-        PVTableDAL pVTableDAL = new PVTableDAL();
+
         //public string MyAuthorization()
         //{
         //    //return Request.Url.AbsoluteUri;
@@ -418,8 +409,8 @@ namespace FristProject.Controllers
         //    return JsonConvert.SerializeObject(user);
         //}
 
-        JYCPriceTimeDAL jYCPriceTime = new JYCPriceTimeDAL();
-        IsReceiveTableDAL isReceiveTableDAL = new IsReceiveTableDAL();
+        readonly JYCPriceTimeDAL jYCPriceTime = new JYCPriceTimeDAL();
+        readonly IsReceiveTableDAL isReceiveTableDAL = new IsReceiveTableDAL();
         public string JYCGetPrice(string openId, int last)
         {
             string activityName = "中铁建江语城H51118";
@@ -689,150 +680,13 @@ namespace FristProject.Controllers
         }
 
 
-        public void GetWeixinCode(string urlpath)
-        {
-            string state = Guid.NewGuid().ToString("N");
-            string url = string.Format("https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope=snsapi_userinfo&state=" + state + "#wechat_redirect", AppId, urlpath);
-
-            Response.Redirect(url);
-        }
-
-        /// <summary>
-        /// 根据code获取用户openid
-        /// </summary>
-        /// <param name="Code"></param>
-        /// <param name="access_token"></param>
-        /// <returns></returns>
-        public string GetOpenidByCode(string Code, out string access_token)
-        {
-            string url = string.Format("https://api.weixin.qq.com/sns/oauth2/access_token?appid={0}&secret={1}&code={2}&grant_type=authorization_code", AppId, WeixinAppSecret, Code);
-            string ReText = WebRequestPostOrGet(url, "");//post/get方法获取信息
-            JObject DicText = (JObject)JsonConvert.DeserializeObject(ReText);
-            access_token = "";
-            if (DicText.ContainsKey("access_token"))
-                access_token = DicText["access_token"].ToString();
-            if (!DicText.ContainsKey("openid"))
-                return "";
-            return DicText["openid"].ToString();
-        }
-
-
-        public static string WebRequestPostOrGet(string sUrl, string sParam)
-        {
-            byte[] bt = System.Text.Encoding.UTF8.GetBytes(sParam);
-            Uri uriurl = new Uri(sUrl);
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(uriurl);
-            req.Method = "Post";
-            req.Timeout = 120 * 1000;
-            req.ContentType = "application/x-www-form-urlencoded;";
-            req.ContentLength = bt.Length;
-
-            using (Stream reqStream = req.GetRequestStream())
-            {
-                reqStream.Write(bt, 0, bt.Length);
-                reqStream.Flush();
-            }
-            try
-            {
-                using (WebResponse res = req.GetResponse())
-                {
-                    Stream resStream = res.GetResponseStream();
-                    StreamReader resStreamReader = new StreamReader(resStream, System.Text.Encoding.UTF8);
-                    string resLine;
-                    System.Text.StringBuilder resStringBuilder = new System.Text.StringBuilder();
-                    while ((resLine = resStreamReader.ReadLine()) != null)
-                    {
-                        resStringBuilder.Append(resLine + System.Environment.NewLine);
-                    }
-                    resStream.Close();
-                    resStreamReader.Close();
-                    return resStringBuilder.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
-
-
-        public WXModel GetUserInfoByCode(string code)
-        {
-            string openid = GetOpenidByCode(code, out string access_token);
-            string userinfo = WebRequestPostOrGet("https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN", "");
-            WXModel model = JsonConvert.DeserializeObject<WXModel>(userinfo);
-            return model;
-        }
-
-
-        public WXModel GetUser(string urlpath)
-        {
-            WXModel model = null;
-            var code = Request.Params["code"];
-            urlpath = urlpath.UrlEncode();
-            if (code == null || code == "")
-            {
-                GetWeixinCode(urlpath);
-            }
-            else
-            {
-                model = GetUserInfoByCode(code);
-            }
-            return model;
-        }
-
+      
+        
         #endregion
 
-        string RequestUrl = "";
+        
 
-        #region 微信授权接口
-        public void MyAuthorization(string url)
-        {
-            //pVTableDAL.AddPV(new PVTable { Url = url, OpenId = "" });
-            RequestUrl = url;
-            GetWeixinCode(url);
-        }
-
-
-        public string MyGetUserInfoByCode(string code)
-        {
-            string openid = GetOpenidByCode(code, out string access_token);
-            string userinfo = WebRequestPostOrGet("https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN", "");
-            WXModel model = JsonConvert.DeserializeObject<WXModel>(userinfo);
-            if (model != null && !string.IsNullOrWhiteSpace(model.Openid))
-            {
-                // 添加用户信息到数据库 有则查看是否需要修改
-                userDAL.AddUserS(new WXUser { OpenId = model.Openid, Nickname = model.Nickname, Headimgurl = model.Headimgurl });
-                // 添加访问记录
-                pVTableDAL.AddPV(new PVTable { Url = RequestUrl, OpenId = model.Openid });
-            }
-
-            return JsonConvert.SerializeObject(model);
-        }
-
-
-        public void AddPV(string url,string openId)
-        {
-            pVTableDAL.AddPV(new PVTable { Url = url, OpenId = openId });
-        }
-
-        public string MyGetUserInfoByCodeOrUrl(string code,string url)
-        {
-            string openid = GetOpenidByCode(code, out string access_token);
-            string userinfo = WebRequestPostOrGet("https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN", "");
-            WXModel model = JsonConvert.DeserializeObject<WXModel>(userinfo);
-            if (model != null && !string.IsNullOrWhiteSpace(model.Openid))
-            {
-                // 添加用户信息到数据库 有则查看是否需要修改
-                userDAL.AddUserS(new WXUser { OpenId = model.Openid, Nickname = model.Nickname, Headimgurl = model.Headimgurl });
-                // 添加访问记录
-                AddPV(url, model.Openid);
-            }
-
-            return JsonConvert.SerializeObject(model);
-        }
-
-        #endregion
+       
 
 
         #region 暂时用不到的代码
@@ -849,7 +703,7 @@ namespace FristProject.Controllers
                 resstr = "用户未授权";
                 rescode = "0";
                 gift = null;
-                return JsonConvert.SerializeObject(new { id = rescode, msg = resstr, gift = gift });
+                return JsonConvert.SerializeObject(new { id = rescode, msg = resstr, gift });
             }
             string startTime;
             string endTime;
@@ -1335,13 +1189,7 @@ namespace FristProject.Controllers
         {
             int iMin = 1000;
             int iMax = 9999;
-            WXModel wXModel = new WXModel();
             string MCHID = "1507709561";// 商户号
-            if (Session["User"] != null)
-            {
-                wXModel = (WXModel)Session["User"];
-            }
-
             string openId = re_openId;
             //Random rd = new Random();//构造随机数
             string strMch_billno = MCHID + DateTime.Now.ToString("yyyyMMddHHmmss") + random.Next(iMin, iMax).ToString();
@@ -1376,11 +1224,6 @@ namespace FristProject.Controllers
         /// <returns></returns>
         public string WxRedPackPost(string posturl, string postData)
         {
-            Stream outstream = null;
-            Stream instream = null;
-            StreamReader sr = null;
-            HttpWebResponse response = null;
-            HttpWebRequest request = null;
             Encoding encoding = Encoding.UTF8;
             byte[] data = encoding.GetBytes(postData);
             // 准备请求...  
@@ -1392,7 +1235,7 @@ namespace FristProject.Controllers
                 string password = "1507709561";
                 X509Certificate2 cert = new X509Certificate2(certPath, password, X509KeyStorageFlags.MachineKeySet);
                 // 设置参数  
-                request = WebRequest.Create(posturl) as HttpWebRequest;
+                HttpWebRequest request = WebRequest.Create(posturl) as HttpWebRequest;
                 CookieContainer cookieContainer = new CookieContainer();
                 request.CookieContainer = cookieContainer;//不可少（个人理解为，返回的时候需要验证）
                 request.AllowAutoRedirect = true;
@@ -1400,14 +1243,14 @@ namespace FristProject.Controllers
                 request.ContentType = "text/xml";
                 request.ContentLength = data.Length;
                 request.ClientCertificates.Add(cert);//添加证书请求
-                outstream = request.GetRequestStream();
+                Stream outstream = request.GetRequestStream();
                 outstream.Write(data, 0, data.Length);
                 outstream.Close();
                 //发送请求并获取相应回应数据  
-                response = request.GetResponse() as HttpWebResponse;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
                 //直到request.GetResponse()程序才开始向目标网页发送Post请求  
-                instream = response.GetResponseStream();
-                sr = new StreamReader(instream, encoding);
+                Stream instream = response.GetResponseStream();
+                StreamReader sr = new StreamReader(instream, encoding);
                 //返回结果网页（html）代码  
                 string content = sr.ReadToEnd();
                 string err = string.Empty;
@@ -1427,10 +1270,12 @@ namespace FristProject.Controllers
         public string GetSignature(string url)
         {
 
-            WeiXinDAL wx = new WeiXinDAL();
-            wx.Title = "SeeMore";
-            wx.Appid = AppId;
-            wx.Secret = WeixinAppSecret;
+            WeiXinDAL wx = new WeiXinDAL
+            {
+                Title = "SeeMore",
+                Appid = AppId,
+                Secret = WeixinAppSecret
+            };
             JsonData jd = new JsonData();
             var ticket = wx.GetTicket();
 
@@ -1468,13 +1313,13 @@ namespace FristProject.Controllers
             return View();
         }
 
-        KTableDAL kTableDAL = new KTableDAL();
-        WKWXUserDAL wKWXUserDAL = new WKWXUserDAL();
-        KCommentDAL commentDAL = new KCommentDAL();
-        SelKTableDAL selKTableDAL = new SelKTableDAL();
-        SignRecordDAL signRecordDAL = new SignRecordDAL();
-        QuestionTableDAL questionTableDAL = new QuestionTableDAL();
-        AnswerStatusDAL answerStatusDAL = new AnswerStatusDAL();
+        readonly KTableDAL kTableDAL = new KTableDAL();
+        readonly WKWXUserDAL wKWXUserDAL = new WKWXUserDAL();
+        readonly KCommentDAL commentDAL = new KCommentDAL();
+        readonly SelKTableDAL selKTableDAL = new SelKTableDAL();
+        readonly SignRecordDAL signRecordDAL = new SignRecordDAL();
+        readonly QuestionTableDAL questionTableDAL = new QuestionTableDAL();
+        readonly AnswerStatusDAL answerStatusDAL = new AnswerStatusDAL();
         public string WeiKeAddUser(string openid, string nickname)
         {
             string resstr;
@@ -1529,9 +1374,9 @@ namespace FristProject.Controllers
 
         public string AddSelKTable(int KId, int UId)
         {
-            string msg = "";
-            int id = 0;
             int res = selKTableDAL.AddSelKTable(KId, UId);
+            string msg;
+            int id;
             if (res > 0)
             {
                 id = 1;
@@ -1547,8 +1392,8 @@ namespace FristProject.Controllers
 
         public string OnSign(int UId)
         {
-            string msg = "";
-            int id = 0;
+            string msg;
+            int id;
             if (signRecordDAL.AddSign(UId) > 0)
             {
                 id = 1;
@@ -1564,8 +1409,8 @@ namespace FristProject.Controllers
 
         public string IsSign(int UId)
         {
-            string msg = "";
-            int id = 0;
+            string msg;
+            int id;
             if (signRecordDAL.SelSignRecordByUId(UId) != null)
             {
                 id = 1;
@@ -1603,14 +1448,13 @@ namespace FristProject.Controllers
         {
             string resstr = "";
             string rescode = "0";
-            WXModel user = null;
             KComment comment = new KComment();
             comment.KId = KId;
             comment.Comment = Comment;
             if (Session["User"] != null)
             {
                 resstr += "session非空";
-                user = (WXModel)Session["User"];
+                WXModel user = (WXModel)Session["User"];
                 comment.UserName = user.Nickname;
                 comment.UId = wKWXUserDAL.SelUserByOpenId(user.Openid).Id;
                 if (commentDAL.AddComment(comment) > 0)
@@ -1647,7 +1491,7 @@ namespace FristProject.Controllers
         public string AddAnswer(int QId, int UId, string answer)
         {
             string msg = "";
-            int id = 0;
+            int id;
             if (answerStatusDAL.AddAnswer(UId, QId, answer) > 0)
             {
                 id = 1;

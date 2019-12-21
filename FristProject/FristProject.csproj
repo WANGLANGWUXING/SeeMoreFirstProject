@@ -149,6 +149,7 @@
     <Compile Include="Common\RandomGenerator.cs" />
     <Compile Include="Common\Utils.cs" />
     <Compile Include="Common\WeiXinDAL.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HXCController.cs" />
     <Compile Include="Controllers\SeeMoreController.cs" />
@@ -262,6 +263,41 @@
     <Content Include="Content\2019\1105\script\swiper.min.js" />
     <Content Include="Content\2019\1105\script\tween.js" />
     <Content Include="Content\2019\1105\share.jpg" />
+    <Content Include="Content\2019\1212C\bg.mp3" />
+    <Content Include="Content\2019\1212C\css\common.css" />
+    <Content Include="Content\2019\1212C\images\bg.jpg" />
+    <Content Include="Content\2019\1212C\images\btn-rank.png" />
+    <Content Include="Content\2019\1212C\images\btn-white-bg.png" />
+    <Content Include="Content\2019\1212C\images\btn-white.png" />
+    <Content Include="Content\2019\1212C\images\head.jpg" />
+    <Content Include="Content\2019\1212C\images\index-bottom.png" />
+    <Content Include="Content\2019\1212C\images\index-top.png" />
+    <Content Include="Content\2019\1212C\images\load.png" />
+    <Content Include="Content\2019\1212C\images\load\bg.jpg" />
+    <Content Include="Content\2019\1212C\images\load\head.png" />
+    <Content Include="Content\2019\1212C\images\load\img.png" />
+    <Content Include="Content\2019\1212C\images\load\progress-bg.png" />
+    <Content Include="Content\2019\1212C\images\load\progress-color.png" />
+    <Content Include="Content\2019\1212C\images\load\progress-point.png" />
+    <Content Include="Content\2019\1212C\images\logo.png" />
+    <Content Include="Content\2019\1212C\images\music.png" />
+    <Content Include="Content\2019\1212C\images\rank.png" />
+    <Content Include="Content\2019\1212C\images\rule.png" />
+    <Content Include="Content\2019\1212C\images\tip.png" />
+    <Content Include="Content\2019\1212C\index.html" />
+    <Content Include="Content\2019\1212C\script\fastclick.js" />
+    <Content Include="Content\2019\1212C\script\jquery.min.js" />
+    <Content Include="Content\2019\1212C\script\main.js" />
+    <Content Include="Content\2019\1212C\script\main2.js" />
+    <Content Include="Content\2019\1212C\script\pixi.js" />
+    <Content Include="Content\2019\1212C\script\preloadImg.js" />
+    <Content Include="Content\2019\1212C\script\scroll.js" />
+    <Content Include="Content\2019\1212C\script\share.js" />
+    <Content Include="Content\2019\1212C\script\srcImg.js" />
+    <Content Include="Content\2019\1212C\script\sulando.js" />
+    <Content Include="Content\2019\1212C\script\swiper.animate.min.js" />
+    <Content Include="Content\2019\1212C\script\swiper.min.js" />
+    <Content Include="Content\2019\1212C\script\tween.js" />
     <Content Include="Content\2019\test\css\common.css" />
     <Content Include="Content\2019\test\images\alert.png" />
     <Content Include="Content\2019\test\images\bg-bottom.png" />
@@ -396,12 +432,13 @@
     <Content Include="Views\SeeMore\WeiKe.cshtml" />
     <Content Include="Views\SeeMore\WeiKeInfo.cshtml" />
     <Content Include="Views\SeeMore\SignRecord.cshtml" />
+    <Content Include="Views\HXC\HXC2019SHZL.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DAL\" />
     <Folder Include="Scripts\" />
-    <Folder Include="Views\HXC\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\ZGTJZYC\" />
   </ItemGroup>
   <ItemGroup>

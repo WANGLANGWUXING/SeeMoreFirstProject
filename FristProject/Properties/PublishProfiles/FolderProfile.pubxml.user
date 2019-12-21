@@ -16,10 +16,10 @@
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/DAL.dll">
-      <publishTime>12/14/2019 13:15:48</publishTime>
+      <publishTime>12/19/2019 14:35:35</publishTime>
     </File>
     <File Include="bin/DAL.pdb">
-      <publishTime>12/14/2019 13:15:48</publishTime>
+      <publishTime>12/19/2019 14:35:35</publishTime>
     </File>
     <File Include="bin/Dapper.dll">
       <publishTime>05/06/2015 13:05:20</publishTime>
@@ -28,10 +28,10 @@
       <publishTime>05/06/2015 13:05:20</publishTime>
     </File>
     <File Include="bin/FristProject.dll">
-      <publishTime>12/16/2019 17:06:24</publishTime>
+      <publishTime>12/20/2019 16:47:14</publishTime>
     </File>
     <File Include="bin/FristProject.pdb">
-      <publishTime>12/16/2019 17:06:24</publishTime>
+      <publishTime>12/20/2019 16:47:14</publishTime>
     </File>
     <File Include="bin/LitJSON.dll">
       <publishTime>10/21/2019 15:16:02</publishTime>
@@ -642,6 +642,111 @@
     <File Include="Content/2019/1107/script/tween.js">
       <publishTime>10/29/2019 16:27:36</publishTime>
     </File>
+    <File Include="Content/2019/1212C/bg.mp3">
+      <publishTime>12/19/2019 11:05:38</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/css/common.css">
+      <publishTime>12/18/2019 11:59:45</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/bg.jpg">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/btn-rank.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/btn-white-bg.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/btn-white.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/head.jpg">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/index-bottom.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/index-top.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/load.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/load/bg.jpg">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/load/head.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/load/img.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/load/progress-bg.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/load/progress-color.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/load/progress-point.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/logo.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/music.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/rank.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/rule.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/images/tip.png">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/index.html">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/script/fastclick.js">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/script/jquery.min.js">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/script/main.js">
+      <publishTime>12/20/2019 16:00:29</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/script/main2.js">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/script/pixi.js">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/script/preloadImg.js">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/script/scroll.js">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/script/share.js">
+      <publishTime>12/18/2019 11:03:59</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/script/srcImg.js">
+      <publishTime>12/20/2019 15:19:00</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/script/sulando.js">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/script/swiper.animate.min.js">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/script/swiper.min.js">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
+    <File Include="Content/2019/1212C/script/tween.js">
+      <publishTime>12/18/2019 09:55:44</publishTime>
+    </File>
     <File Include="Content/2019/test/css/common.css">
       <publishTime>10/29/2019 16:27:36</publishTime>
     </File>
@@ -1163,6 +1268,9 @@
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>11/19/2019 18:43:09</publishTime>
+    </File>
+    <File Include="Views/HXC/HXC2019SHZL.cshtml">
+      <publishTime>12/19/2019 11:40:52</publishTime>
     </File>
     <File Include="Views/SeeMore/css/common.css">
       <publishTime>10/29/2019 16:11:50</publishTime>

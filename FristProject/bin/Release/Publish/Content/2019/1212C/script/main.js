@@ -31,7 +31,7 @@ function getCookie(cname) {
 
 $(function () {
     var Scroll1;
-   
+    $("#PageIndex").css("background-image", "url(/Content/2019/1212C/images/index-top.png?v=" + + Math.floor(Math.random() * 1000) + "), url(/Content/2019/1212C/images/bg.jpg?v=" + + Math.floor(Math.random() * 1000) +")");
     /*** 预加载 ***/
     var loader = new createjs.LoadQueue(true);
     loader.on("progress", handleFileLoad);
@@ -113,7 +113,9 @@ $(function () {
         Scroll1.destroy();
     }
     function alertRuleShow() {
-        $(".alert .rule-img").css("background-image","url(/Content/2019/1212C/images/rule.png)")
+        // 为了处理微信
+        $(".alert .rule-img").css("background-image", "url(/Content/2019/1212C/images/rule.png?v=" + + Math.floor(Math.random() * 1000)  + ")");
+        
         $('#alertRule').show();
     }
     function alertRuleClose() {
@@ -238,7 +240,9 @@ $(function () {
                     toast("助力过了")
                     //alert("助力过了")
                     //confirm("温馨提示", "助力过了", 500);
-                } else {
+                } else if(data.id===99){
+                    toast("活动已结束")	
+	}else {
                     //alert("助力失败")
                    // alert(JSON.stringify(data))
                     toast("助力失败\n" + JSON.stringify(data))

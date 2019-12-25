@@ -240,7 +240,9 @@ $(function () {
                     toast("助力过了")
                     //alert("助力过了")
                     //confirm("温馨提示", "助力过了", 500);
-                } else {
+                } else if(data.id===99){
+                    toast("活动已结束")	
+	}else {
                     //alert("助力失败")
                    // alert(JSON.stringify(data))
                     toast("助力失败\n" + JSON.stringify(data))

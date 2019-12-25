@@ -397,6 +397,7 @@
     <Content Include="Content\project\img\project\20191031.png" />
     <Content Include="Content\project\img\project\20191105.png" />
     <Content Include="Content\project\img\select.png" />
+    <Content Include="Content\project\img\select1.png" />
     <Content Include="Content\project\img\share.png" />
     <Content Include="Content\project\img\shou.png" />
     <Content Include="Content\project\img\xiala.png" />
@@ -506,6 +507,7 @@
     <Content Include="Content\project\外部资料库\视频\2018hslxrongxin.jpg" />
     <Content Include="Content\project\外部资料库\视频\2018tqtshimao.jpg" />
     <Content Include="Content\project\外部资料库\视频\20190322_model.png" />
+    <Content Include="Content\project\外部资料库\邀请函\20180816bgy.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />

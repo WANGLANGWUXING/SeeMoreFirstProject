@@ -16,10 +16,10 @@
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/DAL.dll">
-      <publishTime>12/19/2019 14:35:35</publishTime>
+      <publishTime>12/24/2019 10:45:16</publishTime>
     </File>
     <File Include="bin/DAL.pdb">
-      <publishTime>12/19/2019 14:35:35</publishTime>
+      <publishTime>12/24/2019 10:45:16</publishTime>
     </File>
     <File Include="bin/Dapper.dll">
       <publishTime>05/06/2015 13:05:20</publishTime>
@@ -28,10 +28,10 @@
       <publishTime>05/06/2015 13:05:20</publishTime>
     </File>
     <File Include="bin/FristProject.dll">
-      <publishTime>12/20/2019 16:47:14</publishTime>
+      <publishTime>12/25/2019 17:58:16</publishTime>
     </File>
     <File Include="bin/FristProject.pdb">
-      <publishTime>12/20/2019 16:47:14</publishTime>
+      <publishTime>12/25/2019 17:58:16</publishTime>
     </File>
     <File Include="bin/LitJSON.dll">
       <publishTime>10/21/2019 15:16:02</publishTime>
@@ -52,10 +52,10 @@
       <publishTime>01/21/2012 19:45:34</publishTime>
     </File>
     <File Include="bin/ProjectDAL.dll">
-      <publishTime>12/14/2019 13:15:48</publishTime>
+      <publishTime>12/24/2019 10:45:17</publishTime>
     </File>
     <File Include="bin/ProjectDAL.pdb">
-      <publishTime>12/14/2019 13:15:48</publishTime>
+      <publishTime>12/24/2019 10:45:17</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/27/2016 21:50:24</publishTime>
@@ -715,7 +715,7 @@
       <publishTime>12/18/2019 09:55:44</publishTime>
     </File>
     <File Include="Content/2019/1212C/script/main.js">
-      <publishTime>12/20/2019 16:00:29</publishTime>
+      <publishTime>12/25/2019 15:11:10</publishTime>
     </File>
     <File Include="Content/2019/1212C/script/main2.js">
       <publishTime>12/18/2019 09:55:44</publishTime>
@@ -1120,7 +1120,7 @@
       <publishTime>11/12/2019 15:26:39</publishTime>
     </File>
     <File Include="Content/project/img/select1.png">
-      <publishTime>11/12/2019 15:26:39</publishTime>
+      <publishTime>12/24/2019 10:29:37</publishTime>
     </File>
     <File Include="Content/project/img/share.png">
       <publishTime>11/19/2019 17:16:11</publishTime>
@@ -1148,6 +1148,309 @@
     </File>
     <File Include="Content/project/js/vue.min.js">
       <publishTime>11/12/2019 15:15:53</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/一镜到底/20180208_jzy.jpg">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/一镜到底/20180516_scroll.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/一镜到底/20180615_yjdd.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/一镜到底/20180628_worldcup.jpg">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/一镜到底/20181206_show.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/一镜到底/20190425_yjdd.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/一镜到底/20190926_anim.jpg">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/上传照片/20170831_jzyphoto.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/上传照片/20181012_photo.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/全景/2016dx-fs.jpg">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/全景/20180808_xhxk.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/分段视频/20180916_dg.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/动画视频剪辑/2016bl2049.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20180329_lighten.jpg">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20180425_moer.jpg">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20180506_ball.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20180622_pintu.jpg">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20180811_pintu.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20180821_invite.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20180918_zhuli.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20180929_fanpai.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20181023_bargain.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20181026_bargain.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20181107_marketing.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20190316_employment.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20190610_light.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/助力/20190717_light.jpg">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/双屏互动/20180110vivo.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20161130_za.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20170411miner.jpg">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20170724_zhongnan.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20170726_dy.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20170919_parents.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20171008_walk.jpg">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20171102_eleven.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20171117_factory.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20171120_cutfood.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20171120_media.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20171205_fish.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20171208_game.jpg">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20171212_olddriver.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20171214_show.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20171221_yijingdaodi.jpg">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20171227_show.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20180313_xulie.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20180330_scroll.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20180506_ball.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20180516_scroll.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20190116_walk.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20190404_shimao.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/序列帧/20190411_shouhui.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20171023_photo.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20171121_photo.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20180208_photo.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20180419_photo.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20180602_vote.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20180704.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20180705_kongque.jpg">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20180713_art.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20180718_photo.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20180929_vote.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20181116_pintu.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20190131_bargain.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20190226_xinlv.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20190313_vote.png">
+      <publishTime>12/23/2019 18:04:13</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20190328_vote.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/投票/20190415_vote.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/游戏/20181214_wawa.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/游戏/20181230_fuzi.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/游戏/20190124_uhome.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/游戏/20190411_shake.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/游戏/20190923_game.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/生成海报/20190321_poster.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/生成海报/20190705_test.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/生成海报/20190730cfsl.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/生成海报/20190812_post.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/生成海报/20190926_anim.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/生成海报/20191111qingchenggaobai.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/登记/20190719_home.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/登记/20190820_sign.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/登记/20190822_game.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/登记/20190920_video.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/登记/20190925_sign.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/红包/20180207_haibao.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/红包/20180208_xinda.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/红包/20181230_fuzi.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/红包/20190125_fireworks.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/红包/20190129_360.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/红包/20190411_shake.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/视频/20180315_sound.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/视频/20180615fuhua.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/视频/20180815_jump.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/视频/20180816bgy.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/视频/20180904_ycwk.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/视频/20181101_poster.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/视频/20181128_milanshow.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/视频/2018bjshimao.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/视频/2018hslxrongxin.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/视频/2018tqtshimao.jpg">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/视频/20190322_model.png">
+      <publishTime>12/23/2019 18:04:14</publishTime>
+    </File>
+    <File Include="Content/project/外部资料库/邀请函/20180816bgy.png">
+      <publishTime>12/24/2019 10:40:15</publishTime>
     </File>
     <File Include="Content/script/eraser.js">
       <publishTime>10/29/2019 16:27:36</publishTime>
@@ -1268,6 +1571,9 @@
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>11/19/2019 18:43:09</publishTime>
+    </File>
+    <File Include="Views/Home/ProjectShow.cshtml">
+      <publishTime>12/24/2019 15:43:19</publishTime>
     </File>
     <File Include="Views/HXC/HXC2019SHZL.cshtml">
       <publishTime>12/19/2019 11:40:52</publishTime>

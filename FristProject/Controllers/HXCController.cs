@@ -674,7 +674,7 @@ namespace FristProject.Controllers
                 msg = "openId为空";
                 return JsonConvert.SerializeObject(new { id, msg });
             }
-                
+
         }
 
 
@@ -771,53 +771,55 @@ namespace FristProject.Controllers
         public string AddHelpUser(string shareId, string openId, string url)
         {
             string actName = "新影华翔城2019圣诞助力";
-
-            // 添加助力用户
-            // 参数 被助力人分享Id ， 助力人微信Id, 助力链接
-            int id;
-            string msg;
-            if (!string.IsNullOrWhiteSpace(openId))
-            {
-                CollectLike collectLike = collectLikeDAL.SelHelperUser(openId, shareId, actName);
-                if (collectLike != null)
-                {
-                    id = 4;
-                    // 助力过了
-                    msg = "此人已经助力过此用户";
-                }
-                else
-                {
-                    // 第一次助力
-                    if (collectLikeDAL.AddHelperUser(new CollectLike()
-                    {
-                        UserShareId = shareId,
-                        HelpOpenId = openId,
-                        Url = url,
-                        ActivityName = actName
-                    }) > 0)
-                    {
-                        id = 1;
-                        msg = "助力成功";
-                    }
-                    else
-                    {
-                        id = 0;
-                        msg = "助力出现错误，接口需调整";
-                    }
-
-                }
-            }
-            else
-            {
-                id = 3;
-                msg = "微信用户信息不存在";
-            }
+            return JsonConvert.SerializeObject(new { id = 99, msg = "活动已结束" });
 
 
+            //// 添加助力用户
+            //// 参数 被助力人分享Id ， 助力人微信Id, 助力链接
+            //int id;
+            //string msg;
+            //if (!string.IsNullOrWhiteSpace(openId))
+            //{
+            //    CollectLike collectLike = collectLikeDAL.SelHelperUser(openId, shareId, actName);
+            //    if (collectLike != null)
+            //    {
+            //        id = 4;
+            //        // 助力过了
+            //        msg = "此人已经助力过此用户";
+            //    }
+            //    else
+            //    {
+            //        // 第一次助力
+            //        if (collectLikeDAL.AddHelperUser(new CollectLike()
+            //        {
+            //            UserShareId = shareId,
+            //            HelpOpenId = openId,
+            //            Url = url,
+            //            ActivityName = actName
+            //        }) > 0)
+            //        {
+            //            id = 1;
+            //            msg = "助力成功";
+            //        }
+            //        else
+            //        {
+            //            id = 0;
+            //            msg = "助力出现错误，接口需调整";
+            //        }
+
+            //    }
+            //}
+            //else
+            //{
+            //    id = 3;
+            //    msg = "微信用户信息不存在";
+            //}
 
 
 
-            return JsonConvert.SerializeObject(new { id, msg });
+
+
+            //return JsonConvert.SerializeObject(new { id, msg });
         }
 
         public string GetHelpCount(string shareId)
@@ -852,7 +854,7 @@ namespace FristProject.Controllers
                 user = GetUser(urlpath);
                 Session["User"] = user;
                 user.ShareId = Request.QueryString["shareId"];
-                
+
             }
             UserInfoSave(user);
             // 添加访问记录

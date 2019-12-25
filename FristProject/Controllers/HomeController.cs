@@ -96,14 +96,14 @@ namespace FristProject.Controllers
             else if (action == "GetOwnerType")
             {
                 string sql = "select * from SMProOwners order by OrderNum";
-                viewProjects = ProjectDAL.ProjectDAL.SelOwner(sql);
+                viewProjects = ProjectDAL.ProjectDAL.SelOwner(sql,null);
                 IsSuccess = true;
                 Msg = "查询成功！" + sql;
             }
             else if (action == "GetProLabel")
             {
                 string sql = "select * from [SMProType]  order by [OrderNum] ";
-                viewProjects = ProjectDAL.ProjectDAL.SelType(sql);
+                viewProjects = ProjectDAL.ProjectDAL.SelType(sql, null);
                 IsSuccess = true;
                 Msg = "查询成功！" + sql;
 
@@ -123,8 +123,8 @@ namespace FristProject.Controllers
             ViewBag.Company = company;
             return View();
         }
-
-        public string GetData(string action,string company)
+        
+        public string GetOtherData(string action,string company)
         {
           
 
@@ -167,7 +167,7 @@ namespace FristProject.Controllers
                 {
                     sql += " desc";
                 }
-                sql += " ) as Rownumber,* from [OtherProject] where 1 = 1 ";
+                sql += " ) as Rownumber,* from [OtherProject] where 1 = 1 and Company=@company ";
                 sql += " ";
                 // 项目所有者
                 string owner = Request.Form["owner"];
@@ -207,22 +207,22 @@ namespace FristProject.Controllers
                 }
 
                 sql += " ) as temp where Rownumber between @pageStart and @pageEnd";
-                viewProjects = ProjectDAL.ProjectDAL.SelProject(sql, new { pageStart, pageEnd, owner, filter, keyWord });
+                viewProjects = ProjectDAL.ProjectDAL.SelProject(sql, new { pageStart, pageEnd, owner, filter, keyWord,company });
                 IsSuccess = true;
                 Msg = "查询成功！" + sql;
 
             }
             else if (action == "GetOwnerType")
             {
-                string sql = "select * from OtherProOwners order by OrderNum";
-                viewProjects = ProjectDAL.ProjectDAL.SelOwner(sql);
+                string sql = "select * from OtherProOwners where Company=@company  order by OrderNum";
+                viewProjects = ProjectDAL.ProjectDAL.SelOwner(sql,new {company=company });
                 IsSuccess = true;
                 Msg = "查询成功！" + sql;
             }
             else if (action == "GetProLabel")
             {
-                string sql = "select * from [OtherProType]  order by [OrderNum] ";
-                viewProjects = ProjectDAL.ProjectDAL.SelType(sql);
+                string sql = "select * from [OtherProType] where Company=@company  order by [OrderNum] ";
+                viewProjects = ProjectDAL.ProjectDAL.SelType(sql, new { company = company });
                 IsSuccess = true;
                 Msg = "查询成功！" + sql;
 

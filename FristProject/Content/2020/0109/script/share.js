@@ -46,7 +46,7 @@
     }
     //微信配置
     ajax({
-        url: '/dal/getsignature.aspx',
+        url: '/SeeMore/GetSignature',
         // 服务器数字签名服务地址   
         method: 'post',
         data: {

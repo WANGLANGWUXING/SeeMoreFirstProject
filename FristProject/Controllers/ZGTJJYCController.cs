@@ -34,7 +34,7 @@ namespace FristProject.Controllers
             UserInfoSaveNoSaveImg(user);
             // 添加访问记录
             AddPV(urlpath, user.Openid, "江语城2020年新年运势H5");
-            return View();
+            return View(user);
         }
 
         // 礼物可以抽两次
@@ -46,7 +46,7 @@ namespace FristProject.Controllers
         // 礼品：红包和礼品
         // 第二次进入判断是否领取过
         // 第二次分享判断是否分享过
-        readonly IsShareTableDAL IsShareTableDAL = new IsShareTableDAL();
+        
         public string PrizeDraw(string openId)
         {
             int id = 0;
@@ -79,7 +79,7 @@ namespace FristProject.Controllers
                     {
 
                         //判断是否分享过H5
-                        if (IsShareTableDAL.GetShareTable(openId, actName) != null)
+                        if (isShareTableDAL.GetShareTable(openId, actName) != null)
                         {
                             // 判断此人之前的礼物是什么，如果抽到一样的，就再次抽取
                             GiftLog giftLog = giftLogs[0];
@@ -160,7 +160,7 @@ namespace FristProject.Controllers
             }
             return gift;
         }
-        //
+        //添加礼物分享记录
         public string AddShareLog(string openId)
         {
             int id = 0;
@@ -170,7 +170,7 @@ namespace FristProject.Controllers
             if (!string.IsNullOrWhiteSpace(openId))
             {
                 // 判断是否分享过
-                if (IsShareTableDAL.GetShareTable(openId, actName) != null)
+                if (isShareTableDAL.GetShareTable(openId, actName) != null)
                 {
                     id = 1;
                     msg = "已经分享过";
@@ -185,7 +185,7 @@ namespace FristProject.Controllers
                         return JsonConvert.SerializeObject(new { id, msg });
                     }
                     //判断是否添加分享记录成功
-                    if (IsShareTableDAL.AddShareLog(openId, actName) > 0)
+                    if (isShareTableDAL.AddShareLog(openId, actName) > 0)
                     {
                         id = 2;
                         msg = "分享成功";
@@ -249,6 +249,7 @@ namespace FristProject.Controllers
                     {
                         id = 1;
                         msg = "登记成功";
+                        // 礼物减少
                     }
                     else
                     {

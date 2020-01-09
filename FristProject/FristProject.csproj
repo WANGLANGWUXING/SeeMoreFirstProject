@@ -330,6 +330,55 @@
     <Content Include="Content\2019\test\script\swiper.animate.min.js" />
     <Content Include="Content\2019\test\script\swiper.min.js" />
     <Content Include="Content\2019\test\script\tween.js" />
+    <Content Include="Content\2020\0109\css\common.css" />
+    <Content Include="Content\2020\0109\images\alert\btn-login.png" />
+    <Content Include="Content\2020\0109\images\alert\empty.png" />
+    <Content Include="Content\2020\0109\images\alert\get-prize.png" />
+    <Content Include="Content\2020\0109\images\alert\infor.png" />
+    <Content Include="Content\2020\0109\images\alert\login.png" />
+    <Content Include="Content\2020\0109\images\alert\my-prize.png" />
+    <Content Include="Content\2020\0109\images\alert\red-bag.png" />
+    <Content Include="Content\2020\0109\images\alert\rule.png" />
+    <Content Include="Content\2020\0109\images\alert\share.png" />
+    <Content Include="Content\2020\0109\images\alert\tips.png" />
+    <Content Include="Content\2020\0109\images\bg.png" />
+    <Content Include="Content\2020\0109\images\bg2.png" />
+    <Content Include="Content\2020\0109\images\btn-prize.png" />
+    <Content Include="Content\2020\0109\images\btn-rule.png" />
+    <Content Include="Content\2020\0109\images\btn-start1.png" />
+    <Content Include="Content\2020\0109\images\btn-start2.png" />
+    <Content Include="Content\2020\0109\images\btn-start3.png" />
+    <Content Include="Content\2020\0109\images\center\1.png" />
+    <Content Include="Content\2020\0109\images\center\2.png" />
+    <Content Include="Content\2020\0109\images\center\3.png" />
+    <Content Include="Content\2020\0109\images\center\4.png" />
+    <Content Include="Content\2020\0109\images\center\5.png" />
+    <Content Include="Content\2020\0109\images\load.png" />
+    <Content Include="Content\2020\0109\images\logo.png" />
+    <Content Include="Content\2020\0109\images\main.png" />
+    <Content Include="Content\2020\0109\images\music.png" />
+    <Content Include="Content\2020\0109\images\share\1.png" />
+    <Content Include="Content\2020\0109\images\share\2.png" />
+    <Content Include="Content\2020\0109\images\share\3.png" />
+    <Content Include="Content\2020\0109\images\share\4.png" />
+    <Content Include="Content\2020\0109\images\share\5.png" />
+    <Content Include="Content\2020\0109\images\share\6.png" />
+    <Content Include="Content\2020\0109\images\share\7.png" />
+    <Content Include="Content\2020\0109\images\share\8.png" />
+    <Content Include="Content\2020\0109\images\tips.png" />
+    <Content Include="Content\2020\0109\index.html" />
+    <Content Include="Content\2020\0109\script\fastclick.js" />
+    <Content Include="Content\2020\0109\script\jquery.min.js" />
+    <Content Include="Content\2020\0109\script\main.js" />
+    <Content Include="Content\2020\0109\script\pixi.js" />
+    <Content Include="Content\2020\0109\script\preloadImg.js" />
+    <Content Include="Content\2020\0109\script\scroll.js" />
+    <Content Include="Content\2020\0109\script\share.js" />
+    <Content Include="Content\2020\0109\script\srcImg.js" />
+    <Content Include="Content\2020\0109\script\sulando.js" />
+    <Content Include="Content\2020\0109\script\swiper.animate.min.js" />
+    <Content Include="Content\2020\0109\script\swiper.min.js" />
+    <Content Include="Content\2020\0109\script\tween.js" />
     <Content Include="Content\project\css\animate.css" />
     <Content Include="Content\project\css\index2.css" />
     <Content Include="Content\project\css\panna_com.css" />
@@ -537,6 +586,7 @@
     <Content Include="Views\SeeMore\SignRecord.cshtml" />
     <Content Include="Views\HXC\HXC2019SHZL.cshtml" />
     <Content Include="Views\Home\ProjectShow.cshtml" />
+    <Content Include="Views\ZGTJJYC\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -544,7 +594,6 @@
     <Folder Include="DAL\" />
     <Folder Include="Scripts\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\ZGTJJYC\" />
     <Folder Include="Views\ZGTJZYC\" />
   </ItemGroup>
   <ItemGroup>

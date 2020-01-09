@@ -27,6 +27,7 @@ namespace FristProject.Controllers
         public GiftLogDAL giftLogDAL = new GiftLogDAL();
         public GiftCountDAL giftCountDAL = new GiftCountDAL();
         public PVTableDAL pVTableDAL = new PVTableDAL();
+        public IsShareTableDAL isShareTableDAL = new IsShareTableDAL();
         public Random random = new Random();
         // GET: Base
         /// <summary>

@@ -1,0 +1,255 @@
+﻿@model FristProject.Models.WXModel
+@{
+    Layout = null;
+    Random random = new Random();
+}
+
+<!DOCTYPE html>
+<html style="overflow: hidden">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="robots" content="index,follow">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webk`it">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="pragram" content="no-cache" />
+    <meta content="email=no" name="format-detection" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <script>
+        ! function (a, b) {
+            function c() {
+                var b = f.getBoundingClientRect().width;
+                b / i > 540 && (b = 540 * i);
+                var c = b / 10;
+                f.style.fontSize = c + "px", k.rem = a.rem = c
+            }
+            var d, e = a.document,
+                f = e.documentElement,
+                g = e.querySelector('meta[name="viewport"]'),
+                h = e.querySelector('meta[name="flexible"]'),
+                i = 0,
+                j = 0,
+                k = b.flexible || (b.flexible = {});
+            if (g) {
+                console.warn("将根据已有的meta标签来设置缩放比例");
+                var l = g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);
+                l && (j = parseFloat(l[1]), i = parseInt(1 / j))
+            } else if (h) {
+                var m = h.getAttribute("content");
+                if (m) {
+                    var n = m.match(/initial\-dpr=([\d\.]+)/),
+                        o = m.match(/maximum\-dpr=([\d\.]+)/);
+                    n && (i = parseFloat(n[1]), j = parseFloat((1 / i).toFixed(2))), o && (i = parseFloat(o[1]), j = parseFloat((1 /
+                        i).toFixed(2)))
+                }
+            }
+            if (!i && !j) {
+                var p = (a.navigator.appVersion.match(/android/gi), a.navigator.appVersion.match(/iphone/gi)),
+                    q = a.devicePixelRatio;
+                i = p ? q >= 3 && (!i || i >= 3) ? 3 : q >= 2 && (!i || i >= 2) ? 2 : 1 : 1, j = 1 / i
+            }
+            if (f.setAttribute("data-dpr", i), !g)
+                if (g = e.createElement("meta"), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" +
+                    j + ", maximum-scale=" + j + ", minimum-scale=" + j + ", user-scalable=no"), f.firstElementChild) f
+                        .firstElementChild.appendChild(g);
+                else {
+                    var r = e.createElement("div");
+                    r.appendChild(g), e.write(r.innerHTML)
+                } a.addEventListener("resize", function () {
+                    clearTimeout(d), d = setTimeout(c, 300)
+                }, !1), a.addEventListener("pageshow", function (a) {
+                    a.persisted && (clearTimeout(d), d = setTimeout(c, 300))
+                }, !1), "complete" === e.readyState ? e.body.style.fontSize = 12 * i + "px" : e.addEventListener(
+                    "DOMContentLoaded",
+                    function () {
+                        e.body.style.fontSize = 12 * i + "px"
+                    }, !1), c(), k.dpr = a.dpr = i, k.refreshRem = c, k.rem2px = function (a) {
+                        var b = parseFloat(a) * this.rem;
+                        return "string" == typeof a && a.match(/rem$/) && (b += "px"), b
+                    }, k.px2rem = function (a) {
+                        var b = parseFloat(a) / this.rem;
+                        return "string" == typeof a && a.match(/px$/) && (b += "rem"), b
+                    }
+        }(window, window.lib || (window.lib = {}));
+    </script>
+    <script>
+        var openId = "@Model.Openid";
+    </script>
+    <link href="~/Content/2020/0109/css/common.css?v=@random.Next(10,20000)" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/2020/0109/script/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/2020/0109/script/fastclick.js"></script>
+    <script type="text/javascript" src="~/Content/2020/0109/script/preloadImg.js"></script>
+    <script type="text/javascript" src="~/Content/2020/0109/script/srcImg.js?v=@random.Next(10,20000)"></script>
+    <script type="text/javascript" src="~/Content/2020/0109/script/main.js?v=@random.Next(10,20000)"></script>
+</head>
+
+<body id="index">
+    <!-- loading -->
+    <aside id="loading" class="wrap">
+        <div class="process">
+            <div class="progress-black">
+                <div class="progress-front"></div>
+            </div>
+            <span></span>
+        </div>
+    </aside>
+
+    <aside class="wrap">
+        <!-- Page: Main -->
+        <article id="PageIndex" class="page">
+            <div id="index1" class="middle-wrap index-bg">
+                <div class="btn-rule" type="button"></div>
+                <div class="btn-start">
+                    <div class="btn-start-bg1"></div>
+                    <div class="btn-start-bg2"></div>
+                    <div class="btn-start-bg3"></div>
+                </div>
+                <div class="btn-my-prize" type="button"></div>
+            </div>
+            <div id="index2" style="display: none;" class="middle-wrap">
+                <div class="center">
+                    <div class="center1"></div>
+                    <div class="center2"></div>
+                    <div class="center3"></div>
+                    <div class="center4"></div>
+                    <div class="center5"></div>
+                </div>
+                <div class="bottom hide"></div>
+            </div>
+        </article>
+    </aside>
+    <!-- 固定的 -->
+    <div class="music music-ani"></div>
+    <div class="logo"></div>
+    <!-- 弹出结果 -->
+    <div style="display: none;" id="result">
+        <img id="resultImg" src="~/Content/2020/0109/images/share/1.png" />
+    </div>
+    <!-- 弹出：规则 -->
+    <div id="alertRule" class="alert">
+        <div class="mask"></div>
+        <div class="alert-content rule-img">
+            <div class="alert-close"></div>
+        </div>
+    </div>
+    <!-- 弹出：获取红包 -->
+    <div id="alertRedBag" class="alert">
+        <div class="mask"></div>
+        <div class="alert-content red-bag-img">
+            <div class="alert-close"></div>
+            <div class="alert-title">
+                <p>恭喜您获得</p>
+                <p>XXXX元红包一个</p>
+            </div>
+        </div>
+    </div>
+    <!-- 弹出：获取礼品 -->
+    <div id="alertRedBag" class="alert">
+        <div class="mask"></div>
+        <div class="alert-content get-prize-img">
+            <div class="alert-close"></div>
+            <div class="alert-title">
+                <p>恭喜您获得</p>
+                <p>XXXXXXXXXXXXXX</p>
+            </div>
+        </div>
+    </div>
+    <!-- 弹出：登记礼品 -->
+    <div id="alertLogin" class="alert">
+        <div class="mask"></div>
+        <div class="alert-content login-prize-img">
+            <div class="alert-close"></div>
+            <div class="alert-title">
+                <p>恭喜您获得</p>
+                <p>XXXXXXXXXXXXXX</p>
+            </div>
+            <input class="input-name" type="text" maxlength="8" />
+            <input class="input-tel" type="tel" maxlength="11" />
+            <div class="alert-login-submit"></div>
+        </div>
+    </div>
+    <!-- 弹出：获取礼品-温馨提示 -->
+    <div id="alertLoginTips" class="alert">
+        <div class="mask"></div>
+        <div class="alert-content login-tips-img">
+            <div class="alert-close"></div>
+            <div class="login-tips-true"></div>
+            <div class="login-tips-false"></div>
+        </div>
+    </div>
+    <!-- 弹出：我的奖品——空的 -->
+    <div id="alertMyPrizeEmpty" class="alert">
+        <div class="mask"></div>
+        <div class="alert-content my-prize-empty-img">
+            <div class="alert-close"></div>
+        </div>
+    </div>
+    <!-- 弹出：我的奖品——有的 -->
+    <div id="alertMyPrize" class="alert">
+        <div class="mask"></div>
+        <div class="alert-content my-prize-img">
+            <div class="alert-close"></div>
+            <div class="alert-prize-has">
+                <div class="alert-prize-item">
+                    <div class="left-item">XXXXXXXXXXX</div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="alert-prize-item">
+                    <div class="left-item">XXXXXXXXXXX</div>
+                    <div class="right-item"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 运势弹框 -->
+    <div id="alertTips1" class="alert">
+        <div class="mask"></div>
+        <div class="alert-content my-tips1-img">
+            <div class="alert-close"></div>
+            <div class="alert-title2">
+                <p>恭喜您获得</p>
+                <p>XXXXXXXXXXXXXX</p>
+                <p>请在我的奖品页面中登记领取</p>
+            </div>
+        </div>
+    </div>
+    <!-- 分享 -->
+    <div id="alertShare" class="alert"></div>
+
+    <!-- Alert -->
+    <div id="alerts" class="alerts"></div>
+    <div id="alertConfirm" class="alert-confirm"></div>
+
+    <!-- Music -->
+    <!-- <audio id="music" src="./bg.mp3" autoplay="autoplay" preload="auto" loop="loop" style="visibility: hidden;"></audio> -->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <script src="~/Content/2020/0109/script/share.js?v=@random.Next(10,20000)"></script>
+    <script>
+        SHARE.shareOption({
+            link: "http://weixin.seemoread.com/2020/0109",
+            pic: "http://weixin.seemoread.com/Content/2020/0109/images/share.png",
+            title: "分享标题",
+            desc: "分享文字",
+            success: function () {
+                alert("分享成功");
+                $.ajax({
+
+                })
+            }
+        });
+    </script>
+</body>
+
+</html>

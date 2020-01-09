@@ -770,7 +770,7 @@ namespace FristProject.Controllers
 
         public string AddHelpUser(string shareId, string openId, string url)
         {
-            string actName = "新影华翔城2019圣诞助力";
+            //string actName = "新影华翔城2019圣诞助力";
             return JsonConvert.SerializeObject(new { id = 99, msg = "活动已结束" });
 
 

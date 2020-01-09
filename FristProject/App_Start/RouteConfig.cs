@@ -38,7 +38,12 @@ namespace FristProject
              name: "HXC2019SDZLS",
              url: "2019/1212CC",
              defaults: new { controller = "HXC", action = "HXC2019SHZL" }
-         );
+         ); 
+            routes.MapRoute(
+              name: "JYC2020XNYS",
+              url: "2020/0109",
+              defaults: new { controller = "ZGTJJYC", action = "Index" }
+          );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

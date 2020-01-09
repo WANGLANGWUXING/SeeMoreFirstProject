@@ -16,7 +16,7 @@ namespace FristProject.Controllers
 {
     public class BaseController : Controller
     {
-        
+
         public static readonly string Token = WebConfigurationManager.AppSettings["WeixinToken"];//与微信公众账号后台的Token设置保持一致，区分大小写。
         public static readonly string EncodingAESKey = WebConfigurationManager.AppSettings["WeixinEncodingAESKey"];//与微信公众账号后台的EncodingAESKey设置保持一致，区分大小写。
         public static readonly string AppId = WebConfigurationManager.AppSettings["WeixinAppId"];//与微信公众账号后台的AppId设置保持一致，区分大小写。
@@ -48,9 +48,9 @@ namespace FristProject.Controllers
             return DicText["openid"].ToString();
         }
 
-        public void AddPV(string url, string openId)
+        public void AddPV(string url, string openId, string actName = "")
         {
-            pVTableDAL.AddPV(new PVTable { Url = url, OpenId = openId });
+            pVTableDAL.AddPV(new PVTable { Url = url, OpenId = openId, ActName = actName });
         }
         public static string WebRequestPostOrGet(string sUrl, string sParam)
         {
@@ -233,18 +233,46 @@ namespace FristProject.Controllers
                     Headimgurl = DateTime.Now.ToString("yyyyMMdd") + "/" + model.Openid + ".jpg"
                 });
                 // 保存用户图片
-                
+
                 // 按照日期保存
                 // 如果日期
-              
+
                 id = 1;
                 msg = path;
             }
 
-            return JsonConvert.SerializeObject(new { id,msg});
+            return JsonConvert.SerializeObject(new { id, msg });
         }
 
-        public string SaveUserImgs(string openId,string url)
+        public string UserInfoSaveNoSaveImg(WXModel model)
+        {
+            int id = 0;
+            string msg = "";
+            if (model != null && !string.IsNullOrWhiteSpace(model.Openid))
+            {
+                // 添加用户信息到数据库 有则查看是否需要修改
+                if (userDAL.AddUserS(new WXUser
+                {
+                    OpenId = model.Openid,
+                    Nickname = model.Nickname,
+                    Headimgurl = model.Headimgurl
+                }) > 0)
+                {
+                    id = 1;
+                    msg = "添加成功";
+                }
+                else
+                {
+                    id = 2;
+                    msg = "添加失败";
+                }
+
+            }
+
+            return JsonConvert.SerializeObject(new { id, msg });
+        }
+
+        public string SaveUserImgs(string openId, string url)
         {
             string path = Path.Combine("E:", "www", "test", "Content", "Images", "WeiXinHeadimgurl", DateTime.Now.ToString("yyyyMMdd"), openId + ".jpg");
             //string resPath = Path.Combine(DateTime.Now.ToString("yyyyMMdd"), openId + ".jpg");
@@ -276,5 +304,50 @@ namespace FristProject.Controllers
 
 
         #endregion
+
+
+        /// <summary>
+        /// 获取对应活动的礼物数量
+        /// </summary>
+        /// <param name="activityName"></param>
+        /// <returns></returns>
+        public int GetPriceSumCount(string activityName)
+        {
+            return giftCountDAL.GetGiftCountSumByActName(activityName);
+        }
+
+        /// <summary>
+        /// 获取随机的礼物，最普通的随机
+        /// </summary>
+        /// <param name="gifts"></param>
+        /// <param name="actName"></param>
+        /// <param name="flag">是否递归</param>
+        /// <returns></returns>
+        public Gift GetRandomGift(List<Gift> gifts, string actName, int flag)
+        {
+            if (gifts.Count == 0 && flag == 0)
+            {
+                gifts = giftDAL.GetGiftsByAcitvityNameIsExist(actName);
+            }
+            if (gifts.Count > 0)
+            {
+                int i = random.Next(0, gifts.Count);
+                Gift res = gifts[i];
+                if (giftCountDAL.GetGiftCountModelByGiftId(gifts[i].GiftId).Remainder > 0)
+                {
+                    return res;
+                }
+                else
+                {
+                    gifts.RemoveAt(i);
+                    return GetRandomGift(gifts, actName, 1);
+                }
+
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

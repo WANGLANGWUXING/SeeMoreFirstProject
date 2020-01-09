@@ -15,7 +15,9 @@ namespace DAL
 
         public int AddGiftLog(GiftLog giftLog)
         {
-            string insertSql = "INSERT INTO [dbo].[GiftLog] ([OpenId] ,[NickName] ,[ActivityName],[GiftId],[GiftName] ,[GiftDesc],[AddTime],[Name],[Telphone],[GiftCustomNum]) VALUES (@OpenId ,@NickName,@ActivityName,@GiftId,@GiftName,@GiftDesc,Getdate(),@Name,@Telphone,@GiftCustomNum)";
+            string insertSql = 
+                "INSERT INTO [dbo].[GiftLog] ([OpenId] ,[NickName] ,[ActivityName],[GiftId],[GiftName] ,[GiftDesc],[AddTime],[Name],[Telphone],[GiftCustomNum]) " +
+                "VALUES (@OpenId ,@NickName,@ActivityName,@GiftId,@GiftName,@GiftDesc,Getdate(),@Name,@Telphone,@GiftCustomNum)";
             var result = DapperHelper<GiftLog>.Execute(insertSql, giftLog);
             return result;
         }
@@ -32,6 +34,18 @@ namespace DAL
             var result = DapperHelper<GiftLog>.Execute(editSql, new { Name = name, Telphone = telphone, OpenId = openId, ActivityName = activityName });
             return result;
         }
+
+        public int EditGiftLog(string openId, string activityName,int giftId, string name, string telphone,string desc)
+        {
+            string editSql = "UPDATE [dbo].[GiftLog] SET [Name]=@Name ,[Telphone]=@Telphone,GiftDesc=GiftDesc+@desc " +
+                " WHERE OpenId=@OpenId and ActivityName=@ActivityName and GiftId=@GiftId";
+            var result = DapperHelper<GiftLog>.Execute(editSql, new { 
+                Name = name, Telphone = telphone, OpenId = openId, ActivityName = activityName,desc,
+                GiftId=giftId
+            });
+            return result;
+        }
+
 
         public int EditGiftLog(string openId, string activityName, string name, string telphone,string type)
         {

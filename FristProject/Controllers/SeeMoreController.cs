@@ -526,10 +526,6 @@ namespace FristProject.Controllers
             return JsonConvert.SerializeObject(new { prizeNum, msg, customCode, desc });
         }
 
-        public int GetPriceSumCount(string activityName)
-        {
-            return giftCountDAL.GetGiftCountSumByActName(activityName);
-        }
 
         public string IsFirst(string openId)
         {

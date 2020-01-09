@@ -10,7 +10,7 @@ namespace DAL
         public int AddPV(PVTable pVTable)
         {
 
-            string insertSql = "INSERT INTO [dbo].[PVTable] ([URL] ,[OpenId] ,[VisitTime]) VALUES (@Url ,@OpenId ,GETDATE())";
+            string insertSql = "INSERT INTO [dbo].[PVTable] ([URL] ,[OpenId] ,[ActName],[VisitTime]) VALUES (@Url ,@OpenId ,@ActName,GETDATE())";
             var result = conn.Execute(insertSql, pVTable);
             return result;
         }

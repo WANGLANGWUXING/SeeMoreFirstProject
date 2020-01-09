@@ -153,6 +153,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HXCController.cs" />
     <Compile Include="Controllers\SeeMoreController.cs" />
+    <Compile Include="Controllers\ZGTJJYCController.cs" />
     <Compile Include="Controllers\ZGTJZYCController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -543,6 +544,7 @@
     <Folder Include="DAL\" />
     <Folder Include="Scripts\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\ZGTJJYC\" />
     <Folder Include="Views\ZGTJZYC\" />
   </ItemGroup>
   <ItemGroup>

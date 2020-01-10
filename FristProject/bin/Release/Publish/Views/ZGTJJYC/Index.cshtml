@@ -1,4 +1,4 @@
-﻿
+﻿@model FristProject.Models.WXModel
 @{
     Layout = null;
     Random random = new Random();
@@ -83,6 +83,9 @@
                     }
         }(window, window.lib || (window.lib = {}));
     </script>
+    <script>
+        var openId = "@Model.Openid";
+    </script>
     <link href="~/Content/2020/0109/css/common.css?v=@random.Next(10,20000)" rel="stylesheet" />
     <script type="text/javascript" src="~/Content/2020/0109/script/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/2020/0109/script/fastclick.js"></script>
@@ -131,7 +134,17 @@
     <div class="logo"></div>
     <!-- 弹出结果 -->
     <div style="display: none;" id="result">
-        <img id="resultImg" src="~/Content/2020/0109/images/images/share/1.png" />
+        <img id="resultImg" src="~/Content/2020/0109/images/share/1.png" />
+        <div style="
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    line-height: 3;
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+    text-align: center;
+">长按保存图片，即刻转发赢好运！</div>
     </div>
     <!-- 弹出：规则 -->
     <div id="alertRule" class="alert">
@@ -147,18 +160,18 @@
             <div class="alert-close"></div>
             <div class="alert-title">
                 <p>恭喜您获得</p>
-                <p>XXXX元红包一个</p>
+                <p class="alert-title-content">XXXX元红包一个</p>
             </div>
         </div>
     </div>
     <!-- 弹出：获取礼品 -->
-    <div id="alertRedBag" class="alert">
+    <div id="alertGift" class="alert">
         <div class="mask"></div>
         <div class="alert-content get-prize-img">
             <div class="alert-close"></div>
             <div class="alert-title">
                 <p>恭喜您获得</p>
-                <p>XXXXXXXXXXXXXX</p>
+                <p class="alert-title-content">XXXXXXXXXXXXXX</p>
             </div>
         </div>
     </div>
@@ -169,7 +182,7 @@
             <div class="alert-close"></div>
             <div class="alert-title">
                 <p>恭喜您获得</p>
-                <p>XXXXXXXXXXXXXX</p>
+                <p class="alert-title-content">XXXXXXXXXXXXXX</p>
             </div>
             <input class="input-name" type="text" maxlength="8" />
             <input class="input-tel" type="tel" maxlength="11" />
@@ -181,8 +194,8 @@
         <div class="mask"></div>
         <div class="alert-content login-tips-img">
             <div class="alert-close"></div>
-            <div class="login-tips-true"></div>
             <div class="login-tips-false"></div>
+            <div class="login-tips-true"></div>
         </div>
     </div>
     <!-- 弹出：我的奖品——空的 -->
@@ -217,9 +230,10 @@
             <div class="alert-close"></div>
             <div class="alert-title2">
                 <p>恭喜您获得</p>
-                <p>XXXXXXXXXXXXXX</p>
+                <p class="alert-title-content">XXXXXXXXXXXXXX</p>
                 <p>请在我的奖品页面中登记领取</p>
             </div>
+            <div class="tips-btn-back"></div>
         </div>
     </div>
     <!-- 分享 -->
@@ -235,12 +249,26 @@
     <script src="~/Content/2020/0109/script/share.js?v=@random.Next(10,20000)"></script>
     <script>
         SHARE.shareOption({
-            link: "http://wx.seemoread.com/2019/1125/index.html",
-            pic: "http://wx.seemoread.com/2019/1125/share.png",
-            title: "长江所望  中心所呈",
-            desc: "3月9日 ，幸福华夏， 诚邀您共鉴一场饕餮盛宴",
+            link: "http://weixin.seemoread.com/2020/0109",
+            pic: "http://weixin.seemoread.com/Content/2020/0109/images/share.png",
+            title: "分享标题",
+            desc: "分享文字",
             success: function () {
 
+                $.ajax({
+                    url: "http://weixin.seemoread.com/ZGTJJYC/AddShareLog",
+                    dataType: 'json',
+                    data: { openId },
+                    success: function (data) {
+                        console.log(data);
+                        if (data.id == 2) {
+                            alert("分享成功");
+                        } else {
+                            alert(data.msg);
+                        }
+
+                    }
+                });
             }
         });
     </script>

@@ -18,5 +18,6 @@ namespace DAL
         public string Name { get; set; }
         public string Telphone { get; set; }
         public string GiftCustomNum { get; set; }
+        public string Unit { get; set; }
     }
 }

@@ -114,6 +114,7 @@
                     <div class="btn-start-bg1"></div>
                     <div class="btn-start-bg2"></div>
                     <div class="btn-start-bg3"></div>
+                    <div class="btn-start-wrap"></div>
                 </div>
                 <div class="btn-my-prize" type="button"></div>
             </div>
@@ -125,7 +126,7 @@
                     <div class="center4"></div>
                     <div class="center5"></div>
                 </div>
-                <div class="bottom hide"></div>
+                <div class="bottom2"></div>
             </div>
         </article>
     </aside>
@@ -244,17 +245,17 @@
     <div id="alertConfirm" class="alert-confirm"></div>
 
     <!-- Music -->
-    <!-- <audio id="music" src="./bg.mp3" autoplay="autoplay" preload="auto" loop="loop" style="visibility: hidden;"></audio> -->
+    <audio id="music" src="~/Content/2020/0109/bg.mp3" autoplay="autoplay" preload="auto" loop="loop" style="visibility: hidden;"></audio>
     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
     <script src="~/Content/2020/0109/script/share.js?v=@random.Next(10,20000)"></script>
     <script>
         SHARE.shareOption({
             link: "http://weixin.seemoread.com/2020/0109",
-            pic: "http://weixin.seemoread.com/Content/2020/0109/images/share.png",
-            title: "福运非你莫“鼠” 测出你的鼠年运势",
+            pic: "http://weixin.seemoread.com/Content/2020/0109/share.png",
+            title: "福运非你莫“鼠”，测出你的鼠年运势",
             desc: "测运势，赢好礼",
             success: function () {
-
+                alert("openId=" + openId);
                 $.ajax({
                     url: "http://weixin.seemoread.com/ZGTJJYC/AddShareLog",
                     dataType: 'json',
@@ -279,7 +280,9 @@
                                         } else {
                                             $(".alert-title-content").html(data.gift.GiftName + "一" + data.gift.Unit);
                                         }
+
                                         $("#alertTips1").show();
+
                                     }
 
                                 }
@@ -290,6 +293,7 @@
 
                     }
                 });
+                $("#alertShare").hide();
             }
         });
     </script>

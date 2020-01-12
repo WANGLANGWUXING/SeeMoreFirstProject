@@ -330,6 +330,7 @@
     <Content Include="Content\2019\test\script\swiper.animate.min.js" />
     <Content Include="Content\2019\test\script\swiper.min.js" />
     <Content Include="Content\2019\test\script\tween.js" />
+    <Content Include="Content\2020\0109\bg.mp3" />
     <Content Include="Content\2020\0109\css\common.css" />
     <Content Include="Content\2020\0109\images\alert\btn-login.png" />
     <Content Include="Content\2020\0109\images\alert\empty.png" />

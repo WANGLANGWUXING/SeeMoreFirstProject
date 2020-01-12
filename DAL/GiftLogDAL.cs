@@ -47,6 +47,7 @@ namespace DAL
         }
 
 
+
         public int EditGiftLog(string openId, string activityName, string name, string telphone,string type)
         {
             string editSql = "UPDATE [dbo].[GiftLog] SET [Name]=@Name ,[Telphone]=@Telphone WHERE OpenId=@OpenId and ActivityName=@ActivityName and GiftDesc=@type";

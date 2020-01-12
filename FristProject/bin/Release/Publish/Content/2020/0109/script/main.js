@@ -33,7 +33,8 @@ $(function () {
             $('#index2').show()
         })
         $('.btn-rule').on('click', function () {
-            $('#alertRule').show()
+            $(".rule-img").css("background-image", "url(../Content/2020/0109/images/alert/rule.png?v=" + + Math.floor(Math.random() * 1000) + ")");
+            $('#alertRule').show();
         })
 
         $(".tips-btn-back").on('click', function () {
@@ -106,8 +107,11 @@ $(function () {
             g_Name = $(".input-name").val();
             g_Tel = $(".input-tel").val();
             if (g_Name || g_Tel) {
-                $("#alertLogin").hide();
-                $("#alertLoginTips").show();
+                if (g_Tel.length > 5) {
+                    $("#alertLogin").hide();
+                    $("#alertLoginTips").show();
+                }
+                
             }
         })
 
@@ -120,7 +124,7 @@ $(function () {
         $(".login-tips-false").on('click', function () {
             // 是
             if (g_Name || g_Tel) {
-
+                
                 $.ajax({
                     url: "http://weixin.seemoread.com/ZGTJJYC/JYC20200109Reg",
                     dataType: 'json',
@@ -156,19 +160,28 @@ $(function () {
         $('.alert-close').on('click', function () {
             $('.alert').hide();
             //console.log($(this).parents("#alertTips1"));
-            if ($(this).parents("#alertTips1").length > 0) {
-                $('#alertShare').show();
-            }
+            //if ($(this).parents("#alertTips1").length > 0) {
+            //    $('#alertShare').show();
+            //}
 
         })
+
+
+        
 
         //$("#alertTips1").on('hide');
 
         $('.center').on('touchstart', function () {
             $('.center1,.center3,.center4,.center5').addClass('startAni')
-            $('.bottom').removeClass('hide')
-        })
+            setTimeout(() => {
+                $('.bottom2').removeClass('bottom2').addClass('bottom');
+            }, 1500)
+            //$('.bottom2')
 
+        })
+        $("#alertShare").on('click', function () {
+            $(this).fadeOut();
+        })
 
         $('.center').on('touchend', function () {
             var num = Math.ceil(Math.random() * 8);
@@ -191,6 +204,17 @@ $(function () {
                             $(".alert-title-content").html(data.gift.GiftName + "一" + data.gift.Unit);
                         }
                         $("#alertTips1").show();
+                        if (data.id == 5) {
+                            setTimeout(() => {
+                                $("#alertShare").show();
+                            }, 6000)
+                        }
+                    }
+
+                    if (data.id == 4) {
+                        setTimeout(() => {
+                            $("#alertShare").show();
+                        }, 1500)
                     }
 
                 }

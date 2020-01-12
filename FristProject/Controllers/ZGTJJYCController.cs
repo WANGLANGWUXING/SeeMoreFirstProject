@@ -64,20 +64,48 @@ namespace FristProject.Controllers
                     //先判断openId是否存在 ,在一定程度上防止刷
                     if (userDAL.SelUserInfoByOpenId(openId) != null)
                     {
-                        //礼物没有了就不允许分享
-                        if (GetPriceSumCount(actName) <= 0)
-                        {
-                            id = 7;
-                            msg = "礼物没有了";
-                            return JsonConvert.SerializeObject(new { id, msg });
-                        }
                         //判断是否是第一次
                         // 通过查询礼物记录里面的记录数量
                         List<GiftLog> giftLogs = giftLogDAL.SelGiftLogs(openId, actName);
+                        //如果礼物没有了，就删除此条记录
+                        for (int i = 0; i < giftLogs.Count; i++)
+                        {
+                            if (giftLogs[i].GiftId != 0)
+                            {
+                                int re = giftCountDAL.GetGiftCountByGiftId(giftLogs[i].GiftId);
+                                if (re == 0)
+                                {
+                                    giftLogs.RemoveAt(i);
+                                    giftLogDAL.DelGiftLogById(giftLogs[i].GiftId);
+                                }
+                            }
+
+                        }
+                        //礼物没有了就不允许分享
+                        //if (GetPriceSumCount(actName) <= 0)
+                        //{
+                        //    id = 7;
+                        //    msg = "礼物没有了";
+
+                        //    return JsonConvert.SerializeObject(new { id, msg });
+                        //}
+
                         if (giftLogs == null || giftLogs.Count == 0)
                         {
-                            gift = GetRandomGift(new List<Gift>(), actName, 0);
-                            GiftLog giftLog = new GiftLog() { OpenId = openId, ActivityName = actName, GiftId = gift.GiftId, GiftName = gift.GiftName, GiftDesc = "第一次抽"};
+                            GiftLog giftLog = new GiftLog();
+                            if (GetPriceSumCount(actName) <= 0)
+                            {
+                                gift = new Gift() { GiftId = 0, GiftName = "精美礼品", Unit = "份" };
+                                giftLog = new GiftLog() { OpenId = openId, ActivityName = actName, GiftId = 0, GiftName = "精美礼品", GiftDesc = "第一次抽" };
+                                //giftLog = NoGiftEvent(0, openId, actName);
+                            }
+                            else
+                            {
+                                gift = GetRandomGift(new List<Gift>(), actName, 0);
+                                giftLog = new GiftLog() { OpenId = openId, ActivityName = actName, GiftId = gift.GiftId, GiftName = gift.GiftName, GiftDesc = "第一次抽" };
+
+                            }
+
                             if (giftLogDAL.AddGiftLog(giftLog) > 0)
                             {
                                 id = 5;
@@ -111,13 +139,22 @@ namespace FristProject.Controllers
                                 // 判断此人之前的礼物是什么，如果抽到一样的，就再次抽取
                                 // 当礼物只剩一种时，就选那一个
                                 GiftLog giftLog = giftLogs[0];
-                                gift = GetRandomGift(new List<Gift>(), actName, 0);
-                                if (gift.GiftId == giftLog.GiftId && gifts.Count > 1)
+                                if (GetPriceSumCount(actName) <= 0)
                                 {
-                                    gift = GetDifferentGift(giftLog.GiftId, actName);
+                                    gift = new Gift() { GiftId = 0, GiftName = "精美礼品", Unit = "份" };
+                                    giftLog = new GiftLog() { OpenId = openId, ActivityName = actName, GiftId = 0, GiftName = "精美礼品", GiftDesc = "第二次抽" };
+                                    //giftLog = NoGiftEvent(0, openId, actName);
                                 }
-                                // 将礼物记录保存起来
-                                giftLog = new GiftLog() { OpenId = openId, ActivityName = actName, GiftId = gift.GiftId, GiftName = gift.GiftName, GiftDesc = "第二次抽"};
+                                else
+                                {
+                                    gift = GetRandomGift(new List<Gift>(), actName, 0);
+                                    if (gift.GiftId == giftLog.GiftId && gifts.Count > 1)
+                                    {
+                                        gift = GetDifferentGift(giftLog.GiftId, actName);
+                                    }
+                                    // 将礼物记录保存起来
+                                    giftLog = new GiftLog() { OpenId = openId, ActivityName = actName, GiftId = gift.GiftId, GiftName = gift.GiftName, GiftDesc = "第二次抽" };
+                                }
                                 if (giftLogDAL.AddGiftLog(giftLog) > 0)
                                 {
                                     id = 2;
@@ -153,7 +190,7 @@ namespace FristProject.Controllers
                 {
 
                     id = 98;
-                    msg = ex.Source + ";" + ex.Message+";"+ex.StackTrace;
+                    msg = ex.Source + ";" + ex.Message + ";" + ex.StackTrace;
                 }
 
             }
@@ -162,8 +199,14 @@ namespace FristProject.Controllers
                 msg = "参数错误";
             }
 
-            return JsonConvert.SerializeObject(new { id, msg, gift });
+            return JsonConvert.SerializeObject(new
+            {
+                id,
+                msg,
+                gift
+            });
         }
+
 
         //获取指定id不同的礼物
         public Gift GetDifferentGift(int id, string actName)
@@ -233,6 +276,7 @@ namespace FristProject.Controllers
                 giftLogs = giftLogDAL.SelGiftLogs(openId, actName);
                 for (int i = 0; i < giftLogs.Count; i++)
                 {
+                    
                     // 是否已登记
                     if (giftLogs[i].GiftDesc.Contains("已选择此奖品"))
                     {
@@ -241,12 +285,33 @@ namespace FristProject.Controllers
                         giftLogs.Clear();
                         giftLogs.Add(giftLog);
                     }
+                    else
+                    {
+                        if (giftLogs[i].GiftId != 0)
+                        {
+                            int re = giftCountDAL.GetGiftCountByGiftId(giftLogs[i].GiftId);
+                            if (re == 0)
+                            {
+                                giftLogs.RemoveAt(i);
+                                giftLogDAL.DelGiftLogById(giftLogs[i].GiftId);
+                            }
+                        }
+                    }
                 }
 
                 for (int i = 0; i < giftLogs.Count; i++)
                 {
-                    Gift gift = giftDAL.GetGiftByGiftId(giftLogs[i].GiftId);
-                    giftLogs[i].Unit = gift.Unit;
+                    if (giftLogs[i].GiftId != 0)
+                    {
+                        Gift gift = giftDAL.GetGiftByGiftId(giftLogs[i].GiftId);
+                        giftLogs[i].Unit = gift.Unit;
+                    }
+                    else
+                    {
+                        giftLogs[i].Unit ="份";
+                    }
+                    
+
                 }
             }
 
@@ -266,8 +331,25 @@ namespace FristProject.Controllers
             {
                 if (giftLogDAL.SelGiftLogs(openId, actName).Count > 0)
                 {
+                    if (giftId == 0)
+                    {
+                        if (giftLogDAL.EditGiftLog(openId, actName, giftId, name, telphone, ",已选择此奖品") > 0)
+                        {
+                            id = 1;
+                            msg = "登记成功";
+                            // 礼物减少
+                        }
+                        else
+                        {
+                            id = 2;
+                            msg = "登记失败";
+                        }
+
+                    }
                     // 判断数量是否还有（过时不候）
-                    if (GetPriceSumCount("江语城2020年新年运势H5") > 0)
+                    if (
+                        //GetPriceSumCount("江语城2020年新年运势H5") > 0 && 
+                        giftCountDAL.GetGiftCountByGiftId(giftId) > 0)
                     {
                         if (giftLogDAL.EditGiftLog(openId, actName, giftId, name, telphone, ",已选择此奖品") > 0)
                         {

@@ -85,12 +85,15 @@
     </script>
     <script>
         var openId = "@Model.Openid";
+        var wxUserName = '@Model.Nickname';
+        var wxImgSrc = '@Model.Headimgurl';
     </script>
     <link href="~/Content/2020/0109/css/common.css?v=@random.Next(10,20000)" rel="stylesheet" />
     <script type="text/javascript" src="~/Content/2020/0109/script/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/2020/0109/script/fastclick.js"></script>
     <script type="text/javascript" src="~/Content/2020/0109/script/preloadImg.js"></script>
     <script type="text/javascript" src="~/Content/2020/0109/script/srcImg.js?v=@random.Next(10,20000)"></script>
+    <script src="~/Content/2020/0109/script/pixi.js"></script>
     <script type="text/javascript" src="~/Content/2020/0109/script/main.js?v=@random.Next(10,20000)"></script>
 </head>
 
@@ -135,7 +138,9 @@
     <div class="logo"></div>
     <!-- 弹出结果 -->
     <div style="display: none;" id="result">
-        <img id="resultImg" src="~/Content/2020/0109/images/share/1.png" />
+        @* <img id="resultImg" src="~/Content/2020/0109/images/share/1.png" />*@
+        <img id="PageCanvasImg"  />
+
         <div style="
     position: absolute;
     bottom: 0;
@@ -255,7 +260,7 @@
             title: "福运非你莫“鼠”，测出你的鼠年运势",
             desc: "测运势，赢好礼",
             success: function () {
-                alert("openId=" + openId);
+                //alert("openId=" + openId);
                 $.ajax({
                     url: "http://weixin.seemoread.com/ZGTJJYC/AddShareLog",
                     dataType: 'json',
@@ -263,7 +268,7 @@
                     success: function (data) {
                         console.log(data);
                         if (data.id == 2) {
-                            alert("分享成功");
+                            //alert("分享成功");
                             $.ajax({
                                 url: "http://weixin.seemoread.com/ZGTJJYC/PrizeDraw",
                                 dataType: 'json',

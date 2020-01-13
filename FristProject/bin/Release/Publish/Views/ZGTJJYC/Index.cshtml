@@ -85,12 +85,15 @@
     </script>
     <script>
         var openId = "@Model.Openid";
+        var wxUserName = '@Model.Nickname';
+        var wxImgSrc = '@Model.Headimgurl';
     </script>
     <link href="~/Content/2020/0109/css/common.css?v=@random.Next(10,20000)" rel="stylesheet" />
     <script type="text/javascript" src="~/Content/2020/0109/script/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/2020/0109/script/fastclick.js"></script>
     <script type="text/javascript" src="~/Content/2020/0109/script/preloadImg.js"></script>
     <script type="text/javascript" src="~/Content/2020/0109/script/srcImg.js?v=@random.Next(10,20000)"></script>
+    <script src="~/Content/2020/0109/script/pixi.js"></script>
     <script type="text/javascript" src="~/Content/2020/0109/script/main.js?v=@random.Next(10,20000)"></script>
 </head>
 
@@ -135,7 +138,9 @@
     <div class="logo"></div>
     <!-- 弹出结果 -->
     <div style="display: none;" id="result">
-        <img id="resultImg" src="~/Content/2020/0109/images/share/1.png" />
+        @* <img id="resultImg" src="~/Content/2020/0109/images/share/1.png" />*@
+        <img id="PageCanvasImg"  />
+
         <div style="
     position: absolute;
     bottom: 0;

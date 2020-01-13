@@ -362,7 +362,7 @@ namespace FristProject.Controllers
                                 Gift gift = giftDAL.GetGiftByGiftId(giftId);
                                 if (gift.GiftDesc.Equals("奖金"))
                                 {
-                                    FHB("江语城新年运势", "中国铁建·江语城", "新年快乐", Convert.ToInt32(giftCountDAL.GetGiftCountModelByGiftId(giftId).Money * 100), openId);
+                                    //FHB("江语城新年运势", "中国铁建·江语城", "新年快乐", Convert.ToInt32(giftCountDAL.GetGiftCountModelByGiftId(giftId).Money * 100), openId);
                                 }
                                 msg += "礼物数量减少成功";
 

@@ -184,9 +184,11 @@ $(function () {
         })
 
         $('.center').on('touchend', function () {
-            var num = Math.ceil(Math.random() * 8);
-            $("#resultImg").attr("src", "../Content/2020/0109/images/share/" + num + ".png");
-            $('#result').show();
+            //var num = Math.ceil(Math.random() * 8);
+            //$("#resultImg").attr("src", "../Content/2020/0109/images/share/" + num + ".png");
+            //$('#result').show();
+            shareWxImgFun();
+
             $.ajax({
                 url: "http://weixin.seemoread.com/ZGTJJYC/PrizeDraw",
                 dataType: 'json',
@@ -271,5 +273,103 @@ $(function () {
     document.addEventListener("WeixinJSBridgeReady", function () {
         document.getElementById('music').play();
     }, false);
+    function shareWxImgFun() {
 
+        //wxImgSrc = 'http://thirdwx.qlogo.cn/mmopen/vi_32/poo31O8GibesWht9uNZ6kuhia3riaXfOQ52DXb1czp3WpT2ARWAjEo9aSIOnzFsFQKpNIKBuU6r22Q5VsIT0Ogu8Q/132'
+      
+
+
+        var img = new Image();
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+        document.getElementById('PageCanvasImg').appendChild(img);
+        document.getElementById('PageCanvasImg').appendChild(canvas);
+
+        //直接读成blob文件对象
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', wxImgSrc, true);
+        xhr.responseType = 'blob';
+        xhr.onload = function () {
+            if (this.status == 200) {
+                //这里面可以直接通过URL的api将其转换，然后赋值给img.src
+                img.src = URL.createObjectURL(this.response);
+                img.setAttribute('crossOrigin', 'anonymous');
+                img.onload = function () {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    canvas.style.display = 'none'
+                    ctx.drawImage(img, 0, 0);
+                    wxImgSrc = canvas.toDataURL("image/jpeg", 1);
+                    img.remove();
+                    canvas.remove();
+                    // 创建Pixi-Canvas
+                    PixiCanvas();
+                }
+            }
+        };
+        xhr.send();
+
+        $('.alert').hide();
+        //$('#wxShareImg').show();
+        $('#result').show();
+
+    }
+
+    function PixiCanvas() {
+        var app = new PIXI.Application({
+            width: 750,
+            height: 1206,
+            antialias: true,
+            transparent: true,
+            resolution: 1,
+            preserveDrawingBuffer: true
+        });
+        const style = new PIXI.TextStyle({
+            fontFamily: 'Microsoft YaHei',
+            fontSize: 28,
+            fontWeight: 'bold',
+            fill: ['#000', '#555'],
+            wordWrap: true,
+        });
+
+        var message = new PIXI.Text(wxUserName, style);
+        message.x = 387;
+        message.y = 958;
+
+        var num = Math.ceil(Math.random() * 8);
+
+        PIXI.loader
+            .add("../Content/2020/0109/images/share/share-" + num + ".png")
+            .add("../Content/2020/0109/images/share/wx2wm.png")
+            .add(wxImgSrc)
+            .load(function () {
+                //Create the dom sprite
+                let bgDom = new PIXI.Sprite(PIXI.loader.resources["../Content/2020/0109/images/share/share-" + num + ".png"].texture);
+                let headDom = new PIXI.Sprite(PIXI.loader.resources[wxImgSrc].texture);
+                let wx2wmDom = new PIXI.Sprite(PIXI.loader.resources["../Content/2020/0109/images/share/wx2wm.png"].texture);
+                //Add the dom to the stage
+                bgDom.width = 750;
+                bgDom.height = 1206;
+                headDom.width = 40;
+                headDom.height = 40;
+                wx2wmDom.width = 108;
+                wx2wmDom.height = 108;
+                headDom.x = 332;
+                headDom.y = 955;
+                wx2wmDom.x = 200;
+                wx2wmDom.y = 955;
+
+                app.stage.addChild(bgDom);
+                app.stage.addChild(headDom);
+                app.stage.addChild(wx2wmDom);
+                app.stage.addChild(message);
+
+                app.render(app.stage);
+
+                document.getElementById('PageCanvasImg').src = app.renderer.plugins.extract.image().src;
+            });
+        app.view.style.width = 375 + 'px';
+        app.view.style.height = 603 + 'px';
+        document.getElementById('PageCanvasImg').appendChild(app.view);
+    }
 }) // $-over

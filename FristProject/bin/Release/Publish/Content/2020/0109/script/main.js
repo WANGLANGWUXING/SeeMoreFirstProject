@@ -78,10 +78,14 @@ $(function () {
                             for (var i = 0; i < data.giftLogs.length; i++) {
                                 var giftNameStr = "";
 
-                                if (data.giftLogs[i].GiftName == "红包1") {
-                                    giftNameStr = "1元红包一个";
-                                } else if (data.giftLogs[i].GiftName == "红包8") {
-                                    giftNameStr = "8元红包一个";
+                                if (data.giftLogs[i].GiftName == "红包0.88") {
+                                    giftNameStr = "0.88元红包一个";
+                                } else if (data.giftLogs[i].GiftName == "红包1.88") {
+                                    giftNameStr = "1.88元红包一个";
+                                } else if (data.giftLogs[i].GiftName == "红包8.88") {
+                                    giftNameStr = "8.88元红包一个";
+                                } else if (data.giftLogs[i].GiftName == "红包88.88") {
+                                    giftNameStr = "88.88元红包一个";
                                 } else {
                                     giftNameStr = data.giftLogs[i].GiftName + "一" + data.giftLogs[i].Unit;
                                 }
@@ -197,11 +201,15 @@ $(function () {
                     console.log(data);
                     if (data.id == 2 || data.id == 5) {
                         if (data.gift.GiftDesc == "奖金") {
-                            if (data.gift.GiftName == "红包1") {
-                                $(".alert-title-content").html("1元红包一个");
-                            } else {
-                                $(".alert-title-content").html("8元红包一个");
-                            }
+                            if (data.gift.GiftName == "红包0.88") {
+                                $(".alert-title-content").html("0.88元红包一个");
+                            } if (data.gift.GiftName == "红包1.88") {
+                                $(".alert-title-content").html("1.88元红包一个");
+                            } if (data.gift.GiftName == "红包8.88") {
+                                $(".alert-title-content").html("8.88元红包一个");
+                            } if (data.gift.GiftName == "红包88.88") {
+                                $(".alert-title-content").html("88.88元红包一个");
+                            } 
                         } else {
                             $(".alert-title-content").html(data.gift.GiftName + "一" + data.gift.Unit);
                         }
@@ -326,7 +334,7 @@ $(function () {
         });
         const style = new PIXI.TextStyle({
             fontFamily: 'Microsoft YaHei',
-            fontSize: 30,
+            fontSize: 28,
             fontWeight: 'bold',
             fill: ['#000', '#555'],
             wordWrap: true,
@@ -334,7 +342,7 @@ $(function () {
 
         var message = new PIXI.Text(wxUserName, style);
         message.x = 387;
-        message.y = 954;
+        message.y = 958;
 
         var num = Math.ceil(Math.random() * 8);
 

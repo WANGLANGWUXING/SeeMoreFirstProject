@@ -19,6 +19,7 @@ namespace FristProject.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult Index()
         {
+            string ipAddr = Request.ServerVariables.Get("Remote_Addr").ToString();
             WXModel user;
             string urlpath = Request.Url.AbsoluteUri;
             if (Session["User"] != null)
@@ -34,7 +35,7 @@ namespace FristProject.Controllers
             }
             UserInfoSaveNoSaveImg(user);
             // 添加访问记录
-            AddPV(urlpath, user.Openid, "江语城2020年新年运势H5");
+            AddPV(urlpath, user.Openid, "江语城2020年新年运势H5", ipAddr);
             return View(user);
         }
 
@@ -276,7 +277,7 @@ namespace FristProject.Controllers
                 giftLogs = giftLogDAL.SelGiftLogs(openId, actName);
                 for (int i = 0; i < giftLogs.Count; i++)
                 {
-                    
+
                     // 是否已登记
                     if (giftLogs[i].GiftDesc.Contains("已选择此奖品"))
                     {
@@ -308,9 +309,9 @@ namespace FristProject.Controllers
                     }
                     else
                     {
-                        giftLogs[i].Unit ="份";
+                        giftLogs[i].Unit = "份";
                     }
-                    
+
 
                 }
             }

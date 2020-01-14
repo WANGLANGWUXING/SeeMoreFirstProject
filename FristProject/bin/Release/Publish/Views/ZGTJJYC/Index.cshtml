@@ -260,7 +260,7 @@
             title: "福运非你莫“鼠”，测出你的鼠年运势",
             desc: "测运势，赢好礼",
             success: function () {
-                alert("openId=" + openId);
+                //alert("openId=" + openId);
                 $.ajax({
                     url: "http://weixin.seemoread.com/ZGTJJYC/AddShareLog",
                     dataType: 'json',
@@ -268,7 +268,7 @@
                     success: function (data) {
                         console.log(data);
                         if (data.id == 2) {
-                            alert("分享成功");
+                            //alert("分享成功");
                             $.ajax({
                                 url: "http://weixin.seemoread.com/ZGTJJYC/PrizeDraw",
                                 dataType: 'json',

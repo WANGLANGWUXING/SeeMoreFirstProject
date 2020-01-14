@@ -10,6 +10,7 @@ namespace DAL
         public int Id { get; set; }
         public string Url { get; set; }
         public string OpenId { get; set; }
+        public string IPAddress { get; set; }
         public string ActName { get; set; }
         public System.DateTime VisitTime { get; set; }
     }

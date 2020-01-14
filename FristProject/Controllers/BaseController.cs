@@ -53,9 +53,9 @@ namespace FristProject.Controllers
             return DicText["openid"].ToString();
         }
 
-        public void AddPV(string url, string openId, string actName = "")
+        public void AddPV(string url, string openId, string actName = "", string ipAddr = "")
         {
-            pVTableDAL.AddPV(new PVTable { Url = url, OpenId = openId, ActName = actName });
+            pVTableDAL.AddPV(new PVTable { Url = url, OpenId = openId, ActName = actName, IPAddress = ipAddr });
         }
         public static string WebRequestPostOrGet(string sUrl, string sParam)
         {

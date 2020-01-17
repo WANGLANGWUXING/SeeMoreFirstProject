@@ -37,6 +37,26 @@ namespace DAL
 
         public int EditGiftLog(string openId, string activityName,int giftId, string name, string telphone,string desc)
         {
+            if (giftId != 0)
+            {
+                string selsql = "select * from GiftLog WHERE OpenId=@OpenId and ActivityName=@ActivityName and GiftId=@GiftId";
+
+                var temp = DapperHelper<GiftLog>.Query(selsql, new
+                {
+                    OpenId = openId,
+                    ActivityName = activityName,
+                    GiftId = giftId
+                }).FirstOrDefault();
+
+                if (!string.IsNullOrWhiteSpace(temp.Telphone))
+                {
+                    return 2;
+                }
+            }
+           
+
+
+
             string editSql = "UPDATE [dbo].[GiftLog] SET [Name]=@Name ,[Telphone]=@Telphone,GiftDesc=GiftDesc+@desc " +
                 " WHERE OpenId=@OpenId and ActivityName=@ActivityName and GiftId=@GiftId";
             var result = DapperHelper<GiftLog>.Execute(editSql, new { 

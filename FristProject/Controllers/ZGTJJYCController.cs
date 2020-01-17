@@ -352,18 +352,23 @@ namespace FristProject.Controllers
                         //GetPriceSumCount("江语城2020年新年运势H5") > 0 && 
                         giftCountDAL.GetGiftCountByGiftId(giftId) > 0)
                     {
-                        if (giftLogDAL.EditGiftLog(openId, actName, giftId, name, telphone, ",已选择此奖品") > 0)
+                        int res = giftLogDAL.EditGiftLog(openId, actName, giftId, name, telphone, ",已选择此奖品");
+                        if (res > 0)
                         {
                             id = 1;
                             msg = "登记成功";
                             // 礼物减少
-
+                            if (res == 2)
+                            {
+                                msg += "礼物已经减少过了";
+                                return JsonConvert.SerializeObject(new { id, msg });
+                            }
                             if (giftCountDAL.EditGiftCountByGiftId(giftId) > 0)
                             {
                                 Gift gift = giftDAL.GetGiftByGiftId(giftId);
                                 if (gift.GiftDesc.Equals("奖金"))
                                 {
-                                    //FHB("江语城新年运势", "中国铁建·江语城", "新年快乐", Convert.ToInt32(giftCountDAL.GetGiftCountModelByGiftId(giftId).Money * 100), openId);
+                                    FHB("江语城新年运势", "中国铁建·江语城", "新年快乐", Convert.ToInt32(giftCountDAL.GetGiftCountModelByGiftId(giftId).Money * 100), openId);
                                 }
                                 msg += "礼物数量减少成功";
 
